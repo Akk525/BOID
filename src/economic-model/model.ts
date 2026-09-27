@@ -235,6 +235,7 @@ function validateSemantics(model: EconomicModel): ModelDiagnostic[] {
   }
 
   const seenRules = new Set<string>();
+  const rulesById = new Map<string, EconomicModel["actions"]["purchase"]["transfers"][number]>();
   for (const [index, rule] of model.actions.purchase.transfers.entries()) {
     const path = `actions.purchase.transfers.${index}`;
     if (seenRules.has(rule.id)) add(`${path}.id`, `duplicate transfer rule ${rule.id}`);
@@ -243,12 +244,28 @@ function validateSemantics(model: EconomicModel): ModelDiagnostic[] {
       requireParameter(rule.amount.parameter, "money", `${path}.amount.parameter`);
     } else if (rule.amount.op === "share") {
       requireParameter(rule.amount.rate.parameter, "rate", `${path}.amount.rate.parameter`);
-    } else if (!seenRules.has(rule.amount.minusRule)) {
-      add(`${path}.amount.minusRule`, "remainder must subtract an earlier transfer rule");
+    } else {
+      const subtracted = rulesById.get(rule.amount.minusRule);
+      if (!subtracted) {
+        add(`${path}.amount.minusRule`, "remainder must subtract an earlier transfer rule");
+      } else if (subtracted.amount.op !== "share" ||
+        subtracted.from !== "buyer" || subtracted.to !== "platform" ||
+        subtracted.when !== undefined || rule.from !== "buyer" || rule.to !== "creator") {
+        add(`${path}.amount.minusRule`, "remainder must subtract an unconditional buyer-to-platform purchase share");
+      }
     }
     if (rule.when) validatePredicate(rule.when, `${path}.when`, requireParameter);
     for (const id of rule.evidence) requireEvidence(id, `${path}.evidence`);
     seenRules.add(rule.id);
+    rulesById.set(rule.id, rule);
+  }
+  const buyerRules = model.actions.purchase.transfers.filter((rule) => rule.from === "buyer");
+  if (buyerRules.length !== 2 ||
+    buyerRules.filter((rule) => rule.amount.op === "share" &&
+      rule.to === "platform" && rule.when === undefined).length !== 1 ||
+    buyerRules.filter((rule) => rule.amount.op === "remainder" &&
+      rule.to === "creator" && rule.when === undefined).length !== 1) {
+    add("actions.purchase.transfers", "purchase requires one unconditional buyer-to-platform share and one buyer-to-creator remainder");
   }
   const seenObjectives = new Set<string>();
   for (const [index, objective] of model.objectives.entries()) {
@@ -274,16 +291,10 @@ function validatePredicate(
 }
 
 export function parseEconomicModel(input: unknown): EconomicModel {
-  const parsed = ModelSchema.safeParse(input);
-  if (!parsed.success) {
-    throw new EconomicModelValidationError(parsed.error.issues.map((issue) => ({
-      path: issue.path.join(".") || "$",
-      message: issue.message,
-    })));
-  }
-  const diagnostics = validateSemantics(parsed.data);
+  const model = parseWithDiagnostics(ModelSchema, input);
+  const diagnostics = validateSemantics(model);
   if (diagnostics.length) throw new EconomicModelValidationError(diagnostics);
-  return parsed.data;
+  return model;
 }
 
 function parseWithDiagnostics<T>(schema: z.ZodType<T>, input: unknown): T {

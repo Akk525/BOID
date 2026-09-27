@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
@@ -37,6 +38,8 @@ test("the fixture model loads with traceable rules and a stable source manifest"
   for (const file of model.source.files) {
     const content = readFileSync(join(process.cwd(), file.path));
     assert.equal(createHash("sha256").update(content).digest("hex"), file.sha256);
+    const pinnedContent: Buffer = execFileSync("git", ["show", `${model.source.commit}:${file.path}`]);
+    assert.equal(createHash("sha256").update(pinnedContent).digest("hex"), file.sha256);
   }
 });
 
@@ -77,6 +80,11 @@ test("semantic validation rejects missing evidence, parameters, and duplicate ID
   expectInvalid((m) => { m.constraints.buyerCreatorDifferent.evidence = "missing"; }, /buyerCreatorDifferent.*evidence/);
   expectInvalid((m) => { m.evidence.platformFeeSource.kind = "unknown_knowable"; }, /platformFeeRate.*point value/);
   expectInvalid((m) => { m.evidence.platformFeeSource.source = { type: "user" }; }, /known evidence.*direct/);
+  expectInvalid((m) => {
+    const bonus = m.actions.purchase.transfers.pop();
+    m.actions.purchase.transfers.splice(1, 0, bonus);
+    m.actions.purchase.transfers[2].amount.minusRule = "affiliateBonus";
+  }, /remainder must subtract an unconditional buyer-to-platform purchase share/);
 });
 
 test("multiple actor identities may share the buyer role", () => {
