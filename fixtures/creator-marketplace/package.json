@@ -1,0 +1,11 @@
+{
+  "name": "creator-marketplace-fixture",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
