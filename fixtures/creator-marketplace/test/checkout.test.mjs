@@ -1,25 +1,10 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { checkout } from "../src/checkout.mjs";
-
-const baseState = () => ({
-  balances: {
-    "buyer-1": 40_000_000,
-    "creator-1": 0,
-    "affiliate-1": 0,
-    platform: 0,
-    campaignTreasury: 10_000_000,
-  },
-  purchasesByBuyer: {},
-  listings: {
-    starter: { creatorId: "creator-1", priceMicros: 5_000_000 },
-    standard: { creatorId: "creator-1", priceMicros: 20_000_000 },
-    small: { creatorId: "creator-1", priceMicros: 4_000_000 },
-  },
-});
+import { sampleState } from "../src/sample-data.mjs";
 
 test("first referred starter purchase pays the creator, platform, and affiliate", () => {
-  const before = baseState();
+  const before = sampleState();
   const { state, receipt } = checkout(before, {
     buyerId: "buyer-1",
     listingId: "starter",
@@ -37,11 +22,11 @@ test("first referred starter purchase pays the creator, platform, and affiliate"
   });
   assert.equal(state.purchasesByBuyer["buyer-1"], 1);
   assert.equal(receipt.affiliateBonusMicros, 1_000_000);
-  assert.deepEqual(before, baseState(), "checkout must leave its input unchanged");
+  assert.deepEqual(before, sampleState(), "checkout must leave its input unchanged");
 });
 
 test("normal first order shows the fixed bonus does not scale with price", () => {
-  const { state } = checkout(baseState(), {
+  const { state } = checkout(sampleState(), {
     buyerId: "buyer-1",
     listingId: "standard",
     affiliateId: "affiliate-1",
@@ -57,7 +42,7 @@ test("normal first order shows the fixed bonus does not scale with price", () =>
 });
 
 test("an order below the referral minimum earns no affiliate bonus", () => {
-  const { state, receipt } = checkout(baseState(), {
+  const { state, receipt } = checkout(sampleState(), {
     buyerId: "buyer-1",
     listingId: "small",
     affiliateId: "affiliate-1",
@@ -71,7 +56,7 @@ test("an order below the referral minimum earns no affiliate bonus", () => {
 });
 
 test("only the buyer's first purchase qualifies for the bonus", () => {
-  const first = checkout(baseState(), {
+  const first = checkout(sampleState(), {
     buyerId: "buyer-1",
     listingId: "starter",
     affiliateId: "affiliate-1",
@@ -89,7 +74,7 @@ test("only the buyer's first purchase qualifies for the bonus", () => {
 });
 
 test("direct self-referral cannot collect the affiliate bonus", () => {
-  const state = baseState();
+  const state = sampleState();
   state.balances["buyer-1"] = 40_000_000;
   const { receipt } = checkout(state, {
     buyerId: "buyer-1",
@@ -100,14 +85,14 @@ test("direct self-referral cannot collect the affiliate bonus", () => {
 });
 
 test("a purchase fails atomically if the buyer or campaign lacks funds", () => {
-  const poorBuyer = baseState();
+  const poorBuyer = sampleState();
   poorBuyer.balances["buyer-1"] = 4_999_999;
   assert.throws(() => checkout(poorBuyer, {
     buyerId: "buyer-1", listingId: "starter", affiliateId: "affiliate-1",
   }), /buyer balance/i);
   assert.deepEqual(poorBuyer.purchasesByBuyer, {});
 
-  const emptyCampaign = baseState();
+  const emptyCampaign = sampleState();
   emptyCampaign.balances.campaignTreasury = 999_999;
   const unchangedCampaign = structuredClone(emptyCampaign);
   assert.throws(() => checkout(emptyCampaign, {

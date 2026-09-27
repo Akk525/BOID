@@ -2,7 +2,7 @@
 
 This is a small, fictional existing application for Boid to analyze. Buyers purchase creator listings using integer micro-USDC accounting. Checkout sends 90% of the price to the creator and 10% to the platform. A separate campaign treasury pays a fixed 1 USDC affiliate bonus when a referred buyer makes their first purchase of at least 5 USDC. The ordinary listing price is 20 USDC.
 
-The application rejects a buyer referring themself with the same account ID. It has no evidence that three different accounts are controlled by three different people. That distinction is deliberately outside the checkout rule.
+The application does not pay an affiliate bonus when a buyer refers themself with the same account ID. It has no evidence that three different accounts are controlled by three different people. That distinction is deliberately outside the checkout rule.
 
 ## Run
 
