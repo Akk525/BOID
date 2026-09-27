@@ -179,8 +179,8 @@ The demonstration should include a control case with identity cost 0.50 USDC: th
 ## 9. Ordered phases and gates
 
 1. **Define a trustworthy target.** Fixture repository, expected model, numeric oracle, and explicit input assumptions. Gate: a reviewer can verify the 5 USDC loop by hand.
-2. **Prove the nucleus.** Typed model, compiler/transition, bounded strategy search, replayable finding. Gate: `Repo fixture → Economic Model → Boid → Finding` from one CLI command; finding matches exhaustive oracle and reports coverage. This is the first milestone.
-3. **Earn repository input.** Safe snapshot, evidence-backed extraction, validation/review step. Gate: source lines for every extracted rule, and errors for missing economics. The nucleus still runs without an LLM.
+2. **Prove the nucleus (M0 Engine proof).** Typed model, compiler/transition, bounded strategy search, replayable finding. Gate: checked-in model → boid → finding from one CLI command; finding matches exhaustive oracle and reports coverage. This tests the core search hypothesis before extraction work.
+3. **Earn repository input (M1 Repo finding).** Safe snapshot, evidence-backed extraction, validation/review step. Gate: `Repo → Economic Model → Boid → Finding` with source lines for every extracted rule and errors for missing economics. This is the first end-to-end milestone. The nucleus still runs without an LLM.
 4. **Quantify and repair.** Seeded scenario, sensitivity, alternative mechanism, before/after. Gate: identical seeds and initial conditions; arithmetic and metrics reconcile with journals.
 5. **Demo implementation.** Minimal visual trace, reviewed Solana payout diff, local validator test. Gate: demo can show mechanism, profitable action sequence, repair, and tested patch without deploying funds.
 
@@ -188,4 +188,4 @@ Do not start phase 5 before phase 2 proves the core hypothesis. Stop or cut scop
 
 ## 10. Critical path
 
-Backlog IDs B01 → B02 → B03 → B04 → B05 → B06 are the shortest path to the first milestone. B07 adds fixture-to-model extraction only after the executable nucleus is credible. B08–B15 improve the hackathon demonstration; B16–B19 are explicitly post-hackathon. See [BACKLOG.md](BACKLOG.md) for independently reviewable issue definitions.
+Backlog IDs B01 → B02 → B03 → B04 → B05 → B06 prove the engine. B07 → B08 complete the shortest path to the first end-to-end milestone, `Repo → Economic Model → Boid → Finding`. B09–B16 improve the hackathon demonstration; B17–B20 are explicitly post-hackathon. See [BACKLOG.md](BACKLOG.md) for independently reviewable issue definitions.

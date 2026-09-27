@@ -4,4 +4,4 @@ Boid is an economic engineering layer for software. It turns repository evidence
 
 This repository currently contains a [hackathon plan](docs/PLAN.md), [domain language](CONTEXT.md), and a [proposed issue backlog](docs/BACKLOG.md). No product implementation exists yet.
 
-The first technical milestone is **Repo → Economic Model → Boid → Finding**. Implementation should begin only after reviewing the plan and issue backlog.
+The first end-to-end milestone is **Repo → Economic Model → Boid → Finding**. An earlier engine gate proves strategy search against a checked-in model. Implementation should begin only after reviewing the plan and issue backlog.

@@ -1,6 +1,6 @@
 # Proposed GitHub issue backlog
 
-These are reviewable proposals, not an implementation commitment. IDs are stable references for dependency edges; GitHub issue numbers will be recorded when published. Milestones: **M1 Finding** proves the technical nucleus; **M2 Evidence** connects a real repository; **M3 Demo** makes the hackathon narrative work; **Later** is post-hackathon. A ticket is complete only when its acceptance criteria hold, not when files merely exist. The implementation may stop after any milestone gate.
+These are reviewable proposals, not an implementation commitment. IDs are stable references for dependency edges; GitHub issue numbers match B IDs. Milestones: **M0 Engine proof** tests strategy search against a checked-in model; **M1 Repo finding** completes Repo → Economic Model → Boid → Finding; **M2 Demo** makes the hackathon narrative work; **Later** is post-hackathon. A ticket is complete only when its acceptance criteria hold, not when files merely exist. The implementation may stop after any milestone gate.
 
 ## P0 — proves Boid
 
@@ -12,7 +12,7 @@ These are reviewable proposals, not an implementation commitment. IDs are stable
 **Dependencies:** None.
 **Acceptance criteria:** A reviewer can locate each rule in source; at 5 USDC with 0.15 identity and 0.01 transaction cost the oracle yields +0.34; at 20 USDC it yields −1.16; campaign and platform flows reconcile.
 **Tests required:** Fixture checkout unit tests and independent hand-calculation fixture assertions.
-**Priority:** P0. **Milestone:** M1 Finding. **Labels:** `core`, `testing`, `hackathon-critical`.
+**Priority:** P0. **Milestone:** M0 Engine proof. **Labels:** `core`, `testing`, `hackathon-critical`.
 
 ### B02 — Validate and version the constrained purchase model
 
@@ -22,7 +22,7 @@ These are reviewable proposals, not an implementation commitment. IDs are stable
 **Dependencies:** B01.
 **Acceptance criteria:** Valid fixture model loads; malformed models return useful diagnostics; serialized model and source hash are stable.
 **Tests required:** Boundary/schema tests for valid and invalid cases; round-trip serialization.
-**Priority:** P0. **Milestone:** M1 Finding. **Labels:** `economic-ir`, `core`, `hackathon-critical`.
+**Priority:** P0. **Milestone:** M0 Engine proof. **Labels:** `economic-ir`, `core`, `hackathon-critical`.
 
 ### B03 — Execute purchases through one exact ledger transition
 
@@ -32,7 +32,7 @@ These are reviewable proposals, not an implementation commitment. IDs are stable
 **Dependencies:** B02.
 **Acceptance criteria:** Fixture payouts match oracle at 5 and 20 USDC; second purchase receives no first-purchase bonus; insufficient funds leave state unchanged; every accepted action conserves ledger assets.
 **Tests required:** Table tests for thresholds, first/second purchase, rounding, invalid roles, insufficient treasury/buyer funds, and conservation property.
-**Priority:** P0. **Milestone:** M1 Finding. **Labels:** `economic-ir`, `simulation`, `hackathon-critical`.
+**Priority:** P0. **Milestone:** M0 Engine proof. **Labels:** `economic-ir`, `simulation`, `hackathon-critical`.
 
 ### B04 — Score coalition profit from replayable action traces
 
@@ -42,7 +42,7 @@ These are reviewable proposals, not an implementation commitment. IDs are stable
 **Dependencies:** B03.
 **Acceptance criteria:** Replay reproduces the same journal and score; fixture 5 USDC coalition gives +0.34; honest single-role buyer is not scored as a three-role coalition; changing identity cost changes profit without changing ledger entries.
 **Tests required:** Replay and arithmetic tests, including cross-role ownership and cost sensitivity.
-**Priority:** P0. **Milestone:** M1 Finding. **Labels:** `simulation`, `core`, `hackathon-critical`.
+**Priority:** P0. **Milestone:** M0 Engine proof. **Labels:** `simulation`, `core`, `hackathon-critical`.
 
 ### B05 — Search bounded strategies for profitable purchase loops
 
@@ -52,7 +52,7 @@ These are reviewable proposals, not an implementation commitment. IDs are stable
 **Dependencies:** B04.
 **Acceptance criteria:** Search finds the 5 USDC +0.34 strategy within a documented bound; exhaustive oracle on the tiny fixture agrees on best trace; rerun yields identical ranking and coverage; truncation is visible.
 **Tests required:** Differential test against brute-force oracle; deterministic replay; budget/truncation tests.
-**Priority:** P0. **Milestone:** M1 Finding. **Labels:** `simulation`, `core`, `hackathon-critical`.
+**Priority:** P0. **Milestone:** M0 Engine proof. **Labels:** `simulation`, `core`, `hackathon-critical`.
 
 ### B06 — Print a cited, conditional finding from a single command
 
@@ -62,7 +62,7 @@ These are reviewable proposals, not an implementation commitment. IDs are stable
 **Dependencies:** B05.
 **Acceptance criteria:** A fresh checkout can run the documented command and see the exact finding; every numeric claim maps to a journal or assumption; identical inputs produce byte-equivalent structured results.
 **Tests required:** End-to-end CLI snapshot checked against semantic fields and reproducibility hashes.
-**Priority:** P0. **Milestone:** M1 Finding. **Labels:** `core`, `testing`, `hackathon-critical`.
+**Priority:** P0. **Milestone:** M0 Engine proof. **Labels:** `core`, `testing`, `hackathon-critical`.
 
 ### B07 — Snapshot a bounded public/local repository with source locations
 
@@ -72,7 +72,7 @@ These are reviewable proposals, not an implementation commitment. IDs are stable
 **Dependencies:** B06.
 **Acceptance criteria:** Same commit yields same snapshot hash; source span resolves exactly; oversize or unsupported input fails with actionable diagnostics.
 **Tests required:** Snapshot fixture tests, limit tests, traversal/symlink tests, and commit pinning test.
-**Priority:** P0. **Milestone:** M2 Evidence. **Labels:** `repo-analysis`, `core`, `hackathon-critical`.
+**Priority:** P0. **Milestone:** M1 Repo finding. **Labels:** `repo-analysis`, `core`, `hackathon-critical`.
 
 ### B08 — Extract and review evidence-backed marketplace rules
 
@@ -82,7 +82,7 @@ These are reviewable proposals, not an implementation commitment. IDs are stable
 **Dependencies:** B07.
 **Acceptance criteria:** Fixture draft matches the gold model; each extracted rule cites an exact source span; missing or conflicting rule is surfaced for review; approved draft runs through B06 unchanged.
 **Tests required:** Gold-model comparison on fixture and one altered variant; invented-span and conflicting-rule rejection.
-**Priority:** P0. **Milestone:** M2 Evidence. **Labels:** `repo-analysis`, `ai`, `economic-ir`, `hackathon-critical`.
+**Priority:** P0. **Milestone:** M1 Repo finding. **Labels:** `repo-analysis`, `ai`, `economic-ir`, `hackathon-critical`.
 
 ## P1 — makes the hackathon demo excellent
 
@@ -94,7 +94,7 @@ These are reviewable proposals, not an implementation commitment. IDs are stable
 **Dependencies:** B06.
 **Acceptance criteria:** 5 USDC coalition profit changes from +0.34 to −0.46; 20 USDC honest affiliate award changes from 1.00 to 0.80; no profitable trace within stated search bounds; before/after links to both hashes.
 **Tests required:** Transition parity and comparison tests at boundary amounts; verify search finds any deliberately reintroduced profitable variant.
-**Priority:** P1. **Milestone:** M3 Demo. **Labels:** `economic-ir`, `simulation`, `hackathon-critical`.
+**Priority:** P1. **Milestone:** M2 Demo. **Labels:** `economic-ir`, `simulation`, `hackathon-critical`.
 
 ### B10 — Run seeded scenario populations through the shared transition
 
@@ -104,7 +104,7 @@ These are reviewable proposals, not an implementation commitment. IDs are stable
 **Dependencies:** B06.
 **Acceptance criteria:** Same seed/model/scenario yields identical metrics and journal hash; totals reconcile with journal; zero attackers produces zero attacker extraction.
 **Tests required:** Seed determinism, accounting reconciliation, zero-attacker and treasury exhaustion cases.
-**Priority:** P1. **Milestone:** M3 Demo. **Labels:** `simulation`, `testing`.
+**Priority:** P1. **Milestone:** M2 Demo. **Labels:** `simulation`, `testing`.
 
 ### B11 — Show sensitivity and no-exploit countercase
 
@@ -114,7 +114,7 @@ These are reviewable proposals, not an implementation commitment. IDs are stable
 **Dependencies:** B09, B10.
 **Acceptance criteria:** Baseline at 0.15 identity cost is profitable; at 0.50 the 5 USDC loop is −0.01 after transaction cost; charts/tables label inputs and confidence limits; same grid reproduces.
 **Tests required:** Break-even arithmetic, paired-seed reproducibility, and monotonicity where mathematically expected.
-**Priority:** P1. **Milestone:** M3 Demo. **Labels:** `simulation`, `testing`.
+**Priority:** P1. **Milestone:** M2 Demo. **Labels:** `simulation`, `testing`.
 
 ### B12 — Produce recommendation claims with evidence lineage
 
@@ -124,7 +124,7 @@ These are reviewable proposals, not an implementation commitment. IDs are stable
 **Dependencies:** B09, B11.
 **Acceptance criteria:** Every numeric sentence resolves to a run/parameter; deleting an evidence item makes the dependent claim invalid; output distinguishes high confidence in conditional exploit from uncertainty about real identity costs.
 **Tests required:** Claim validator tests for fabricated numbers, missing evidence, and conditional wording.
-**Priority:** P1. **Milestone:** M3 Demo. **Labels:** `ai`, `core`.
+**Priority:** P1. **Milestone:** M2 Demo. **Labels:** `ai`, `core`.
 
 ### B13 — Build a minimal inspectable demo view
 
@@ -134,7 +134,7 @@ These are reviewable proposals, not an implementation commitment. IDs are stable
 **Dependencies:** B08, B11, B12.
 **Acceptance criteria:** A reviewer can identify where 1 USDC leaves the treasury, why the coalition earns 0.34, and how the repair changes both exploit and honest reward; all displayed values match JSON artifacts.
 **Tests required:** One end-to-end interaction test and artifact/display parity checks.
-**Priority:** P1. **Milestone:** M3 Demo. **Labels:** `frontend`, `hackathon-critical`.
+**Priority:** P1. **Milestone:** M2 Demo. **Labels:** `frontend`, `hackathon-critical`.
 
 ### B14 — Prototype one local SPL payout artifact with authority assumptions
 
@@ -144,7 +144,7 @@ These are reviewable proposals, not an implementation commitment. IDs are stable
 **Dependencies:** B09.
 **Acceptance criteria:** Authority and referral eligibility trust assumptions are written down; local transfer/settlement matches B03 for edge amounts; no production USDC or mainnet deployment.
 **Tests required:** Local validator tests for split, rounding, wrong mint/authority, insufficient funds, duplicate settlement where applicable.
-**Priority:** P1. **Milestone:** M3 Demo. **Labels:** `solana`, `research`.
+**Priority:** P1. **Milestone:** M2 Demo. **Labels:** `solana`, `research`.
 
 ### B15 — Generate the reviewed payout change from validated parameters
 
@@ -154,7 +154,7 @@ These are reviewable proposals, not an implementation commitment. IDs are stable
 **Dependencies:** B12, B14.
 **Acceptance criteria:** Baseline and repaired model generate distinct, expected payouts; generated tests pass locally; unsupported eligibility or missing authority yields an explicit refusal to generate executable payout code.
 **Tests required:** Golden artifact tests, model-to-localnet parity, rejection tests for unsupported rules.
-**Priority:** P1. **Milestone:** M3 Demo. **Labels:** `solana`, `economic-ir`, `hackathon-critical`.
+**Priority:** P1. **Milestone:** M2 Demo. **Labels:** `solana`, `economic-ir`, `hackathon-critical`.
 
 ### B16 — Test extraction against a second real marketplace repository
 
@@ -164,7 +164,7 @@ These are reviewable proposals, not an implementation commitment. IDs are stable
 **Dependencies:** B08.
 **Acceptance criteria:** Gold facts and extraction diff are published; failures are categorized; scope decision is documented before demo claims generality.
 **Tests required:** Repeatable extraction regression fixture with pinned commit.
-**Priority:** P1. **Milestone:** M3 Demo. **Labels:** `repo-analysis`, `research`, `testing`.
+**Priority:** P1. **Milestone:** M2 Demo. **Labels:** `repo-analysis`, `research`, `testing`.
 
 ## P2 — post-hackathon
 
@@ -210,4 +210,4 @@ These are reviewable proposals, not an implementation commitment. IDs are stable
 
 ## Critical path
 
-`B01 → B02 → B03 → B04 → B05 → B06` is the shortest proof. The first six issues should be implemented in order. B07–B08 turn that proof into actual repository ingestion. B09, B10, and B14 can then proceed independently; B11–B13 and B15 complete the demo. P2 issues should stay out of the hackathon build.
+`B01 → B02 → B03 → B04 → B05 → B06 → B07 → B08` is the shortest repo-to-finding path. The first six issues prove the engine against a checked-in model; B07–B08 add repository ingestion and evidence-backed extraction. B09, B10, and B14 can then proceed independently; B11–B13 and B15 complete the demo. P2 issues should stay out of the hackathon build.
