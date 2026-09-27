@@ -1,0 +1,4 @@
+# Locally installed Matt Pocock skill packages.
+.agents/
+.claude/
+skills-lock.json
