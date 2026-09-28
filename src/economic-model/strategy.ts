@@ -121,7 +121,7 @@ function parseActions(input: unknown): PurchaseAction[] {
 }
 
 /**
- * Execute a requested action sequence through the shared ledger.
+ * Execute a coalition-controlled action sequence through the shared ledger.
  * Identity costs are charged once up front; transaction costs per attempted action.
  * The strategy stops at its first rejected action.
  */
@@ -145,6 +145,14 @@ export function runStrategy(
       diagnostics.push({ path, message: `controlled identity ${identity.accountId} requires an actor and initial balance` });
     }
     controlled.add(identity.accountId);
+  }
+  for (const [index, action] of actions.entries()) {
+    if (!controlled.has(action.buyer)) {
+      diagnostics.push({
+        path: `actions.${index}.buyer`,
+        message: "purchase initiator must be controlled by the coalition",
+      });
+    }
   }
   if (diagnostics.length) throw new StrategyValidationError(diagnostics);
 

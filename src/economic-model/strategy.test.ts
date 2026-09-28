@@ -80,6 +80,15 @@ test("a single-role buyer is scored only on its explicitly controlled balance", 
   assert.deepEqual(trace.scenario.controlledIdentities.map((identity) => identity.accountId), ["buyer-1"]);
 });
 
+test("a strategy cannot spend funds from a buyer outside its coalition", () => {
+  for (const accountId of ["creator-1", "affiliate-1"]) {
+    assert.throws(() => runStrategy(state(), [action()], model(), scenario([accountId])),
+      (error: unknown) => error instanceof StrategyValidationError &&
+        error.diagnostics.some((item) => item.path === "actions.0.buyer" &&
+          item.message.includes("controlled by the coalition")));
+  }
+});
+
 test("identity-cost sensitivity changes profit without changing the ledger or action trace", () => {
   const m = model();
   const low = runStrategy(state(), [action()], m, scenario());

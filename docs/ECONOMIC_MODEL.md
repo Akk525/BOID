@@ -31,6 +31,8 @@ This is the shared execution path for future honest policies, search, and scenar
 
 `runStrategy(initialState, actions, model, scenario)` in [strategy.ts](../src/economic-model/strategy.ts) calls `step` for each action and returns a versioned `StrategyTrace`. It validates inputs without mutating them. The scenario explicitly names controlled identities; account roles or wallet addresses do not establish common control.
 
+Every requested purchase must have a coalition-controlled buyer. External actors' purchases can use `step` directly; they are not actions the boid may initiate in its strategy.
+
 Each controlled identity has an acquisition cost, and the scenario has a transaction cost per attempted action. Each cost is an integer micro-USDC amount with either user-supplied evidence or an external estimate, plus explanatory notes. Existing identities can have a documented zero acquisition cost. Costs cannot silently default to zero.
 
 - Acquisition costs are charged once per distinct controlled identity at the start of the strategy, even for an empty action sequence. Transaction costs are charged per attempt, including rejected purchases. Invalid input produces validation diagnostics before execution.
