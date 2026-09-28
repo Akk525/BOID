@@ -1,7 +1,8 @@
 import { createHash } from "node:crypto";
 import { z } from "zod";
+import { canonicalJson, hashCanonical } from "./canonical.ts";
+import { IdSchema as Id, MicroUsdcSchema as MicroUsdc } from "./value-schema.ts";
 
-const Id = z.string().regex(/^[A-Za-z][A-Za-z0-9_-]*$/);
 const Commit = z.string().regex(/^(?:[a-f0-9]{40}|[a-f0-9]{64})$/);
 const Sha256 = z.string().regex(/^[a-f0-9]{64}$/);
 const RelativePath = z.string().min(1).refine(
@@ -9,7 +10,6 @@ const RelativePath = z.string().min(1).refine(
     !path.split("/").some((part) => part === ".." || part === "" || part === "."),
   "must be a normalized relative path",
 );
-const MicroUsdc = z.string().max(30).regex(/^(0|[1-9][0-9]*)$/);
 const PositiveInteger = z.string().max(30).regex(/^[1-9][0-9]*$/);
 const DecimalRate = z.string().regex(/^(?:0(?:\.[0-9]{1,18})?|1(?:\.0{1,18})?)$/);
 const RationalRate = z.strictObject({
@@ -316,21 +316,14 @@ export function parsePurchaseAction(input: unknown): PurchaseAction {
   return parseWithDiagnostics(PurchaseActionSchema, input);
 }
 
-function sortKeys(value: unknown): unknown {
-  if (Array.isArray(value)) return value.map(sortKeys);
-  if (value !== null && typeof value === "object") {
-    return Object.fromEntries(
-      Object.entries(value).sort(([a], [b]) => a < b ? -1 : a > b ? 1 : 0)
-        .map(([key, item]) => [key, sortKeys(item)]),
-    );
-  }
-  return value;
-}
-
 export function serializeEconomicModel(model: EconomicModel): string {
-  return JSON.stringify(sortKeys(parseEconomicModel(model)), null, 2) + "\n";
+  return canonicalJson(parseEconomicModel(model));
 }
 
 export function hashEconomicModel(model: EconomicModel): string {
   return createHash("sha256").update(serializeEconomicModel(model)).digest("hex");
+}
+
+export function hashEconomicState(state: EconomicState): string {
+  return hashCanonical(parseEconomicState(state));
 }
