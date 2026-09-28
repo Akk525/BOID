@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "search": "node src/economic-model/search-cli.ts",
     "test": "node --test src/economic-model/*.test.ts fixtures/creator-marketplace/test/*.test.mjs",
     "typecheck": "tsc --noEmit"
   },

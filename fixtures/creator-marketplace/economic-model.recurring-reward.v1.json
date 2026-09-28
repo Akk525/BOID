@@ -1,0 +1,262 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "repository": "fixtures/creator-marketplace",
+    "commit": "5ee0fd0f87d1e1467af924990ed024c581915b04",
+    "files": [
+      {
+        "path": "fixtures/creator-marketplace/src/config.mjs",
+        "sha256": "654663b4e16b6e5fb9b30ab77d540d93dc0bf44954bfa1f88be70944c94f9099"
+      },
+      {
+        "path": "fixtures/creator-marketplace/src/referrals.mjs",
+        "sha256": "1a35f642088b3e0377e79318b0f81ab630d7c4038118652fe0333bd5b16b4107"
+      },
+      {
+        "path": "fixtures/creator-marketplace/src/checkout.mjs",
+        "sha256": "ef560bd4295a494e7c0a0f7e60d0657c0786b884425f590af456d5f850c4a066"
+      }
+    ]
+  },
+  "assets": [
+    {
+      "id": "USDC",
+      "decimals": 6
+    }
+  ],
+  "actors": [
+    {
+      "id": "buyer-1",
+      "roles": [
+        "buyer"
+      ]
+    },
+    {
+      "id": "creator-1",
+      "roles": [
+        "creator"
+      ]
+    },
+    {
+      "id": "affiliate-1",
+      "roles": [
+        "affiliate"
+      ]
+    },
+    {
+      "id": "platform",
+      "roles": [
+        "platform"
+      ]
+    },
+    {
+      "id": "campaignTreasury",
+      "roles": [
+        "campaignTreasury"
+      ]
+    }
+  ],
+  "state": {
+    "balances": {
+      "asset": "USDC"
+    },
+    "completedPurchases": {
+      "actorRole": "buyer"
+    }
+  },
+  "evidence": {
+    "platformFeeSource": {
+      "kind": "known",
+      "source": {
+        "type": "repo",
+        "commit": "5ee0fd0f87d1e1467af924990ed024c581915b04",
+        "path": "fixtures/creator-marketplace/src/config.mjs",
+        "startLine": 3,
+        "endLine": 3
+      }
+    },
+    "creatorPayoutSource": {
+      "kind": "known",
+      "source": {
+        "type": "repo",
+        "commit": "5ee0fd0f87d1e1467af924990ed024c581915b04",
+        "path": "fixtures/creator-marketplace/src/checkout.mjs",
+        "startLine": 44,
+        "endLine": 47
+      }
+    },
+    "affiliateBonusSource": {
+      "kind": "known",
+      "source": {
+        "type": "repo",
+        "commit": "5ee0fd0f87d1e1467af924990ed024c581915b04",
+        "path": "fixtures/creator-marketplace/src/config.mjs",
+        "startLine": 4,
+        "endLine": 4
+      }
+    },
+    "minimumEligiblePurchaseSource": {
+      "kind": "known",
+      "source": {
+        "type": "repo",
+        "commit": "5ee0fd0f87d1e1467af924990ed024c581915b04",
+        "path": "fixtures/creator-marketplace/src/config.mjs",
+        "startLine": 5,
+        "endLine": 5
+      }
+    },
+    "firstPurchaseSource": {
+      "kind": "known",
+      "source": {
+        "type": "repo",
+        "commit": "5ee0fd0f87d1e1467af924990ed024c581915b04",
+        "path": "fixtures/creator-marketplace/src/referrals.mjs",
+        "startLine": 8,
+        "endLine": 8
+      }
+    },
+    "distinctAffiliateSource": {
+      "kind": "known",
+      "source": {
+        "type": "repo",
+        "commit": "5ee0fd0f87d1e1467af924990ed024c581915b04",
+        "path": "fixtures/creator-marketplace/src/referrals.mjs",
+        "startLine": 7,
+        "endLine": 7
+      }
+    },
+    "buyerCreatorSource": {
+      "kind": "known",
+      "source": {
+        "type": "repo",
+        "commit": "5ee0fd0f87d1e1467af924990ed024c581915b04",
+        "path": "fixtures/creator-marketplace/src/checkout.mjs",
+        "startLine": 28,
+        "endLine": 28
+      }
+    },
+    "objectiveSource": {
+      "kind": "user_supplied",
+      "source": {
+        "type": "user"
+      },
+      "notes": "Demo objective: preserve campaign treasury funds while rewarding legitimate referrals."
+    },
+    "hypotheticalRecurringReward": {
+      "kind": "user_supplied",
+      "source": {
+        "type": "user"
+      },
+      "notes": "Hypothetical mechanism-mutation test: the campaign pays an affiliate 20% of every eligible purchase, including repeat purchases. This overrides the source-backed fixed first-purchase bonus; it is not extracted repository behavior."
+    }
+  },
+  "parameters": {
+    "platformFeeRate": {
+      "kind": "rate",
+      "value": "0.10",
+      "evidence": "platformFeeSource"
+    },
+    "affiliateBonus": {
+      "kind": "money",
+      "value": "1000000",
+      "evidence": "affiliateBonusSource"
+    },
+    "minimumEligiblePurchase": {
+      "kind": "money",
+      "value": "5000000",
+      "evidence": "minimumEligiblePurchaseSource"
+    },
+    "affiliateRewardRate": {
+      "kind": "rate",
+      "value": "0.20",
+      "evidence": "hypotheticalRecurringReward"
+    }
+  },
+  "actions": {
+    "purchase": {
+      "transfers": [
+        {
+          "id": "platformFee",
+          "from": "buyer",
+          "to": "platform",
+          "amount": {
+            "op": "share",
+            "basis": "purchase.amount",
+            "rate": {
+              "parameter": "platformFeeRate"
+            }
+          },
+          "evidence": [
+            "platformFeeSource"
+          ]
+        },
+        {
+          "id": "creatorPayout",
+          "from": "buyer",
+          "to": "creator",
+          "amount": {
+            "op": "remainder",
+            "basis": "purchase.amount",
+            "minusRule": "platformFee"
+          },
+          "evidence": [
+            "creatorPayoutSource"
+          ]
+        },
+        {
+          "id": "affiliateBonus",
+          "from": "campaignTreasury",
+          "to": "affiliate",
+          "amount": {
+            "op": "share",
+            "basis": "purchase.amount",
+            "rate": {
+              "parameter": "affiliateRewardRate"
+            }
+          },
+          "when": {
+            "op": "and",
+            "all": [
+              {
+                "op": "present",
+                "role": "affiliate"
+              },
+              {
+                "op": "differentAccount",
+                "left": "buyer",
+                "right": "affiliate"
+              },
+              {
+                "op": "gte",
+                "left": "purchase.amount",
+                "right": {
+                  "parameter": "minimumEligiblePurchase"
+                }
+              }
+            ]
+          },
+          "evidence": [
+            "hypotheticalRecurringReward",
+            "minimumEligiblePurchaseSource",
+            "distinctAffiliateSource"
+          ]
+        }
+      ]
+    }
+  },
+  "constraints": {
+    "noNegativeBalances": true,
+    "buyerCreatorDifferent": {
+      "value": true,
+      "evidence": "buyerCreatorSource"
+    }
+  },
+  "objectives": [
+    {
+      "id": "preserveCampaignTreasury",
+      "metric": "campaignTreasuryBalance",
+      "direction": "max",
+      "evidence": "objectiveSource"
+    }
+  ]
+}
