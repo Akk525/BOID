@@ -14,6 +14,8 @@ type Predicate = NonNullable<TransferRule["when"]>;
 type Rate = Extract<EconomicModel["parameters"][string], { kind: "rate" }>["value"];
 type Bindings = Record<Role, string | undefined>;
 
+export const STEP_ENGINE_VERSION = "purchase-step.v1";
+
 export type JournalEntry = {
   ruleId: string;
   asset: "USDC";

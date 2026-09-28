@@ -27,6 +27,22 @@ The model is an input contract. A validated model alone does not establish that 
 
 This is the shared execution path for future honest policies, search, and scenarios. Strategy selection and external identity/transaction costs are not part of `step`.
 
+## Strategy traces and coalition scoring
+
+`runStrategy(initialState, actions, model, scenario)` in [strategy.ts](../src/economic-model/strategy.ts) calls `step` for each action and returns a versioned `StrategyTrace`. It validates inputs without mutating them. The scenario explicitly names controlled identities; account roles or wallet addresses do not establish common control.
+
+Each controlled identity has an acquisition cost, and the scenario has a transaction cost per attempted action. Each cost is an integer micro-USDC amount with either user-supplied evidence or an external estimate, plus explanatory notes. Existing identities can have a documented zero acquisition cost. Costs cannot silently default to zero.
+
+- Acquisition costs are charged once per distinct controlled identity at the start of the strategy, even for an empty action sequence. Transaction costs are charged per attempt, including rejected purchases. Invalid input produces validation diagnostics before execution.
+- The runner stops at the first rejected action. The trace retains all requested actions, the attempted steps, the accepted prefix's final ledger, and the rejection diagnostics. A positive score on a rejected trace is not a completed strategy.
+- Each attempted step records its action, predicates, journal, attempt cost, and before/after state hashes. Hashes cover balances, purchase counts, and tick. A rejected step has identical before/after hashes and an empty journal.
+- `score` reports the sum of controlled balances before and after execution, their signed net change, identity costs, transaction costs, and signed profit. **Profit = controlled balance change − external costs.** Costs never become transfers or modify the application ledger. Buyer-only financial scoring is not a model of buyer utility.
+- The trace includes the model hash, scenario hash, initial/final states, and execution version. It can be persisted as JSON without losing precision.
+
+`replayStrategy(trace, model)` re-executes the recorded inputs through the shared transition, checks the model and engine version, and compares the entire supplied trace with the reproduced result. Altered journals, evaluations, state hashes, cost totals, scores, or extra fields fail verification. It returns a verified trace or path-specific diagnostics.
+
+Replay checks internal reproducibility. It does not prove real identity ownership, actual external costs, or correct repository extraction. A self-consistent trace under different assumptions represents a different scenario; hashes are not signatures.
+
 ## Verify
 
 From the repository root, with Node 24 or newer:
