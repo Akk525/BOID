@@ -221,7 +221,7 @@ test("malformed budgets, missing cost evidence, invalid candidates and ranges fa
 
 test("the checked-in search command emits a reproducible, replayable JSON artifact", () => {
   const args = ["src/economic-model/search-cli.ts", "fixtures/creator-marketplace/economic-model.v1.json",
-    "fixtures/creator-marketplace/search-input.v1.json"];
+    "fixtures/creator-marketplace/search-input.v1.json", "--raw"];
   const first = execFileSync(process.execPath, args, { encoding: "utf8" });
   assert.equal(execFileSync(process.execPath, args, { encoding: "utf8" }), first);
   const result = JSON.parse(first);

@@ -6,10 +6,10 @@ This repository contains a [hackathon plan](docs/PLAN.md), [domain language](CON
 
 The first end-to-end milestone is **Repo → Economic Model → Boid → Finding**. An earlier engine gate proves strategy search against a checked-in model. Implementation should begin only after reviewing the plan and issue backlog.
 
-With Node 24 or newer and dependencies installed, persist the fixture search result:
+With Node 24 or newer and dependencies installed (`npm ci`), print the fixture finding:
 
 ```sh
-npm run --silent search -- fixtures/creator-marketplace/economic-model.v1.json fixtures/creator-marketplace/search-input.v1.json > /tmp/boid-search.json
+npm run --silent search -- fixtures/creator-marketplace/economic-model.v1.json fixtures/creator-marketplace/search-input.v1.json
 ```
 
-The JSON includes ranked positive strategies, their exact replayable traces, assumptions, hashes, and coverage. The best fixture strategy purchases at 5 USDC and earns 0.34 USDC under the declared costs. Repository extraction and the cited, readable finding command are subsequent milestones.
+The cited finding shows the 5 USDC purchase, 0.34 USDC conditional profit, journal and cost arithmetic, search budget, and reproducibility hashes. Add `--json` for the structured finding or `--raw` for the complete ranked search result and replayable traces. Repository extraction is a subsequent milestone.
