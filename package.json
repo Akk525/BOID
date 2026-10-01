@@ -7,6 +7,7 @@
     "snapshot": "node src/repository/snapshot-cli.ts",
     "extract": "node src/repository/extract-cli.ts",
     "compare": "node src/economic-model/compare-cli.ts",
+    "scenario": "node src/economic-model/scenario-cli.ts",
     "test": "node --test src/economic-model/*.test.ts src/repository/*.test.ts fixtures/creator-marketplace/test/*.test.mjs",
     "typecheck": "tsc --noEmit"
   },
