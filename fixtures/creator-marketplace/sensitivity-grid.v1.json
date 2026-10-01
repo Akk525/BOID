@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "horizonTicks": 8,
+  "arrivalBps": 7500,
+  "identityCostsMicros": ["150000", "500000"],
+  "honestOrderDistributions": [
+    { "id": "small-only", "orderAmountsMicros": ["5000000"] },
+    { "id": "small-and-normal", "orderAmountsMicros": ["5000000", "20000000"] }
+  ],
+  "attackerFractionsBps": [0, 5000, 10000],
+  "attackerOrderAmountsMicros": ["5000000", "10000000"],
+  "seeds": [42, 43, 44],
+  "sharedAssumptions": [
+    "The fixed population and initial balances come from the checked-in population scenario.",
+    "At most one order can arrive per tick, and the attacker controls its declared creator, affiliate, and buyer identities.",
+    "Identity cost is charged per activated attacker buyer; transaction cost applies to every attempted attacker purchase."
+  ]
+}
