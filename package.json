@@ -5,6 +5,7 @@
   "scripts": {
     "search": "node src/economic-model/search-cli.ts",
     "snapshot": "node src/repository/snapshot-cli.ts",
+    "extract": "node src/repository/extract-cli.ts",
     "test": "node --test src/economic-model/*.test.ts src/repository/*.test.ts fixtures/creator-marketplace/test/*.test.mjs",
     "typecheck": "tsc --noEmit"
   },

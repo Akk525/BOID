@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "fixtures/creator-marketplace",
+  "sourceCommit": "5ee0fd0f87d1e1467af924990ed024c581915b04",
+  "actors": [
+    { "id": "buyer-1", "roles": ["buyer"] },
+    { "id": "creator-1", "roles": ["creator"] },
+    { "id": "affiliate-1", "roles": ["affiliate"] },
+    { "id": "platform", "roles": ["platform"] },
+    { "id": "campaignTreasury", "roles": ["campaignTreasury"] }
+  ],
+  "objectives": [
+    { "id": "preserveCampaignTreasury", "metric": "campaignTreasuryBalance", "direction": "max" }
+  ],
+  "objectiveNotes": "Demo objective: preserve campaign treasury funds while rewarding legitimate referrals.",
+  "claims": {
+    "platformFeeSource": {
+      "value": "0.10",
+      "span": { "path": "src/config.mjs", "startLine": 3, "endLine": 3, "fileSha256": "654663b4e16b6e5fb9b30ab77d540d93dc0bf44954bfa1f88be70944c94f9099" }
+    },
+    "affiliateBonusSource": {
+      "value": "1000000",
+      "span": { "path": "src/config.mjs", "startLine": 4, "endLine": 4, "fileSha256": "654663b4e16b6e5fb9b30ab77d540d93dc0bf44954bfa1f88be70944c94f9099" }
+    },
+    "minimumEligiblePurchaseSource": {
+      "value": "5000000",
+      "span": { "path": "src/config.mjs", "startLine": 5, "endLine": 5, "fileSha256": "654663b4e16b6e5fb9b30ab77d540d93dc0bf44954bfa1f88be70944c94f9099" }
+    },
+    "firstPurchaseSource": {
+      "value": "buyer.completedPurchases == 0",
+      "span": { "path": "src/referrals.mjs", "startLine": 8, "endLine": 8, "fileSha256": "1a35f642088b3e0377e79318b0f81ab630d7c4038118652fe0333bd5b16b4107" }
+    },
+    "distinctAffiliateSource": {
+      "value": "affiliate present and distinct from buyer",
+      "span": { "path": "src/referrals.mjs", "startLine": 7, "endLine": 7, "fileSha256": "1a35f642088b3e0377e79318b0f81ab630d7c4038118652fe0333bd5b16b4107" }
+    },
+    "creatorPayoutSource": {
+      "value": "creator receives purchase remainder after platform fee",
+      "span": { "path": "src/checkout.mjs", "startLine": 44, "endLine": 47, "fileSha256": "ef560bd4295a494e7c0a0f7e60d0657c0786b884425f590af456d5f850c4a066" }
+    },
+    "buyerCreatorSource": {
+      "value": "buyer and creator differ",
+      "span": { "path": "src/checkout.mjs", "startLine": 28, "endLine": 28, "fileSha256": "ef560bd4295a494e7c0a0f7e60d0657c0786b884425f590af456d5f850c4a066" }
+    },
+    "payoutRolesSource": {
+      "value": "buyer pays; creator/platform receive; campaign treasury pays affiliate",
+      "span": { "path": "src/checkout.mjs", "startLine": 57, "endLine": 61, "fileSha256": "ef560bd4295a494e7c0a0f7e60d0657c0786b884425f590af456d5f850c4a066" }
+    }
+  }
+}
