@@ -5,3 +5,6 @@ skills-lock.json
 
 # Local package installs.
 node_modules/
+
+# Generated local demo artifacts.
+demo-output/
