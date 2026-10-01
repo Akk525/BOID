@@ -21,7 +21,7 @@ const CostEvidenceSchema = z.discriminatedUnion("kind", [
     notes: z.string().min(1),
   }),
 ]);
-const ExternalCostSchema = z.strictObject({
+export const ExternalCostSchema = z.strictObject({
   amountMicros: MicroUsdcSchema,
   evidence: CostEvidenceSchema,
 });

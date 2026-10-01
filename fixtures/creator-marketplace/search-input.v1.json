@@ -1,0 +1,71 @@
+{
+  "initialState": {
+    "balances": {
+      "buyer-1": "40000000",
+      "creator-1": "0",
+      "affiliate-1": "0",
+      "platform": "0",
+      "campaignTreasury": "10000000"
+    },
+    "completedPurchases": {},
+    "tick": 0
+  },
+  "config": {
+    "id": "marketplace-bounded-search",
+    "identities": [
+      {
+        "accountId": "buyer-1",
+        "identityCost": {
+          "amountMicros": "150000",
+          "evidence": {
+            "kind": "user_supplied",
+            "source": { "type": "user" },
+            "notes": "Scenario assumption: acquiring the fresh buyer costs 0.15 USDC; its initial 40 USDC is existing capital."
+          }
+        }
+      },
+      {
+        "accountId": "creator-1",
+        "identityCost": {
+          "amountMicros": "0",
+          "evidence": {
+            "kind": "user_supplied",
+            "source": { "type": "user" },
+            "notes": "Scenario assumption: creator identity already exists and has no acquisition cost."
+          }
+        }
+      },
+      {
+        "accountId": "affiliate-1",
+        "identityCost": {
+          "amountMicros": "0",
+          "evidence": {
+            "kind": "user_supplied",
+            "source": { "type": "user" },
+            "notes": "Scenario assumption: affiliate identity already exists and has no acquisition cost."
+          }
+        }
+      }
+    ],
+    "transactionCost": {
+      "amountMicros": "10000",
+      "evidence": {
+        "kind": "user_supplied",
+        "source": { "type": "user" },
+        "notes": "Scenario assumption: each attempted purchase costs 0.01 USDC outside the application ledger."
+      }
+    },
+    "amounts": {
+      "minMicros": "1",
+      "maxMicros": "20000000",
+      "samplesMicros": ["20000000"]
+    },
+    "limits": {
+      "maxAccounts": 3,
+      "maxDepth": 2,
+      "maxNodes": 5000,
+      "maxPurchaseVolumeMicros": "40000000",
+      "maxFindings": 10
+    }
+  }
+}
