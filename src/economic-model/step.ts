@@ -111,7 +111,10 @@ function amountFor(
         throw new Error("Validated model lost rate parameter");
       }
       const [numerator, denominator] = rateRatio(parameter.value);
-      return price * numerator / denominator;
+      const basis = typeof rule.amount.basis === "string"
+        ? price : amounts.get(rule.amount.basis.rule);
+      if (basis === undefined) throw new Error("Validated model lost preceding fee basis");
+      return basis * numerator / denominator;
     }
     case "remainder": {
       const deducted = amounts.get(rule.amount.minusRule);

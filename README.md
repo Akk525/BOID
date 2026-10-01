@@ -12,4 +12,4 @@ With Node 24 or newer and dependencies installed (`npm ci`), print the fixture f
 npm run --silent search -- fixtures/creator-marketplace/economic-model.v1.json fixtures/creator-marketplace/search-input.v1.json
 ```
 
-The cited finding shows the 5 USDC purchase, 0.34 USDC conditional profit, journal and cost arithmetic, search budget, and reproducibility hashes. Add `--json` for the structured finding or `--raw` for the complete ranked search result and replayable traces. Repository extraction is a subsequent milestone.
+The cited finding shows the 5 USDC purchase, 0.34 USDC conditional profit, journal and cost arithmetic, search budget, and reproducibility hashes. Add `--json` for the structured finding or `--raw` for the complete ranked search result and replayable traces. The [fee funded repair comparison](docs/B09_COMPARISON.md) runs the baseline and proposed mechanism under identical search inputs.

@@ -74,7 +74,7 @@ const Amount = z.discriminatedUnion("op", [
   z.strictObject({ op: z.literal("fixed"), parameter: Id }),
   z.strictObject({
     op: z.literal("share"),
-    basis: z.literal("purchase.amount"),
+    basis: z.union([z.literal("purchase.amount"), z.strictObject({ rule: Id })]),
     rate: z.strictObject({ parameter: Id }),
   }),
   z.strictObject({
@@ -244,6 +244,13 @@ function validateSemantics(model: EconomicModel): ModelDiagnostic[] {
       requireParameter(rule.amount.parameter, "money", `${path}.amount.parameter`);
     } else if (rule.amount.op === "share") {
       requireParameter(rule.amount.rate.parameter, "rate", `${path}.amount.rate.parameter`);
+      if (typeof rule.amount.basis !== "string") {
+        const basis = rulesById.get(rule.amount.basis.rule);
+        if (!basis || basis.from !== "buyer" || basis.to !== "platform" ||
+          basis.amount.op !== "share" || basis.when !== undefined) {
+          add(`${path}.amount.basis.rule`, "fee basis must reference an earlier unconditional buyer-to-platform share");
+        }
+      }
     } else {
       const subtracted = rulesById.get(rule.amount.minusRule);
       if (!subtracted) {

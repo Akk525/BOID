@@ -1,0 +1,7 @@
+{
+  "type": "purchase",
+  "buyer": "buyer-1",
+  "creator": "creator-1",
+  "affiliate": "affiliate-1",
+  "amountMicros": "20000000"
+}
