@@ -61,10 +61,19 @@ The result ranks positive representative traces by profit descending, treasury d
 
 The [checked-in search input](../fixtures/creator-marketplace/search-input.v1.json) allows three controlled accounts, depth two, 5,000 nodes, 40 USDC cumulative purchase volume, and five candidate amounts: one micro-USDC, 4.999999, 5, 5.000001 and 20 USDC. Its best trace discovers the 5 USDC purchase and +0.34 USDC profit. Tests compare the best profit and action trace with an independent unpruned enumeration on a tiny integer interval, test multiple fresh buyers, and verify deterministic artifact output, replay, and limit behavior. The [mechanism-mutation gate](B05_MUTATION.md) changes the reward rule and discovers a different optimum using the same search, verifies both witnesses, and compares all profitable outcomes against an unpruned oracle.
 
-Run and save a structured search artifact from the repository root:
+Print a cited, conditional finding from the repository root:
 
 ```sh
-npm run --silent search -- fixtures/creator-marketplace/economic-model.v1.json fixtures/creator-marketplace/search-input.v1.json > /tmp/boid-search.json
+npm run --silent search -- fixtures/creator-marketplace/economic-model.v1.json fixtures/creator-marketplace/search-input.v1.json
+```
+
+The command prints the source-pinned rule citations, selected action journal, signed coalition profit terms, explicit identity and transaction cost assumptions, search bounds, coverage, and model/search/run/trace hashes. Profit terms are reconstructed from journal entries and costs; the command fails if they differ from the trace score. Missing external costs stop a point-profit report and request an explicit cost assumption or range. The finding remains conditional on the declared identities, costs, model, and finite search grammar.
+
+Use `--json` for a deterministic structured finding or `--raw` to save the complete ranked search result with replayable traces:
+
+```sh
+npm run --silent search -- fixtures/creator-marketplace/economic-model.v1.json fixtures/creator-marketplace/search-input.v1.json --json > /tmp/boid-finding.json
+npm run --silent search -- fixtures/creator-marketplace/economic-model.v1.json fixtures/creator-marketplace/search-input.v1.json --raw > /tmp/boid-search.json
 ```
 
 ## Verify
