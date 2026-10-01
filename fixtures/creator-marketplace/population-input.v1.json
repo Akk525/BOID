@@ -1,0 +1,75 @@
+{
+  "initialState": {
+    "balances": {
+      "honest-buyer-1": "100000000",
+      "honest-buyer-2": "100000000",
+      "attacker-buyer-1": "10000000",
+      "attacker-buyer-2": "10000000",
+      "honest-creator": "0",
+      "honest-affiliate": "0",
+      "attacker-creator": "0",
+      "attacker-affiliate": "0",
+      "platform": "0",
+      "campaignTreasury": "5000000"
+    },
+    "completedPurchases": {},
+    "tick": 0
+  },
+  "scenario": {
+    "schemaVersion": 1,
+    "id": "mixed-marketplace-population",
+    "seed": 42,
+    "horizonTicks": 12,
+    "arrivalBps": 10000,
+    "attackerArrivalBps": 5000,
+    "honest": {
+      "buyers": ["honest-buyer-1", "honest-buyer-2"],
+      "creator": "honest-creator",
+      "affiliate": "honest-affiliate",
+      "orderAmountsMicros": ["5000000", "20000000"]
+    },
+    "attacker": {
+      "buyers": [
+        {
+          "accountId": "attacker-buyer-1",
+          "identityCost": {
+            "amountMicros": "150000",
+            "evidence": {
+              "kind": "user_supplied",
+              "source": { "type": "user" },
+              "notes": "Scenario assumption: the first fresh buyer identity costs 0.15 USDC."
+            }
+          }
+        },
+        {
+          "accountId": "attacker-buyer-2",
+          "identityCost": {
+            "amountMicros": "150000",
+            "evidence": {
+              "kind": "user_supplied",
+              "source": { "type": "user" },
+              "notes": "Scenario assumption: the second fresh buyer identity costs 0.15 USDC."
+            }
+          }
+        }
+      ],
+      "creator": "attacker-creator",
+      "affiliate": "attacker-affiliate",
+      "orderAmountMicros": "5000000",
+      "maxAttempts": 4,
+      "transactionCost": {
+        "amountMicros": "10000",
+        "evidence": {
+          "kind": "user_supplied",
+          "source": { "type": "user" },
+          "notes": "Scenario assumption: every attempted attacker purchase costs 0.01 USDC outside the ledger."
+        }
+      }
+    },
+    "assumptions": [
+      "Each tick has one order arrival; half of arrivals select the bounded attacker policy.",
+      "Honest order sizes are sampled uniformly from 5 and 20 USDC; buyer identities are sampled uniformly.",
+      "The attacker controls its creator, affiliate, and two pre-funded fresh buyer identities."
+    ]
+  }
+}
