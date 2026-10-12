@@ -1,0 +1,1001 @@
+{
+  "asset": "local six-decimal SPL test token (not issuer-backed USDC)",
+  "economicHash": "003a86d661fe61353e3253fa57c939ddc7125d76b56eb59d36fcbdd2c52b3750",
+  "evidenceHash": "8a691ea142a036bf2e8064da525823297f6631eab3c1c49e7244e152c88b7942",
+  "modelHash": "eda97824b34bf7b43f540657a66d6c86642f4ba08c6bb20e4b0298306d429b47",
+  "rows": [
+    {
+      "after": {
+        "affiliate-1": "0",
+        "buyer-1": "39999999",
+        "campaignTreasury": "10000000",
+        "creator-1": "1",
+        "platform": "0"
+      },
+      "before": {
+        "affiliate-1": "0",
+        "buyer-1": "40000000",
+        "campaignTreasury": "10000000",
+        "creator-1": "0",
+        "platform": "0"
+      },
+      "case": "purchase-1",
+      "error": null,
+      "feeLamports": "10000",
+      "logs": [
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 122 of 600000 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 105 of 599878 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr invoke [1]",
+        "Program log: Memo (len 12)",
+        "Program log: boid-local-7",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr consumed 287 of 599773 compute units",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr success"
+      ],
+      "ok": true
+    },
+    {
+      "after": {
+        "affiliate-1": "0",
+        "buyer-1": "39999999",
+        "campaignTreasury": "10000000",
+        "creator-1": "1",
+        "platform": "0"
+      },
+      "before": {
+        "affiliate-1": "0",
+        "buyer-1": "39999999",
+        "campaignTreasury": "10000000",
+        "creator-1": "1",
+        "platform": "0"
+      },
+      "case": "duplicate-1",
+      "error": "duplicate settlement receipt",
+      "feeLamports": "0",
+      "logs": [],
+      "ok": false
+    },
+    {
+      "after": {
+        "affiliate-1": "0",
+        "buyer-1": "39999998",
+        "campaignTreasury": "10000000",
+        "creator-1": "2",
+        "platform": "0"
+      },
+      "before": {
+        "affiliate-1": "0",
+        "buyer-1": "39999999",
+        "campaignTreasury": "10000000",
+        "creator-1": "1",
+        "platform": "0"
+      },
+      "case": "repeat-1",
+      "error": null,
+      "feeLamports": "10000",
+      "logs": [
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 122 of 600000 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 105 of 599878 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr invoke [1]",
+        "Program log: Memo (len 12)",
+        "Program log: boid-local-8",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr consumed 287 of 599773 compute units",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr success"
+      ],
+      "ok": true
+    },
+    {
+      "after": {
+        "affiliate-1": "0",
+        "buyer-1": "39999991",
+        "campaignTreasury": "10000000",
+        "creator-1": "9",
+        "platform": "0"
+      },
+      "before": {
+        "affiliate-1": "0",
+        "buyer-1": "40000000",
+        "campaignTreasury": "10000000",
+        "creator-1": "0",
+        "platform": "0"
+      },
+      "case": "purchase-9",
+      "error": null,
+      "feeLamports": "10000",
+      "logs": [
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 122 of 600000 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 105 of 599878 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr invoke [1]",
+        "Program log: Memo (len 12)",
+        "Program log: boid-local-7",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr consumed 287 of 599773 compute units",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr success"
+      ],
+      "ok": true
+    },
+    {
+      "after": {
+        "affiliate-1": "0",
+        "buyer-1": "39999991",
+        "campaignTreasury": "10000000",
+        "creator-1": "9",
+        "platform": "0"
+      },
+      "before": {
+        "affiliate-1": "0",
+        "buyer-1": "39999991",
+        "campaignTreasury": "10000000",
+        "creator-1": "9",
+        "platform": "0"
+      },
+      "case": "duplicate-9",
+      "error": "duplicate settlement receipt",
+      "feeLamports": "0",
+      "logs": [],
+      "ok": false
+    },
+    {
+      "after": {
+        "affiliate-1": "0",
+        "buyer-1": "39999982",
+        "campaignTreasury": "10000000",
+        "creator-1": "18",
+        "platform": "0"
+      },
+      "before": {
+        "affiliate-1": "0",
+        "buyer-1": "39999991",
+        "campaignTreasury": "10000000",
+        "creator-1": "9",
+        "platform": "0"
+      },
+      "case": "repeat-9",
+      "error": null,
+      "feeLamports": "10000",
+      "logs": [
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 122 of 600000 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 105 of 599878 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr invoke [1]",
+        "Program log: Memo (len 12)",
+        "Program log: boid-local-8",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr consumed 287 of 599773 compute units",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr success"
+      ],
+      "ok": true
+    },
+    {
+      "after": {
+        "affiliate-1": "0",
+        "buyer-1": "39999990",
+        "campaignTreasury": "10000000",
+        "creator-1": "9",
+        "platform": "1"
+      },
+      "before": {
+        "affiliate-1": "0",
+        "buyer-1": "40000000",
+        "campaignTreasury": "10000000",
+        "creator-1": "0",
+        "platform": "0"
+      },
+      "case": "purchase-10",
+      "error": null,
+      "feeLamports": "10000",
+      "logs": [
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 105 of 600000 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 105 of 599895 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr invoke [1]",
+        "Program log: Memo (len 12)",
+        "Program log: boid-local-7",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr consumed 287 of 599790 compute units",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr success"
+      ],
+      "ok": true
+    },
+    {
+      "after": {
+        "affiliate-1": "0",
+        "buyer-1": "39999990",
+        "campaignTreasury": "10000000",
+        "creator-1": "9",
+        "platform": "1"
+      },
+      "before": {
+        "affiliate-1": "0",
+        "buyer-1": "39999990",
+        "campaignTreasury": "10000000",
+        "creator-1": "9",
+        "platform": "1"
+      },
+      "case": "duplicate-10",
+      "error": "duplicate settlement receipt",
+      "feeLamports": "0",
+      "logs": [],
+      "ok": false
+    },
+    {
+      "after": {
+        "affiliate-1": "0",
+        "buyer-1": "39999980",
+        "campaignTreasury": "10000000",
+        "creator-1": "18",
+        "platform": "2"
+      },
+      "before": {
+        "affiliate-1": "0",
+        "buyer-1": "39999990",
+        "campaignTreasury": "10000000",
+        "creator-1": "9",
+        "platform": "1"
+      },
+      "case": "repeat-10",
+      "error": null,
+      "feeLamports": "10000",
+      "logs": [
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 105 of 600000 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 105 of 599895 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr invoke [1]",
+        "Program log: Memo (len 12)",
+        "Program log: boid-local-8",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr consumed 287 of 599790 compute units",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr success"
+      ],
+      "ok": true
+    },
+    {
+      "after": {
+        "affiliate-1": "0",
+        "buyer-1": "39999989",
+        "campaignTreasury": "10000000",
+        "creator-1": "10",
+        "platform": "1"
+      },
+      "before": {
+        "affiliate-1": "0",
+        "buyer-1": "40000000",
+        "campaignTreasury": "10000000",
+        "creator-1": "0",
+        "platform": "0"
+      },
+      "case": "purchase-11",
+      "error": null,
+      "feeLamports": "10000",
+      "logs": [
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 105 of 600000 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 105 of 599895 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr invoke [1]",
+        "Program log: Memo (len 12)",
+        "Program log: boid-local-7",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr consumed 287 of 599790 compute units",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr success"
+      ],
+      "ok": true
+    },
+    {
+      "after": {
+        "affiliate-1": "0",
+        "buyer-1": "39999989",
+        "campaignTreasury": "10000000",
+        "creator-1": "10",
+        "platform": "1"
+      },
+      "before": {
+        "affiliate-1": "0",
+        "buyer-1": "39999989",
+        "campaignTreasury": "10000000",
+        "creator-1": "10",
+        "platform": "1"
+      },
+      "case": "duplicate-11",
+      "error": "duplicate settlement receipt",
+      "feeLamports": "0",
+      "logs": [],
+      "ok": false
+    },
+    {
+      "after": {
+        "affiliate-1": "0",
+        "buyer-1": "39999978",
+        "campaignTreasury": "10000000",
+        "creator-1": "20",
+        "platform": "2"
+      },
+      "before": {
+        "affiliate-1": "0",
+        "buyer-1": "39999989",
+        "campaignTreasury": "10000000",
+        "creator-1": "10",
+        "platform": "1"
+      },
+      "case": "repeat-11",
+      "error": null,
+      "feeLamports": "10000",
+      "logs": [
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 105 of 600000 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 105 of 599895 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr invoke [1]",
+        "Program log: Memo (len 12)",
+        "Program log: boid-local-8",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr consumed 287 of 599790 compute units",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr success"
+      ],
+      "ok": true
+    },
+    {
+      "after": {
+        "affiliate-1": "0",
+        "buyer-1": "35000001",
+        "campaignTreasury": "10000000",
+        "creator-1": "4500000",
+        "platform": "499999"
+      },
+      "before": {
+        "affiliate-1": "0",
+        "buyer-1": "40000000",
+        "campaignTreasury": "10000000",
+        "creator-1": "0",
+        "platform": "0"
+      },
+      "case": "purchase-4999999",
+      "error": null,
+      "feeLamports": "10000",
+      "logs": [
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 105 of 600000 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 105 of 599895 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr invoke [1]",
+        "Program log: Memo (len 12)",
+        "Program log: boid-local-7",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr consumed 287 of 599790 compute units",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr success"
+      ],
+      "ok": true
+    },
+    {
+      "after": {
+        "affiliate-1": "0",
+        "buyer-1": "35000001",
+        "campaignTreasury": "10000000",
+        "creator-1": "4500000",
+        "platform": "499999"
+      },
+      "before": {
+        "affiliate-1": "0",
+        "buyer-1": "35000001",
+        "campaignTreasury": "10000000",
+        "creator-1": "4500000",
+        "platform": "499999"
+      },
+      "case": "duplicate-4999999",
+      "error": "duplicate settlement receipt",
+      "feeLamports": "0",
+      "logs": [],
+      "ok": false
+    },
+    {
+      "after": {
+        "affiliate-1": "0",
+        "buyer-1": "30000002",
+        "campaignTreasury": "10000000",
+        "creator-1": "9000000",
+        "platform": "999998"
+      },
+      "before": {
+        "affiliate-1": "0",
+        "buyer-1": "35000001",
+        "campaignTreasury": "10000000",
+        "creator-1": "4500000",
+        "platform": "499999"
+      },
+      "case": "repeat-4999999",
+      "error": null,
+      "feeLamports": "10000",
+      "logs": [
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 105 of 600000 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 105 of 599895 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr invoke [1]",
+        "Program log: Memo (len 12)",
+        "Program log: boid-local-8",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr consumed 287 of 599790 compute units",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr success"
+      ],
+      "ok": true
+    },
+    {
+      "after": {
+        "affiliate-1": "200000",
+        "buyer-1": "35000000",
+        "campaignTreasury": "9800000",
+        "creator-1": "4500000",
+        "platform": "500000"
+      },
+      "before": {
+        "affiliate-1": "0",
+        "buyer-1": "40000000",
+        "campaignTreasury": "10000000",
+        "creator-1": "0",
+        "platform": "0"
+      },
+      "case": "purchase-5000000",
+      "error": null,
+      "feeLamports": "15000",
+      "logs": [
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 105 of 800000 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 105 of 799895 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 105 of 799790 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr invoke [1]",
+        "Program log: Memo (len 12)",
+        "Program log: boid-local-7",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr consumed 287 of 799685 compute units",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr success"
+      ],
+      "ok": true
+    },
+    {
+      "after": {
+        "affiliate-1": "200000",
+        "buyer-1": "35000000",
+        "campaignTreasury": "9800000",
+        "creator-1": "4500000",
+        "platform": "500000"
+      },
+      "before": {
+        "affiliate-1": "200000",
+        "buyer-1": "35000000",
+        "campaignTreasury": "9800000",
+        "creator-1": "4500000",
+        "platform": "500000"
+      },
+      "case": "duplicate-5000000",
+      "error": "duplicate settlement receipt",
+      "feeLamports": "0",
+      "logs": [],
+      "ok": false
+    },
+    {
+      "after": {
+        "affiliate-1": "200000",
+        "buyer-1": "30000000",
+        "campaignTreasury": "9800000",
+        "creator-1": "9000000",
+        "platform": "1000000"
+      },
+      "before": {
+        "affiliate-1": "200000",
+        "buyer-1": "35000000",
+        "campaignTreasury": "9800000",
+        "creator-1": "4500000",
+        "platform": "500000"
+      },
+      "case": "repeat-5000000",
+      "error": null,
+      "feeLamports": "10000",
+      "logs": [
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 105 of 600000 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 105 of 599895 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr invoke [1]",
+        "Program log: Memo (len 12)",
+        "Program log: boid-local-8",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr consumed 287 of 599790 compute units",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr success"
+      ],
+      "ok": true
+    },
+    {
+      "after": {
+        "affiliate-1": "200000",
+        "buyer-1": "34999999",
+        "campaignTreasury": "9800000",
+        "creator-1": "4500001",
+        "platform": "500000"
+      },
+      "before": {
+        "affiliate-1": "0",
+        "buyer-1": "40000000",
+        "campaignTreasury": "10000000",
+        "creator-1": "0",
+        "platform": "0"
+      },
+      "case": "purchase-5000001",
+      "error": null,
+      "feeLamports": "15000",
+      "logs": [
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 105 of 800000 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 105 of 799895 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 105 of 799790 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr invoke [1]",
+        "Program log: Memo (len 12)",
+        "Program log: boid-local-7",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr consumed 287 of 799685 compute units",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr success"
+      ],
+      "ok": true
+    },
+    {
+      "after": {
+        "affiliate-1": "200000",
+        "buyer-1": "34999999",
+        "campaignTreasury": "9800000",
+        "creator-1": "4500001",
+        "platform": "500000"
+      },
+      "before": {
+        "affiliate-1": "200000",
+        "buyer-1": "34999999",
+        "campaignTreasury": "9800000",
+        "creator-1": "4500001",
+        "platform": "500000"
+      },
+      "case": "duplicate-5000001",
+      "error": "duplicate settlement receipt",
+      "feeLamports": "0",
+      "logs": [],
+      "ok": false
+    },
+    {
+      "after": {
+        "affiliate-1": "200000",
+        "buyer-1": "29999998",
+        "campaignTreasury": "9800000",
+        "creator-1": "9000002",
+        "platform": "1000000"
+      },
+      "before": {
+        "affiliate-1": "200000",
+        "buyer-1": "34999999",
+        "campaignTreasury": "9800000",
+        "creator-1": "4500001",
+        "platform": "500000"
+      },
+      "case": "repeat-5000001",
+      "error": null,
+      "feeLamports": "10000",
+      "logs": [
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 105 of 600000 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 105 of 599895 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr invoke [1]",
+        "Program log: Memo (len 12)",
+        "Program log: boid-local-8",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr consumed 287 of 599790 compute units",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr success"
+      ],
+      "ok": true
+    },
+    {
+      "after": {
+        "affiliate-1": "200000",
+        "buyer-1": "34999971",
+        "campaignTreasury": "9800000",
+        "creator-1": "4500027",
+        "platform": "500002"
+      },
+      "before": {
+        "affiliate-1": "0",
+        "buyer-1": "40000000",
+        "campaignTreasury": "10000000",
+        "creator-1": "0",
+        "platform": "0"
+      },
+      "case": "purchase-5000029",
+      "error": null,
+      "feeLamports": "15000",
+      "logs": [
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 105 of 800000 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 105 of 799895 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 105 of 799790 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr invoke [1]",
+        "Program log: Memo (len 12)",
+        "Program log: boid-local-7",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr consumed 287 of 799685 compute units",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr success"
+      ],
+      "ok": true
+    },
+    {
+      "after": {
+        "affiliate-1": "200000",
+        "buyer-1": "34999971",
+        "campaignTreasury": "9800000",
+        "creator-1": "4500027",
+        "platform": "500002"
+      },
+      "before": {
+        "affiliate-1": "200000",
+        "buyer-1": "34999971",
+        "campaignTreasury": "9800000",
+        "creator-1": "4500027",
+        "platform": "500002"
+      },
+      "case": "duplicate-5000029",
+      "error": "duplicate settlement receipt",
+      "feeLamports": "0",
+      "logs": [],
+      "ok": false
+    },
+    {
+      "after": {
+        "affiliate-1": "200000",
+        "buyer-1": "29999942",
+        "campaignTreasury": "9800000",
+        "creator-1": "9000054",
+        "platform": "1000004"
+      },
+      "before": {
+        "affiliate-1": "200000",
+        "buyer-1": "34999971",
+        "campaignTreasury": "9800000",
+        "creator-1": "4500027",
+        "platform": "500002"
+      },
+      "case": "repeat-5000029",
+      "error": null,
+      "feeLamports": "10000",
+      "logs": [
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 105 of 600000 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 105 of 599895 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr invoke [1]",
+        "Program log: Memo (len 12)",
+        "Program log: boid-local-8",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr consumed 287 of 599790 compute units",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr success"
+      ],
+      "ok": true
+    },
+    {
+      "after": {
+        "affiliate-1": "800000",
+        "buyer-1": "20000000",
+        "campaignTreasury": "9200000",
+        "creator-1": "18000000",
+        "platform": "2000000"
+      },
+      "before": {
+        "affiliate-1": "0",
+        "buyer-1": "40000000",
+        "campaignTreasury": "10000000",
+        "creator-1": "0",
+        "platform": "0"
+      },
+      "case": "purchase-20000000",
+      "error": null,
+      "feeLamports": "15000",
+      "logs": [
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 105 of 800000 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 105 of 799895 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 105 of 799790 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr invoke [1]",
+        "Program log: Memo (len 12)",
+        "Program log: boid-local-7",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr consumed 287 of 799685 compute units",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr success"
+      ],
+      "ok": true
+    },
+    {
+      "after": {
+        "affiliate-1": "800000",
+        "buyer-1": "20000000",
+        "campaignTreasury": "9200000",
+        "creator-1": "18000000",
+        "platform": "2000000"
+      },
+      "before": {
+        "affiliate-1": "800000",
+        "buyer-1": "20000000",
+        "campaignTreasury": "9200000",
+        "creator-1": "18000000",
+        "platform": "2000000"
+      },
+      "case": "duplicate-20000000",
+      "error": "duplicate settlement receipt",
+      "feeLamports": "0",
+      "logs": [],
+      "ok": false
+    },
+    {
+      "after": {
+        "affiliate-1": "800000",
+        "buyer-1": "0",
+        "campaignTreasury": "9200000",
+        "creator-1": "36000000",
+        "platform": "4000000"
+      },
+      "before": {
+        "affiliate-1": "800000",
+        "buyer-1": "20000000",
+        "campaignTreasury": "9200000",
+        "creator-1": "18000000",
+        "platform": "2000000"
+      },
+      "case": "repeat-20000000",
+      "error": null,
+      "feeLamports": "10000",
+      "logs": [
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 105 of 600000 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 105 of 599895 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr invoke [1]",
+        "Program log: Memo (len 12)",
+        "Program log: boid-local-8",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr consumed 287 of 599790 compute units",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr success"
+      ],
+      "ok": true
+    },
+    {
+      "after": {
+        "affiliate-1": "0",
+        "buyer-1": "35000000",
+        "campaignTreasury": "10000000",
+        "creator-1": "4500000",
+        "platform": "500000"
+      },
+      "before": {
+        "affiliate-1": "0",
+        "buyer-1": "40000000",
+        "campaignTreasury": "10000000",
+        "creator-1": "0",
+        "platform": "0"
+      },
+      "case": "absent-affiliate",
+      "error": null,
+      "feeLamports": "10000",
+      "logs": [
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 105 of 600000 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 105 of 599895 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr invoke [1]",
+        "Program log: Memo (len 12)",
+        "Program log: boid-local-7",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr consumed 287 of 599790 compute units",
+        "Program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr success"
+      ],
+      "ok": true
+    },
+    {
+      "after": {
+        "affiliate-1": "0",
+        "buyer-1": "40000000",
+        "campaignTreasury": "10000000",
+        "creator-1": "0",
+        "platform": "0"
+      },
+      "before": {
+        "affiliate-1": "0",
+        "buyer-1": "40000000",
+        "campaignTreasury": "10000000",
+        "creator-1": "0",
+        "platform": "0"
+      },
+      "case": "wrong-mint",
+      "error": "TransactionErrorInstructionError { index: 2, error: InstructionErrorCustom { code: 3 } }",
+      "feeLamports": "15000",
+      "logs": [
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 105 of 800000 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 105 of 799895 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program log: Error: Account not associated with this Mint",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 210 of 799790 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA failed: custom program error: 0x3"
+      ],
+      "ok": false
+    },
+    {
+      "after": {
+        "affiliate-1": "0",
+        "buyer-1": "40000000",
+        "campaignTreasury": "10000000",
+        "creator-1": "0",
+        "platform": "0"
+      },
+      "before": {
+        "affiliate-1": "0",
+        "buyer-1": "40000000",
+        "campaignTreasury": "10000000",
+        "creator-1": "0",
+        "platform": "0"
+      },
+      "case": "wrong-authority",
+      "error": "TransactionErrorInstructionError { index: 2, error: InstructionErrorCustom { code: 4 } }",
+      "feeLamports": "10000",
+      "logs": [
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 105 of 800000 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 105 of 799895 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program log: Error: owner does not match",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 227 of 799790 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA failed: custom program error: 0x4"
+      ],
+      "ok": false
+    },
+    {
+      "after": {
+        "affiliate-1": "0",
+        "buyer-1": "40000000",
+        "campaignTreasury": "10000000",
+        "creator-1": "0",
+        "platform": "0"
+      },
+      "before": {
+        "affiliate-1": "0",
+        "buyer-1": "40000000",
+        "campaignTreasury": "10000000",
+        "creator-1": "0",
+        "platform": "0"
+      },
+      "case": "wrong-decimals",
+      "error": "TransactionErrorInstructionError { index: 2, error: InstructionErrorCustom { code: 18 } }",
+      "feeLamports": "15000",
+      "logs": [
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 105 of 800000 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 105 of 799895 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program log: Error: decimals different from the Mint decimals",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 223 of 799790 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA failed: custom program error: 0x12"
+      ],
+      "ok": false
+    },
+    {
+      "after": {
+        "affiliate-1": "0",
+        "buyer-1": "4999999",
+        "campaignTreasury": "10000000",
+        "creator-1": "0",
+        "platform": "0"
+      },
+      "before": {
+        "affiliate-1": "0",
+        "buyer-1": "4999999",
+        "campaignTreasury": "10000000",
+        "creator-1": "0",
+        "platform": "0"
+      },
+      "case": "buyer-funds",
+      "error": "TransactionErrorInstructionError { index: 1, error: InstructionErrorCustom { code: 1 } }",
+      "feeLamports": "15000",
+      "logs": [
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 105 of 800000 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program log: Error: insufficient funds",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 193 of 799895 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA failed: custom program error: 0x1"
+      ],
+      "ok": false
+    },
+    {
+      "after": {
+        "affiliate-1": "0",
+        "buyer-1": "40000000",
+        "campaignTreasury": "199999",
+        "creator-1": "0",
+        "platform": "0"
+      },
+      "before": {
+        "affiliate-1": "0",
+        "buyer-1": "40000000",
+        "campaignTreasury": "199999",
+        "creator-1": "0",
+        "platform": "0"
+      },
+      "case": "treasury-funds",
+      "error": "TransactionErrorInstructionError { index: 2, error: InstructionErrorCustom { code: 1 } }",
+      "feeLamports": "15000",
+      "logs": [
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 105 of 800000 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 105 of 799895 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program log: Error: insufficient funds",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 193 of 799790 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA failed: custom program error: 0x1"
+      ],
+      "ok": false
+    }
+  ],
+  "runtime": "LiteSVM 1.6.0",
+  "runtimeVersion": "litesvm@1.6.0",
+  "schemaVersion": 1,
+  "sourceHashes": {
+    "package-lock.json": "4753dcc91d62c33ffdce7f9465a70a59cfa85e598d0ac310ab406eb737be4898",
+    "src/solana/local-runtime.ts": "7f7749c5f118321cf10c2986bacab530a3006c452e00f69f32c3ef7e296d091e",
+    "src/solana/payout-fixture.ts": "1e17aa0b6d5fdb5e9c057c01c1959098f8f304894cb9c1eae967fff3d2ec1b32"
+  }
+}

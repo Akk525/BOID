@@ -6,6 +6,8 @@ This repository contains a [hackathon plan](docs/PLAN.md), [domain language](CON
 
 The first end-to-end milestone is **Repo → Economic Model → Boid → Finding**. An earlier engine gate proves strategy search against a checked-in model. Implementation should begin only after reviewing the plan and issue backlog.
 
+The [local SPL payout fixture](docs/B14_SPL_PAYOUT.md) realizes the marketplace repair as a signed token-transfer transaction and compares actual balances with BOID. Run `npm run payout` for local execution; `--validator` checks the same cases against a loopback Solana validator. Referral eligibility and receipt tracking remain trusted service assumptions.
+
 With Node 24 or newer and dependencies installed (`npm ci`), print the fixture finding:
 
 ```sh
