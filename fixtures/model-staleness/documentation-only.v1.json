@@ -1,0 +1,47 @@
+{
+  "files": [
+    {
+      "bytes": 2993,
+      "content": "import { PLATFORM_FEE_BPS } from \"./config.mjs\";\nimport { referralBonusFor } from \"./referrals.mjs\";\n\nconst BPS_DENOMINATOR = 10_000;\n\nfunction requireAccount(balances, id, role) {\n  if (!Object.hasOwn(balances, id)) {\n    throw new Error(`Unknown ${role} account: ${id}`);\n  }\n  if (!Number.isSafeInteger(balances[id]) || balances[id] < 0) {\n    throw new Error(`Invalid ${role} balance`);\n  }\n}\n\n/**\n * Settle one listing purchase against an application-owned USDC ledger.\n * The listing sets the price; campaign rewards are funded separately.\n * This fixture models application rules, not Solana settlement or identity proof.\n */\nexport function checkout(state, { buyerId, listingId, affiliateId } = {}) {\n  const listing = state.listings[listingId];\n  if (!listing) throw new Error(`Unknown listing: ${listingId}`);\n\n  const { creatorId, priceMicros } = listing;\n  if (!Number.isSafeInteger(priceMicros) || priceMicros <= 0) {\n    throw new Error(\"Listing price must be a positive integer number of micro-USDC\");\n  }\n  if (buyerId === creatorId) throw new Error(\"Buyer cannot purchase their own listing\");\n\n  requireAccount(state.balances, buyerId, \"buyer\");\n  requireAccount(state.balances, creatorId, \"creator\");\n  requireAccount(state.balances, \"platform\", \"platform\");\n  requireAccount(state.balances, \"campaignTreasury\", \"campaign treasury\");\n  if (affiliateId) requireAccount(state.balances, affiliateId, \"affiliate\");\n\n  const priorPurchases = state.purchasesByBuyer[buyerId] ?? 0;\n  if (!Number.isSafeInteger(priorPurchases) || priorPurchases < 0) {\n    throw new Error(\"Invalid buyer purchase count\");\n  }\n\n  const affiliateBonusMicros = referralBonusFor({\n    buyerId, affiliateId, priceMicros, priorPurchases,\n  });\n  const platformFeeMicros = Number(\n    BigInt(priceMicros) * BigInt(PLATFORM_FEE_BPS) / BigInt(BPS_DENOMINATOR),\n  );\n  const creatorPayoutMicros = priceMicros - platformFeeMicros;\n\n  if (state.balances[buyerId] < priceMicros) {\n    throw new Error(\"Insufficient buyer balance\");\n  }\n  if (state.balances.campaignTreasury < affiliateBonusMicros) {\n    throw new Error(\"Insufficient campaign treasury balance\");\n  }\n\n  const balances = { ...state.balances };\n  balances[buyerId] -= priceMicros;\n  balances[creatorId] += creatorPayoutMicros;\n  balances.platform += platformFeeMicros;\n  balances.campaignTreasury -= affiliateBonusMicros;\n  if (affiliateBonusMicros > 0) balances[affiliateId] += affiliateBonusMicros;\n\n  if (Object.values(balances).some((balance) => !Number.isSafeInteger(balance))) {\n    throw new Error(\"Checkout would exceed the safe integer range\");\n  }\n\n  return {\n    state: {\n      ...state,\n      balances,\n      purchasesByBuyer: {\n        ...state.purchasesByBuyer,\n        [buyerId]: priorPurchases + 1,\n      },\n    },\n    receipt: {\n      buyerId,\n      creatorId,\n      affiliateId: affiliateId ?? null,\n      listingId,\n      priceMicros,\n      creatorPayoutMicros,\n      platformFeeMicros,\n      affiliateBonusMicros,\n    },\n  };\n}\n",
+      "lineCount": 87,
+      "path": "src/checkout.mjs",
+      "sha256": "ef560bd4295a494e7c0a0f7e60d0657c0786b884425f590af456d5f850c4a066"
+    },
+    {
+      "bytes": 309,
+      "content": "// Campaign and checkout rules for this example application.\n// Amounts are integer micro-USDC (1 USDC = 1_000_000 units).\nexport const PLATFORM_FEE_BPS = 1_000; // 10%\nexport const FIRST_PURCHASE_AFFILIATE_BONUS_MICROS = 1_000_000; // 1 USDC\nexport const MINIMUM_REFERRED_ORDER_MICROS = 5_000_000; // 5 USDC\n",
+      "lineCount": 5,
+      "path": "src/config.mjs",
+      "sha256": "654663b4e16b6e5fb9b30ab77d540d93dc0bf44954bfa1f88be70944c94f9099"
+    },
+    {
+      "bytes": 403,
+      "content": "import {\n  FIRST_PURCHASE_AFFILIATE_BONUS_MICROS,\n  MINIMUM_REFERRED_ORDER_MICROS,\n} from \"./config.mjs\";\n\nexport function referralBonusFor({ buyerId, affiliateId, priceMicros, priorPurchases }) {\n  if (!affiliateId || affiliateId === buyerId) return 0;\n  if (priorPurchases !== 0) return 0;\n  if (priceMicros < MINIMUM_REFERRED_ORDER_MICROS) return 0;\n  return FIRST_PURCHASE_AFFILIATE_BONUS_MICROS;\n}\n",
+      "lineCount": 11,
+      "path": "src/referrals.mjs",
+      "sha256": "1a35f642088b3e0377e79318b0f81ab630d7c4038118652fe0333bd5b16b4107"
+    },
+    {
+      "bytes": 599,
+      "content": "// Example application data. Identity relationships are not encoded here:\n// account IDs represent application users, not proven distinct people.\nexport function sampleState() {\n  return {\n    balances: {\n      \"buyer-1\": 40_000_000,\n      \"creator-1\": 0,\n      \"affiliate-1\": 0,\n      platform: 0,\n      campaignTreasury: 10_000_000,\n    },\n    purchasesByBuyer: {},\n    listings: {\n      starter: { creatorId: \"creator-1\", priceMicros: 5_000_000 },\n      standard: { creatorId: \"creator-1\", priceMicros: 20_000_000 },\n      small: { creatorId: \"creator-1\", priceMicros: 4_000_000 },\n    },\n  };\n}\n",
+      "lineCount": 19,
+      "path": "src/sample-data.mjs",
+      "sha256": "4fe99230608274c97f8724d41030caa12a92c4d370d5ac90064c88db167b26f7"
+    }
+  ],
+  "limits": {
+    "maxEntries": 10000,
+    "maxFileBytes": 1000000,
+    "maxFiles": 100,
+    "maxTotalBytes": 5000000
+  },
+  "schemaVersion": 1,
+  "selection": "js-ts-source-v1",
+  "snapshotHash": "77cc3503ef75d538005a35aa38a5f93aa7934f7a03b1904835f4154db3780c56",
+  "source": {
+    "commit": "2222222222222222222222222222222222222222",
+    "repository": "fixtures/creator-marketplace",
+    "type": "github"
+  },
+  "totalBytes": 4304
+}

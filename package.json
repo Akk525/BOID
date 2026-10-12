@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "search": "node src/economic-model/search-cli.ts",
+    "stale-check": "node src/repository/staleness-cli.ts",
     "snapshot": "node src/repository/snapshot-cli.ts",
     "extract": "node src/repository/extract-cli.ts",
     "extraction-check": "node src/repository/extraction-check-cli.ts",

@@ -25,3 +25,7 @@ Each approved source claim resolves to the exact snapshot lines and is checked a
 ## Independent marketplace scope check
 
 `npm run extraction-check` reproduces the pinned Sharetribe payment-slice comparison: 0/7 facts extracted, all eight draft fields unresolved. See [evidence and provenance](../fixtures/second-marketplace/README.md). Automatic extraction supports the bundled fixture; other applications require assisted modeling. Human gold signoff remains pending. The demo displays this limitation and publishes extraction-validation.json.
+
+## Model lifecycle checks
+
+`npm run stale-check` compares two snapshots against a reviewed model and explicit run-to-model links. Changed or removed model source files mark the model and linked runs stale; documentation-only changes do not. The assessment includes line-span diagnostics and never rewrites or reruns artifacts. See [offline commit-diff fixtures and CLI usage](../fixtures/model-staleness/README.md). This checks declared source dependencies; it does not discover new dependencies or monitor repositories continuously.
