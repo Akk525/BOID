@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "escrow-search": "node src/economic-model/escrow-cli.ts",
     "search": "node src/economic-model/search-cli.ts",
     "stale-check": "node src/repository/staleness-cli.ts",
     "snapshot": "node src/repository/snapshot-cli.ts",

@@ -1,0 +1,229 @@
+{
+  "coverage": {
+    "adverseTraces": 1,
+    "limitation": "Only declared fixed-price orders, one supplied coalition, deposit/release/refund and the stated depth/node limits. No amount sampling, timing, dispute, admin or arbitrary-code actions. Model replay is not program execution.",
+    "omittedFindings": 0,
+    "rejectedActions": 8,
+    "truncated": false,
+    "visitedNodes": 12
+  },
+  "engineVersion": "escrow-search.v1",
+  "findings": [
+    {
+      "actions": [
+        {
+          "actor": "buyer",
+          "orderId": "attackerOrder",
+          "type": "deposit"
+        },
+        {
+          "actor": "buyer",
+          "orderId": "attackerOrder",
+          "type": "release"
+        },
+        {
+          "actor": "buyer",
+          "orderId": "attackerOrder",
+          "type": "refund"
+        }
+      ],
+      "adverse": true,
+      "engineVersion": "escrow-strategy.v1",
+      "finalState": {
+        "balances": {
+          "buyer": "5000000",
+          "escrow": "0",
+          "honestBuyer": "0",
+          "honestSeller": "0",
+          "seller": "5000000"
+        },
+        "orders": {
+          "attackerOrder": {
+            "amountMicros": "5000000",
+            "buyer": "buyer",
+            "deposited": true,
+            "refunded": true,
+            "released": true,
+            "seller": "seller"
+          },
+          "honestOrder": {
+            "amountMicros": "5000000",
+            "buyer": "honestBuyer",
+            "deposited": true,
+            "refunded": false,
+            "released": false,
+            "seller": "honestSeller"
+          }
+        }
+      },
+      "initialState": {
+        "balances": {
+          "buyer": "5000000",
+          "escrow": "5000000",
+          "honestBuyer": "0",
+          "honestSeller": "0",
+          "seller": "0"
+        },
+        "orders": {
+          "attackerOrder": {
+            "amountMicros": "5000000",
+            "buyer": "buyer",
+            "deposited": false,
+            "refunded": false,
+            "released": false,
+            "seller": "seller"
+          },
+          "honestOrder": {
+            "amountMicros": "5000000",
+            "buyer": "honestBuyer",
+            "deposited": true,
+            "refunded": false,
+            "released": false,
+            "seller": "honestSeller"
+          }
+        }
+      },
+      "model": {
+        "escrowAccount": "escrow",
+        "evidence": {
+          "kind": "user_supplied",
+          "notes": "Synthetic exploratory pooled escrow, selected as a bounded second-family example; no customer or deployed-program evidence. Buyer confirms release or cancels a pending order. Weak refund guard checks only prior refund."
+        },
+        "family": "pooled-escrow.v1",
+        "policy": "One settlement per order; pending deposits remain fully collateralized",
+        "refundRequiresPending": false,
+        "schemaVersion": 1
+      },
+      "modelHash": "fb524e8d3fbe62834d8ae54b32151488b9a92c5f1f821945b7f4bd6dce164c28",
+      "policy": {
+        "doubleSettledOrders": [
+          "attackerOrder"
+        ],
+        "pendingLiabilityMicros": "5000000",
+        "shortfallMicros": "5000000"
+      },
+      "scenario": {
+        "controlledAccounts": [
+          "buyer",
+          "seller"
+        ],
+        "identityCost": {
+          "amountMicros": "50000",
+          "evidence": {
+            "kind": "user_supplied",
+            "notes": "Assumed 0.05 USDC per controlled identity, charged once.",
+            "source": {
+              "type": "user"
+            }
+          }
+        },
+        "transactionCost": {
+          "amountMicros": "10000",
+          "evidence": {
+            "kind": "user_supplied",
+            "notes": "Assumed 0.01 USDC per attempted action, including rejection.",
+            "source": {
+              "type": "user"
+            }
+          }
+        }
+      },
+      "schemaVersion": 1,
+      "score": {
+        "externalCostMicros": "130000",
+        "ledgerDeltaMicros": "5000000",
+        "profitMicros": "4870000"
+      },
+      "steps": [
+        {
+          "accepted": true,
+          "action": {
+            "actor": "buyer",
+            "orderId": "attackerOrder",
+            "type": "deposit"
+          },
+          "afterStateHash": "d4fa4ec3d9d5798710a4aac0feca8a4f62fe542a0cfe3fa531e7ac788e5d84b0",
+          "beforeStateHash": "d38e570d7f5c1a1809f4851d75067724133c1a919b71dff55b235af5488b2207",
+          "journal": [
+            {
+              "action": "deposit",
+              "amountMicros": "5000000",
+              "from": "buyer",
+              "orderId": "attackerOrder",
+              "to": "escrow"
+            }
+          ],
+          "reason": null
+        },
+        {
+          "accepted": true,
+          "action": {
+            "actor": "buyer",
+            "orderId": "attackerOrder",
+            "type": "release"
+          },
+          "afterStateHash": "1b4e561db0e43872ec06c939fe10ad1a1f6bbc76cfa7dfc6c71b347be841a922",
+          "beforeStateHash": "d4fa4ec3d9d5798710a4aac0feca8a4f62fe542a0cfe3fa531e7ac788e5d84b0",
+          "journal": [
+            {
+              "action": "release",
+              "amountMicros": "5000000",
+              "from": "escrow",
+              "orderId": "attackerOrder",
+              "to": "seller"
+            }
+          ],
+          "reason": null
+        },
+        {
+          "accepted": true,
+          "action": {
+            "actor": "buyer",
+            "orderId": "attackerOrder",
+            "type": "refund"
+          },
+          "afterStateHash": "ec114895c4cdd3d6417f9742d4c760456cd382706a634b3206aada76c303ccf6",
+          "beforeStateHash": "1b4e561db0e43872ec06c939fe10ad1a1f6bbc76cfa7dfc6c71b347be841a922",
+          "journal": [
+            {
+              "action": "refund",
+              "amountMicros": "5000000",
+              "from": "escrow",
+              "orderId": "attackerOrder",
+              "to": "buyer"
+            }
+          ],
+          "reason": null
+        }
+      ],
+      "traceHash": "b691bec8d8b99bde0ff456a4af10c685cda0f33426226f434de1dcaff8bc28b2"
+    }
+  ],
+  "grammar": [
+    {
+      "actor": "buyer",
+      "orderId": "attackerOrder",
+      "type": "deposit"
+    },
+    {
+      "actor": "buyer",
+      "orderId": "attackerOrder",
+      "type": "release"
+    },
+    {
+      "actor": "buyer",
+      "orderId": "attackerOrder",
+      "type": "refund"
+    }
+  ],
+  "initialStateHash": "d38e570d7f5c1a1809f4851d75067724133c1a919b71dff55b235af5488b2207",
+  "limits": {
+    "maxDepth": 3,
+    "maxFindings": 10,
+    "maxNodes": 1000
+  },
+  "modelHash": "fb524e8d3fbe62834d8ae54b32151488b9a92c5f1f821945b7f4bd6dce164c28",
+  "scenarioHash": "54ba92262a8ab707148cb13b00f41058b48d13c2f80e1b37397f431c6c9e4267",
+  "schemaVersion": 1,
+  "searchHash": "e3e03a6016201028c1597446936f49acac57179b1cfb5b63308ec2d948c20163"
+}

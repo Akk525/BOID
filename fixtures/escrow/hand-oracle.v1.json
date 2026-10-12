@@ -1,0 +1,46 @@
+{
+  "actions": [
+    {
+      "type": "deposit",
+      "orderId": "attackerOrder",
+      "actor": "buyer"
+    },
+    {
+      "type": "release",
+      "orderId": "attackerOrder",
+      "actor": "buyer"
+    },
+    {
+      "type": "refund",
+      "orderId": "attackerOrder",
+      "actor": "buyer"
+    }
+  ],
+  "balances": [
+    {
+      "buyer": "0",
+      "seller": "0",
+      "escrow": "10000000",
+      "honestBuyer": "0",
+      "honestSeller": "0"
+    },
+    {
+      "buyer": "0",
+      "seller": "5000000",
+      "escrow": "5000000",
+      "honestBuyer": "0",
+      "honestSeller": "0"
+    },
+    {
+      "buyer": "5000000",
+      "seller": "5000000",
+      "escrow": "0",
+      "honestBuyer": "0",
+      "honestSeller": "0"
+    }
+  ],
+  "ledgerDeltaMicros": "5000000",
+  "externalCostMicros": "130000",
+  "profitMicros": "4870000",
+  "shortfallMicros": "5000000"
+}

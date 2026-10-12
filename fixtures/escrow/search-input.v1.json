@@ -1,0 +1,71 @@
+{
+  "model": {
+    "schemaVersion": 1,
+    "family": "pooled-escrow.v1",
+    "escrowAccount": "escrow",
+    "refundRequiresPending": false,
+    "evidence": {
+      "kind": "user_supplied",
+      "notes": "Synthetic exploratory pooled escrow, selected as a bounded second-family example; no customer or deployed-program evidence. Buyer confirms release or cancels a pending order. Weak refund guard checks only prior refund."
+    },
+    "policy": "One settlement per order; pending deposits remain fully collateralized"
+  },
+  "initialState": {
+    "balances": {
+      "buyer": "5000000",
+      "seller": "0",
+      "escrow": "5000000",
+      "honestBuyer": "0",
+      "honestSeller": "0"
+    },
+    "orders": {
+      "attackerOrder": {
+        "buyer": "buyer",
+        "seller": "seller",
+        "amountMicros": "5000000",
+        "deposited": false,
+        "released": false,
+        "refunded": false
+      },
+      "honestOrder": {
+        "buyer": "honestBuyer",
+        "seller": "honestSeller",
+        "amountMicros": "5000000",
+        "deposited": true,
+        "released": false,
+        "refunded": false
+      }
+    }
+  },
+  "scenario": {
+    "controlledAccounts": [
+      "buyer",
+      "seller"
+    ],
+    "identityCost": {
+      "amountMicros": "50000",
+      "evidence": {
+        "kind": "user_supplied",
+        "source": {
+          "type": "user"
+        },
+        "notes": "Assumed 0.05 USDC per controlled identity, charged once."
+      }
+    },
+    "transactionCost": {
+      "amountMicros": "10000",
+      "evidence": {
+        "kind": "user_supplied",
+        "source": {
+          "type": "user"
+        },
+        "notes": "Assumed 0.01 USDC per attempted action, including rejection."
+      }
+    }
+  },
+  "limits": {
+    "maxDepth": 3,
+    "maxNodes": 1000,
+    "maxFindings": 10
+  }
+}

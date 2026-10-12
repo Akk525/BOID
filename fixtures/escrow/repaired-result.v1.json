@@ -1,0 +1,39 @@
+{
+  "coverage": {
+    "adverseTraces": 0,
+    "limitation": "Only declared fixed-price orders, one supplied coalition, deposit/release/refund and the stated depth/node limits. No amount sampling, timing, dispute, admin or arbitrary-code actions. Model replay is not program execution.",
+    "omittedFindings": 0,
+    "rejectedActions": 9,
+    "truncated": false,
+    "visitedNodes": 12
+  },
+  "engineVersion": "escrow-search.v1",
+  "findings": [],
+  "grammar": [
+    {
+      "actor": "buyer",
+      "orderId": "attackerOrder",
+      "type": "deposit"
+    },
+    {
+      "actor": "buyer",
+      "orderId": "attackerOrder",
+      "type": "release"
+    },
+    {
+      "actor": "buyer",
+      "orderId": "attackerOrder",
+      "type": "refund"
+    }
+  ],
+  "initialStateHash": "d38e570d7f5c1a1809f4851d75067724133c1a919b71dff55b235af5488b2207",
+  "limits": {
+    "maxDepth": 3,
+    "maxFindings": 10,
+    "maxNodes": 1000
+  },
+  "modelHash": "6b434a450743bcfe98d758b29bcfec413d831b45fe57a2512eb1695adf5eca22",
+  "scenarioHash": "54ba92262a8ab707148cb13b00f41058b48d13c2f80e1b37397f431c6c9e4267",
+  "schemaVersion": 1,
+  "searchHash": "db56429b4092445841a8272f5e7e35d185428d121f47a8a80a266127423839c1"
+}
