@@ -24,7 +24,7 @@ Each approved source claim resolves to the exact snapshot lines and is checked a
 
 ## Independent marketplace scope check
 
-`npm run extraction-check` reproduces the pinned Sharetribe payment-slice comparison: 0/7 facts extracted, all eight draft fields unresolved. See [evidence and provenance](../fixtures/second-marketplace/README.md). Automatic extraction supports the bundled fixture; other applications require assisted modeling. Human gold signoff remains pending. The demo displays this limitation and publishes extraction-validation.json.
+`npm run extraction-check` reproduces the pinned Sharetribe payment-slice comparison: 0/7 facts extracted, all eight draft fields unresolved. See [evidence and provenance](../fixtures/second-marketplace/README.md). Automatic extraction supports the bundled fixture; other applications require assisted modeling. Human gold review was completed on 2026-10-12; all seven facts were accepted without correction. The demo displays this limitation and publishes extraction-validation.json.
 
 ## Model lifecycle checks
 

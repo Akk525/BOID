@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "repository": "sharetribe/web-template",
   "commit": "1811b6a188a71e9ee6a41effed3139606cdd9f94",
-  "reviewMethod": "Agent-reviewed source facts with independently authored upstream test assertions. Human reviewer signoff remains pending; this is not certified human gold.",
+  "reviewMethod": "Agent-transcribed source facts with independently authored upstream test assertions. Human source review completed by the user on 2026-10-12: ST-01 through ST-07 checked against pinned Sharetribe web-template commit 1811b6a188a71e9ee6a41effed3139606cdd9f94; all seven facts accepted without correction. Human gold review complete. Bounded source scope, conditional shipping behavior, and distinction between platform commission and settlement execution remain in force.",
   "facts": [
     {
       "id": "ST-01",

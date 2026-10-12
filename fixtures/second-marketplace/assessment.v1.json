@@ -1,5 +1,5 @@
 {
-  "assessmentHash": "d2b740ac9a2b2ba33605a5dd94d6a4798700f15d5ae28ce33e2f068b3bda80b7",
+  "assessmentHash": "5d323a9807eb6570f25729341589b144e25a07694eacc86a7f4eb2649a8080f1",
   "counts": {
     "matched": 0,
     "missed": 7,
@@ -226,7 +226,7 @@
       "outcome": "missed"
     }
   ],
-  "goldHash": "f827aec0de1bd848655f77aabd584e0aa712d3764688c8a4178576268d8c1764",
+  "goldHash": "8ef3ba25fb80736168815f0648a9df041e870d75e47af7226815e0256da38bf5",
   "license": "Apache-2.0",
   "limitation": "Automatic extraction currently supports the bundled checkout/referral fixture. The independent marketplace payment slice requires assisted modeling; unresolved rules cannot be approved.",
   "manifestHash": "a25ca77b1cdd344fb741019e9187aa0fb9ca7f999c328bc12cb5c2ecfbe9b420",
@@ -256,7 +256,7 @@
       "reason": "Not established by this bounded payment slice; no claim about the whole application."
     }
   ],
-  "reviewMethod": "Agent-reviewed source facts with independently authored upstream test assertions. Human reviewer signoff remains pending; this is not certified human gold.",
+  "reviewMethod": "Agent-transcribed source facts with independently authored upstream test assertions. Human source review completed by the user on 2026-10-12: ST-01 through ST-07 checked against pinned Sharetribe web-template commit 1811b6a188a71e9ee6a41effed3139606cdd9f94; all seven facts accepted without correction. Human gold review complete. Bounded source scope, conditional shipping behavior, and distinction between platform commission and settlement execution remain in force.",
   "schemaVersion": 1,
   "scope": "Bounded payment slice: three implementation files and two upstream test files; not the whole repository.",
   "snapshotHash": "bdc9ec775c3afbdd75665a7338d48f1f7d99b453e7bf0871a284367314351912",
