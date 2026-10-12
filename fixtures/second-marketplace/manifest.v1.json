@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "repository": "sharetribe/web-template",
+  "commit": "1811b6a188a71e9ee6a41effed3139606cdd9f94",
+  "scope": "Bounded payment slice: three implementation files and two upstream test files; not the whole repository.",
+  "license": "Apache-2.0",
+  "files": [
+    {
+      "path": "LICENSE",
+      "sha256": "5c49ec7c44b334802ee560a8c71a6ca3d6aa8ec6f87f0fa9d0694e057e3c89ce",
+      "selected": false
+    },
+    {
+      "path": "server/api-util/currency.js",
+      "sha256": "3b68e93de5fa83aeddf805cd14e75f0ae8cb79c6d57ea8cce0e75fbec3cf6325",
+      "selected": true
+    },
+    {
+      "path": "server/api-util/lineItemHelpers.js",
+      "sha256": "4b79316fa2ffef23688e84820f30788a8dd6d05984f53889b632205a251e4d12",
+      "selected": true
+    },
+    {
+      "path": "server/api-util/lineItemHelpers.test.js",
+      "sha256": "7a95684aa34880226fae3250e4240d9f06357a8d3114bf3d96ddc77fd9551484",
+      "selected": false
+    },
+    {
+      "path": "server/api-util/lineItems.js",
+      "sha256": "8dc6d656533dd86c188a2eea7c370595c994dac10a31b14e8a9578fea572ab9e",
+      "selected": true
+    },
+    {
+      "path": "server/api-util/lineItems.test.js",
+      "sha256": "9a7190a62cfaf7513842cf449afd2bf289c52d53f5c69131d93aaeb15c0d2cb7",
+      "selected": false
+    }
+  ]
+}

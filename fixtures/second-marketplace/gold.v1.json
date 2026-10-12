@@ -1,0 +1,163 @@
+{
+  "schemaVersion": 1,
+  "repository": "sharetribe/web-template",
+  "commit": "1811b6a188a71e9ee6a41effed3139606cdd9f94",
+  "reviewMethod": "Agent-reviewed source facts with independently authored upstream test assertions. Human reviewer signoff remains pending; this is not certified human gold.",
+  "facts": [
+    {
+      "id": "ST-01",
+      "description": "Platform commission is customer payin minus provider payout, not one fixed rate.",
+      "category": "unsupported-syntax",
+      "evidence": [
+        {
+          "path": "server/api-util/lineItems.js",
+          "startLine": 120,
+          "endLine": 122,
+          "textSha256": "67a9b6d8a30aad18e1d6ec79927c6fb47209fd8e58d99f154013a6ec14a519a0"
+        }
+      ],
+      "claimId": "platformFeeSource"
+    },
+    {
+      "id": "ST-02",
+      "description": "Customer/provider totals filter includeFor roles; these are calculated totals, not settlement proof.",
+      "category": "unsupported-syntax",
+      "evidence": [
+        {
+          "path": "server/api-util/lineItemHelpers.js",
+          "startLine": 250,
+          "endLine": 267,
+          "textSha256": "d08febcf5c22f9e4104f2e2051ae46e1c97daab4a71460e06f8e51b9aa70a90e"
+        },
+        {
+          "path": "server/api-util/lineItemHelpers.test.js",
+          "startLine": 294,
+          "endLine": 374,
+          "textSha256": "c71cddef23434f09582163dc906134e6c700da852943941e4dc2b98e670c5015"
+        }
+      ],
+      "claimId": "payoutRolesSource"
+    },
+    {
+      "id": "ST-03",
+      "description": "Provider commission deducts the larger of percentage and minimum; excessive minimum throws.",
+      "category": "model-gap",
+      "evidence": [
+        {
+          "path": "server/api-util/lineItemHelpers.js",
+          "startLine": 346,
+          "endLine": 393,
+          "textSha256": "a9f6ece71fd942780aeab4774bcace6e4ca3c1583c6005cd4798b3e9f3093cbf"
+        },
+        {
+          "path": "server/api-util/lineItems.test.js",
+          "startLine": 596,
+          "endLine": 653,
+          "textSha256": "1000f0fe2cf2eb143fea69229a6cdc49ee45fa6e0dbd169daec9bcadc2d4b619"
+        }
+      ]
+    },
+    {
+      "id": "ST-04",
+      "description": "Customer commission adds the larger of percentage and minimum above order price.",
+      "category": "model-gap",
+      "evidence": [
+        {
+          "path": "server/api-util/lineItemHelpers.js",
+          "startLine": 402,
+          "endLine": 443,
+          "textSha256": "184ee88a4075890d0cf94061a22226a93096180880b78d2eb78c6600a10482ba"
+        }
+      ]
+    },
+    {
+      "id": "ST-05",
+      "description": "Commission base excludes shipping; shipping belongs to both customer and provider.",
+      "category": "model-gap",
+      "evidence": [
+        {
+          "path": "server/api-util/lineItemHelpers.js",
+          "startLine": 355,
+          "endLine": 372,
+          "textSha256": "5daeb9df45b94d6901fd0577eb6e33cc0288f3e49e4228b617cc81b5b93cd0f9"
+        },
+        {
+          "path": "server/api-util/lineItems.js",
+          "startLine": 39,
+          "endLine": 46,
+          "textSha256": "636f11a3fe6787ec33fd4689c980b929c0162cb02dce1cdfd6c4ca29c8e2361a"
+        }
+      ]
+    },
+    {
+      "id": "ST-06",
+      "description": "Percentage amounts round to integer currency subunits using HALF_UP.",
+      "category": "model-gap",
+      "evidence": [
+        {
+          "path": "server/api-util/lineItemHelpers.js",
+          "startLine": 24,
+          "endLine": 32,
+          "textSha256": "6fdf739f47ea933c95a9bdd281ce4f1b2a4c1795e80b252be106761d8488f70e"
+        },
+        {
+          "path": "server/api-util/lineItemHelpers.js",
+          "startLine": 120,
+          "endLine": 133,
+          "textSha256": "19a21f0a1db16ae979316c2d23e7e22e68783bb15b36a827a51cb7f299ec1182"
+        },
+        {
+          "path": "server/api-util/lineItemHelpers.test.js",
+          "startLine": 30,
+          "endLine": 43,
+          "textSha256": "6c6ac4392b9e9bc4c9ddea63d46f3ec690247564985d3b7a482d2fcd8abb44f7"
+        }
+      ]
+    },
+    {
+      "id": "ST-07",
+      "description": "Shipping is first-item fee plus additional-item fee times quantity minus one.",
+      "category": "model-gap",
+      "evidence": [
+        {
+          "path": "server/api-util/lineItemHelpers.js",
+          "startLine": 50,
+          "endLine": 87,
+          "textSha256": "947ae407b221586add2f99d7e3608eed6a828580e5f7a009c03adcf8dba4c498"
+        },
+        {
+          "path": "server/api-util/lineItems.test.js",
+          "startLine": 379,
+          "endLine": 423,
+          "textSha256": "9f2ab46ba44a65fb10d9732120300b697ddfefc6727fcff646f18a39aa5ba5f6"
+        }
+      ]
+    }
+  ],
+  "notEstablished": [
+    {
+      "claimId": "affiliateBonusSource",
+      "reason": "Not established by this bounded payment slice; no claim about the whole application."
+    },
+    {
+      "claimId": "minimumEligiblePurchaseSource",
+      "reason": "Not established by this bounded payment slice; no claim about the whole application."
+    },
+    {
+      "claimId": "firstPurchaseSource",
+      "reason": "Not established by this bounded payment slice; no claim about the whole application."
+    },
+    {
+      "claimId": "distinctAffiliateSource",
+      "reason": "Not established by this bounded payment slice; no claim about the whole application."
+    },
+    {
+      "claimId": "creatorPayoutSource",
+      "reason": "Not established by this bounded payment slice; no claim about the whole application."
+    },
+    {
+      "claimId": "buyerCreatorSource",
+      "reason": "Not established by this bounded payment slice; no claim about the whole application."
+    }
+  ]
+}

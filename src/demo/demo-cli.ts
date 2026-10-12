@@ -6,6 +6,7 @@ import { buildFindingReport } from "../economic-model/finding.ts";
 import { buildRecommendation } from "../economic-model/recommendation.ts";
 import { searchStrategies } from "../economic-model/search.ts";
 import { sweepSensitivity } from "../economic-model/sensitivity.ts";
+import { checkSecondMarketplace } from "../repository/extraction-check.ts";
 import { buildDemoData, renderDemoHtml } from "./view.ts";
 
 try {
@@ -32,7 +33,7 @@ try {
   const client = readFileSync(new URL("./client.js", import.meta.url), "utf8");
   const output = resolve(directory);
   mkdirSync(output, { recursive: true });
-  for (const [name, artifact] of Object.entries({ finding, comparison, sensitivity, recommendation, data })) {
+  for (const [name, artifact] of Object.entries({ finding, comparison, sensitivity, recommendation, data, "extraction-validation": checkSecondMarketplace() })) {
     writeFileSync(resolve(output, `${name}.json`), canonicalJson(artifact));
   }
   writeFileSync(resolve(output, "index.html"), renderDemoHtml(data, css, client));

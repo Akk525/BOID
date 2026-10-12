@@ -1,0 +1,268 @@
+{
+  "assessmentHash": "d2b740ac9a2b2ba33605a5dd94d6a4798700f15d5ae28ce33e2f068b3bda80b7",
+  "counts": {
+    "matched": 0,
+    "missed": 7,
+    "reviewedFacts": 7
+  },
+  "decision": "assisted-modeling",
+  "draft": {
+    "claims": {
+      "affiliateBonusSource": {
+        "candidates": [],
+        "reason": "Missing supporting source rule for affiliate bonus constant, return and treasury payout",
+        "status": "unresolved"
+      },
+      "buyerCreatorSource": {
+        "candidates": [],
+        "reason": "buyer/creator distinction",
+        "status": "unresolved"
+      },
+      "creatorPayoutSource": {
+        "candidates": [],
+        "reason": "platform fee and creator remainder calculation",
+        "status": "unresolved"
+      },
+      "distinctAffiliateSource": {
+        "candidates": [],
+        "reason": "affiliate presence and distinct-account guard",
+        "status": "unresolved"
+      },
+      "firstPurchaseSource": {
+        "candidates": [],
+        "reason": "first-purchase guard",
+        "status": "unresolved"
+      },
+      "minimumEligiblePurchaseSource": {
+        "candidates": [],
+        "reason": "Missing supporting source rule for minimum order constant and referral guard",
+        "status": "unresolved"
+      },
+      "payoutRolesSource": {
+        "candidates": [],
+        "reason": "buyer, creator, platform, treasury and affiliate transfers",
+        "status": "unresolved"
+      },
+      "platformFeeSource": {
+        "candidates": [],
+        "reason": "Missing supporting source rule for platform fee constant, denominator and checkout formula",
+        "status": "unresolved"
+      }
+    },
+    "draftHash": "af4d68cf7eac403f6b54253ad5ba8722db8d2a13aee70b6482447f0aece05304",
+    "extractorVersion": "creator-marketplace-v1",
+    "readyForReview": false,
+    "schemaVersion": 1,
+    "snapshotHash": "bdc9ec775c3afbdd75665a7338d48f1f7d99b453e7bf0871a284367314351912"
+  },
+  "facts": [
+    {
+      "category": "unsupported-syntax",
+      "claimId": "platformFeeSource",
+      "description": "Platform commission is customer payin minus provider payout, not one fixed rate.",
+      "evidence": [
+        {
+          "endLine": 122,
+          "fileSha256": "8dc6d656533dd86c188a2eea7c370595c994dac10a31b14e8a9578fea572ab9e",
+          "path": "server/api-util/lineItems.js",
+          "startLine": 120,
+          "text": " * All the line-items dedicated to _customer_ define the \"payin total\".\n * Similarly, the sum of all the line-items included for _provider_ create \"payout total\".\n * Platform gets the commission, which is the difference between payin and payout totals.",
+          "url": "https://github.com/sharetribe/web-template/blob/1811b6a188a71e9ee6a41effed3139606cdd9f94/server/api-util/lineItems.js#L120-L122"
+        }
+      ],
+      "extractorStatus": "unresolved",
+      "id": "ST-01",
+      "outcome": "missed"
+    },
+    {
+      "category": "unsupported-syntax",
+      "claimId": "payoutRolesSource",
+      "description": "Customer/provider totals filter includeFor roles; these are calculated totals, not settlement proof.",
+      "evidence": [
+        {
+          "endLine": 267,
+          "fileSha256": "4b79316fa2ffef23688e84820f30788a8dd6d05984f53889b632205a251e4d12",
+          "path": "server/api-util/lineItemHelpers.js",
+          "startLine": 250,
+          "text": "/**\n * Calculates the total sum of lineTotals for given lineItems where `includeFor` includes `provider`\n * @param {*} lineItems\n * @returns {Money} total sum\n */\nexports.calculateTotalForProvider = lineItems => {\n  const providerLineItems = lineItems.filter(lineItem => lineItem.includeFor.includes('provider'));\n  return exports.calculateTotalFromLineItems(providerLineItems);\n};\n\n/**\n * Calculates the total sum of lineTotals for given lineItems where `includeFor` includes `customer`\n * @param {*} lineItems\n * @returns {Money} total sum\n */\nexports.calculateTotalForCustomer = lineItems => {\n  const providerLineItems = lineItems.filter(lineItem => lineItem.includeFor.includes('customer'));\n  return exports.calculateTotalFromLineItems(providerLineItems);",
+          "url": "https://github.com/sharetribe/web-template/blob/1811b6a188a71e9ee6a41effed3139606cdd9f94/server/api-util/lineItemHelpers.js#L250-L267"
+        },
+        {
+          "endLine": 374,
+          "fileSha256": "7a95684aa34880226fae3250e4240d9f06357a8d3114bf3d96ddc77fd9551484",
+          "path": "server/api-util/lineItemHelpers.test.js",
+          "startLine": 294,
+          "text": "describe('calculateTotalForProvider()', () => {\n  it('should calculate total of lineItems where includeFor includes provider', () => {\n    const lineItems = [\n      {\n        code: 'line-item/night',\n        unitPrice: new Money(5000, 'USD'),\n        units: 3,\n        seats: 2,\n        includeFor: ['customer', 'provider'],\n      },\n      {\n        code: 'line-item/cleaning-fee',\n        unitPrice: new Money(7500, 'USD'),\n        quantity: 1,\n        lineTotal: new Money(7500, 'USD'),\n        includeFor: ['customer', 'provider'],\n      },\n      {\n        code: 'line-item/customer-commission',\n        unitPrice: new Money(30000, 'USD'),\n        percentage: 10,\n        includeFor: ['customer'],\n      },\n      {\n        code: 'line-item/provider-commission',\n        unitPrice: new Money(30000, 'USD'),\n        percentage: -10,\n        includeFor: ['provider'],\n      },\n      {\n        code: 'line-item/provider-commission-discount',\n        unitPrice: new Money(2500, 'USD'),\n        quantity: 1,\n        lineTotal: new Money(2500, 'USD'),\n        includeFor: ['provider'],\n      },\n    ];\n    expect(calculateTotalForProvider(lineItems)).toEqual(new Money(37000, 'USD'));\n  });\n});\n\ndescribe('calculateTotalForCustomer()', () => {\n  it('should calculate total of lineItems where includeFor includes customer', () => {\n    const lineItems = [\n      {\n        code: 'line-item/night',\n        unitPrice: new Money(5000, 'USD'),\n        units: 3,\n        seats: 2,\n        includeFor: ['customer', 'provider'],\n      },\n      {\n        code: 'line-item/cleaning-fee',\n        unitPrice: new Money(7500, 'USD'),\n        quantity: 1,\n        lineTotal: new Money(7500, 'USD'),\n        includeFor: ['customer', 'provider'],\n      },\n      {\n        code: 'line-item/customer-commission',\n        unitPrice: new Money(30000, 'USD'),\n        percentage: 10,\n        includeFor: ['customer'],\n      },\n      {\n        code: 'line-item/provider-commission',\n        unitPrice: new Money(30000, 'USD'),\n        percentage: -10,\n        includeFor: ['provider'],\n      },\n      {\n        code: 'line-item/provider-commission-discount',\n        unitPrice: new Money(2500, 'USD'),\n        quantity: 1,\n        lineTotal: new Money(2500, 'USD'),\n        includeFor: ['provider'],\n      },\n    ];\n    expect(calculateTotalForCustomer(lineItems)).toEqual(new Money(40500, 'USD'));\n  });\n});",
+          "url": "https://github.com/sharetribe/web-template/blob/1811b6a188a71e9ee6a41effed3139606cdd9f94/server/api-util/lineItemHelpers.test.js#L294-L374"
+        }
+      ],
+      "extractorStatus": "unresolved",
+      "id": "ST-02",
+      "outcome": "missed"
+    },
+    {
+      "category": "model-gap",
+      "description": "Provider commission deducts the larger of percentage and minimum; excessive minimum throws.",
+      "evidence": [
+        {
+          "endLine": 393,
+          "fileSha256": "4b79316fa2ffef23688e84820f30788a8dd6d05984f53889b632205a251e4d12",
+          "path": "server/api-util/lineItemHelpers.js",
+          "startLine": 346,
+          "text": "exports.getProviderCommissionMaybe = (providerCommission, order, currency) => {\n  // Check if either minimum commission or percentage are defined in the commission object\n  const hasMinimumCommission = exports.hasMinimumCommission(providerCommission);\n  const hasCommissionPercentage = exports.hasCommissionPercentage(providerCommission);\n\n  if (!hasMinimumCommission && !hasCommissionPercentage) {\n    return [];\n  }\n\n  // Calculate the total money paid into the transaction\n  const totalMoneyIn = exports.calculateTotalFromLineItems([order]);\n  // Calculate the estimated commission with percentage applied, if applicable\n  const estimatedCommissionFromPercentage = calculateCommissionWithPercentage(\n    providerCommission?.percentage,\n    totalMoneyIn.amount\n  );\n\n  // Minimum commission is preferred if it is greated than the estimated transaction amount\n  const useMinimumCommission =\n    providerCommission?.minimum_amount > estimatedCommissionFromPercentage;\n\n  if (providerCommission?.minimum_amount > totalMoneyIn.amount) {\n    throw new Error('Minimum commission amount is greater than the amount of money paid in');\n  }\n\n  // Note: extraLineItems for product selling (aka shipping fee)\n  // is not included in either customer or provider commission calculation.\n\n  // The provider commission is what the provider pays for the transaction, and\n  // it is the subtracted from the order price to get the provider payout:\n  // orderPrice - providerCommission = providerPayout\n  return useMinimumCommission\n    ? [\n        {\n          code: 'line-item/provider-commission',\n          unitPrice: new Money(providerCommission?.minimum_amount, currency),\n          quantity: getNegation(1),\n          includeFor: ['provider'],\n        },\n      ]\n    : [\n        {\n          code: 'line-item/provider-commission',\n          unitPrice: totalMoneyIn,\n          percentage: getNegation(providerCommission.percentage),\n          includeFor: ['provider'],\n        },\n      ];",
+          "url": "https://github.com/sharetribe/web-template/blob/1811b6a188a71e9ee6a41effed3139606cdd9f94/server/api-util/lineItemHelpers.js#L346-L393"
+        },
+        {
+          "endLine": 653,
+          "fileSha256": "9a7190a62cfaf7513842cf449afd2bf289c52d53f5c69131d93aaeb15c0d2cb7",
+          "path": "server/api-util/lineItems.test.js",
+          "startLine": 596,
+          "text": "    it('should use minimum commission when it is greater than percentage-based commission', () => {\n      const listing = {\n        ...mockListing,\n        attributes: {\n          ...mockListing.attributes,\n          publicData: {\n            ...mockListing.attributes.publicData,\n            unitType: 'day',\n          },\n        },\n      };\n\n      const orderData = {\n        bookingStart: '2024-01-01T00:00:00.000Z',\n        bookingEnd: '2024-01-03T00:00:00.000Z',\n      };\n\n      const providerCommission = {\n        percentage: 5,\n        minimum_amount: 3000, // €30.00 minimum (greater than 5% of €200 = €10)\n      };\n\n      const result = transactionLineItems(listing, orderData, providerCommission, null);\n\n      expect(result).toHaveLength(2); // order + provider commission\n      expect(result[1].code).toBe('line-item/provider-commission');\n      expect(result[1].unitPrice).toEqual(new Money(3000, 'EUR')); // Uses minimum amount\n      expect(result[1].quantity).toBe(-1); // Negative for provider commission\n    });\n\n    it('should use percentage-based commission when it is greater than minimum', () => {\n      const listing = {\n        ...mockListing,\n        attributes: {\n          ...mockListing.attributes,\n          publicData: {\n            ...mockListing.attributes.publicData,\n            unitType: 'day',\n          },\n        },\n      };\n\n      const orderData = {\n        bookingStart: '2024-01-01T00:00:00.000Z',\n        bookingEnd: '2024-01-03T00:00:00.000Z',\n      };\n\n      const providerCommission = {\n        percentage: 15,\n        minimum_amount: 100, // €1.00 minimum (less than 15% of €200 = €30)\n      };\n\n      const result = transactionLineItems(listing, orderData, providerCommission, null);\n\n      expect(result).toHaveLength(2); // order + provider commission\n      expect(result[1].code).toBe('line-item/provider-commission');\n      expect(result[1].percentage).toBe(-15); // Negative percentage for provider commission\n    });",
+          "url": "https://github.com/sharetribe/web-template/blob/1811b6a188a71e9ee6a41effed3139606cdd9f94/server/api-util/lineItems.test.js#L596-L653"
+        }
+      ],
+      "extractorStatus": "outside-v1-model",
+      "id": "ST-03",
+      "outcome": "missed"
+    },
+    {
+      "category": "model-gap",
+      "description": "Customer commission adds the larger of percentage and minimum above order price.",
+      "evidence": [
+        {
+          "endLine": 443,
+          "fileSha256": "4b79316fa2ffef23688e84820f30788a8dd6d05984f53889b632205a251e4d12",
+          "path": "server/api-util/lineItemHelpers.js",
+          "startLine": 402,
+          "text": "exports.getCustomerCommissionMaybe = (customerCommission, order, currency) => {\n  // Check if either minimum commission or percentage are defined in the commission object\n  const hasMinimumCommission = exports.hasMinimumCommission(customerCommission);\n  const hasCommissionPercentage = exports.hasCommissionPercentage(customerCommission);\n\n  if (!hasMinimumCommission && !hasCommissionPercentage) {\n    return [];\n  }\n\n  // Calculate the total money paid into the transaction\n  const totalMoneyIn = exports.calculateTotalFromLineItems([order]);\n  // Calculate the estimated commission with percentage applied, if applicable\n  const estimatedCommissionFromPercentage = calculateCommissionWithPercentage(\n    customerCommission?.percentage,\n    totalMoneyIn.amount\n  );\n\n  // Minimum commission is preferred if it is greated than the estimated transaction amount\n  const useMinimumCommission =\n    customerCommission?.minimum_amount > estimatedCommissionFromPercentage;\n\n  // The customer commission is what the customer pays for the transaction, and\n  // it is added on top of the order price to get the customer's payin price:\n  // orderPrice + customerCommission = customerPayin\n  return useMinimumCommission\n    ? [\n        {\n          code: 'line-item/customer-commission',\n          unitPrice: new Money(customerCommission?.minimum_amount, currency),\n          quantity: 1,\n          includeFor: ['customer'],\n        },\n      ]\n    : [\n        {\n          code: 'line-item/customer-commission',\n          unitPrice: exports.calculateTotalFromLineItems([order]),\n          percentage: customerCommission.percentage,\n          includeFor: ['customer'],\n        },\n      ];\n};",
+          "url": "https://github.com/sharetribe/web-template/blob/1811b6a188a71e9ee6a41effed3139606cdd9f94/server/api-util/lineItemHelpers.js#L402-L443"
+        }
+      ],
+      "extractorStatus": "outside-v1-model",
+      "id": "ST-04",
+      "outcome": "missed"
+    },
+    {
+      "category": "model-gap",
+      "description": "Commission base excludes shipping; shipping belongs to both customer and provider.",
+      "evidence": [
+        {
+          "endLine": 372,
+          "fileSha256": "4b79316fa2ffef23688e84820f30788a8dd6d05984f53889b632205a251e4d12",
+          "path": "server/api-util/lineItemHelpers.js",
+          "startLine": 355,
+          "text": "  // Calculate the total money paid into the transaction\n  const totalMoneyIn = exports.calculateTotalFromLineItems([order]);\n  // Calculate the estimated commission with percentage applied, if applicable\n  const estimatedCommissionFromPercentage = calculateCommissionWithPercentage(\n    providerCommission?.percentage,\n    totalMoneyIn.amount\n  );\n\n  // Minimum commission is preferred if it is greated than the estimated transaction amount\n  const useMinimumCommission =\n    providerCommission?.minimum_amount > estimatedCommissionFromPercentage;\n\n  if (providerCommission?.minimum_amount > totalMoneyIn.amount) {\n    throw new Error('Minimum commission amount is greater than the amount of money paid in');\n  }\n\n  // Note: extraLineItems for product selling (aka shipping fee)\n  // is not included in either customer or provider commission calculation.",
+          "url": "https://github.com/sharetribe/web-template/blob/1811b6a188a71e9ee6a41effed3139606cdd9f94/server/api-util/lineItemHelpers.js#L355-L372"
+        },
+        {
+          "endLine": 46,
+          "fileSha256": "8dc6d656533dd86c188a2eea7c370595c994dac10a31b14e8a9578fea572ab9e",
+          "path": "server/api-util/lineItems.js",
+          "startLine": 39,
+          "text": "  const deliveryLineItem = !!shippingFee\n    ? [\n        {\n          code: 'line-item/shipping-fee',\n          unitPrice: shippingFee,\n          quantity: 1,\n          includeFor: ['customer', 'provider'],\n        },",
+          "url": "https://github.com/sharetribe/web-template/blob/1811b6a188a71e9ee6a41effed3139606cdd9f94/server/api-util/lineItems.js#L39-L46"
+        }
+      ],
+      "extractorStatus": "outside-v1-model",
+      "id": "ST-05",
+      "outcome": "missed"
+    },
+    {
+      "category": "model-gap",
+      "description": "Percentage amounts round to integer currency subunits using HALF_UP.",
+      "evidence": [
+        {
+          "endLine": 32,
+          "fileSha256": "4b79316fa2ffef23688e84820f30788a8dd6d05984f53889b632205a251e4d12",
+          "path": "server/api-util/lineItemHelpers.js",
+          "startLine": 24,
+          "text": "const calculateCommissionWithPercentage = (percentage, amount) => {\n  const hasValidAmountAndPercentage = amount != null && percentage != null && percentage > 0;\n\n  if (hasValidAmountAndPercentage) {\n    return new Decimal(amount)\n      .times(percentage)\n      .dividedBy(100)\n      .toNearest(1, Decimal.ROUND_HALF_UP)\n      .toNumber();",
+          "url": "https://github.com/sharetribe/web-template/blob/1811b6a188a71e9ee6a41effed3139606cdd9f94/server/api-util/lineItemHelpers.js#L24-L32"
+        },
+        {
+          "endLine": 133,
+          "fileSha256": "4b79316fa2ffef23688e84820f30788a8dd6d05984f53889b632205a251e4d12",
+          "path": "server/api-util/lineItemHelpers.js",
+          "startLine": 120,
+          "text": "exports.calculateTotalPriceFromPercentage = (unitPrice, percentage) => {\n  const amountFromUnitPrice = getAmountAsDecimalJS(unitPrice);\n\n  // NOTE: We round the total price to the nearest integer.\n  //       Payment processors don't support fractional subunits.\n  const totalPrice = amountFromUnitPrice\n    .times(percentage)\n    .dividedBy(100)\n    .toNearest(1, Decimal.ROUND_HALF_UP);\n\n  // Get total price as Number (and validate that the conversion is safe)\n  const numericTotalPrice = convertDecimalJSToNumber(totalPrice);\n\n  return new Money(numericTotalPrice, unitPrice.currency);",
+          "url": "https://github.com/sharetribe/web-template/blob/1811b6a188a71e9ee6a41effed3139606cdd9f94/server/api-util/lineItemHelpers.js#L120-L133"
+        },
+        {
+          "endLine": 43,
+          "fileSha256": "7a95684aa34880226fae3250e4240d9f06357a8d3114bf3d96ddc77fd9551484",
+          "path": "server/api-util/lineItemHelpers.test.js",
+          "startLine": 30,
+          "text": "describe('calculateTotalPriceFromPercentage()', () => {\n  it('should calculate price based on percentage', () => {\n    const unitPrice = new Money(1000, 'EUR');\n    const percentage = 10;\n    expect(calculateTotalPriceFromPercentage(unitPrice, percentage)).toEqual(new Money(100, 'EUR'));\n  });\n\n  it('should return negative sum if percentage is negative', () => {\n    const unitPrice = new Money(1000, 'EUR');\n    const percentage = -10;\n    expect(calculateTotalPriceFromPercentage(unitPrice, percentage)).toEqual(\n      new Money(-100, 'EUR')\n    );\n  });",
+          "url": "https://github.com/sharetribe/web-template/blob/1811b6a188a71e9ee6a41effed3139606cdd9f94/server/api-util/lineItemHelpers.test.js#L30-L43"
+        }
+      ],
+      "extractorStatus": "outside-v1-model",
+      "id": "ST-06",
+      "outcome": "missed"
+    },
+    {
+      "category": "model-gap",
+      "description": "Shipping is first-item fee plus additional-item fee times quantity minus one.",
+      "evidence": [
+        {
+          "endLine": 87,
+          "fileSha256": "4b79316fa2ffef23688e84820f30788a8dd6d05984f53889b632205a251e4d12",
+          "path": "server/api-util/lineItemHelpers.js",
+          "startLine": 50,
+          "text": "exports.calculateShippingFee = (\n  shippingPriceInSubunitsOneItem,\n  shippingPriceInSubunitsAdditionalItems,\n  currency,\n  quantity\n) => {\n  if (\n    isNumber(shippingPriceInSubunitsOneItem) &&\n    shippingPriceInSubunitsOneItem >= 0 &&\n    currency &&\n    quantity === 1\n  ) {\n    return new Money(shippingPriceInSubunitsOneItem, currency);\n  } else if (\n    isNumber(shippingPriceInSubunitsOneItem) &&\n    isNumber(shippingPriceInSubunitsAdditionalItems) &&\n    shippingPriceInSubunitsOneItem >= 0 &&\n    shippingPriceInSubunitsAdditionalItems >= 0 &&\n    currency &&\n    quantity > 1\n  ) {\n    const oneItemFee = getAmountAsDecimalJS(new Money(shippingPriceInSubunitsOneItem, currency));\n    const additionalItemsFee = getAmountAsDecimalJS(\n      new Money(shippingPriceInSubunitsAdditionalItems, currency)\n    );\n    const additionalItemsTotal = additionalItemsFee.times(quantity - 1);\n    const numericShippingFee = convertDecimalJSToNumber(oneItemFee.plus(additionalItemsTotal));\n    return new Money(numericShippingFee, currency);\n  } else if (\n    currency &&\n    quantity > 1 &&\n    (!isNumber(shippingPriceInSubunitsOneItem) || !isNumber(shippingPriceInSubunitsAdditionalItems))\n  ) {\n    // If both shippingPriceInSubunitsOneItem and shippingPriceInSubunitsAdditionalItems are NOT set,\n    // when quantity is greater than 1, there's an error somewhere in the code\n    throw new Error('Shipping fee is not set correctly for multiple items');\n  }\n  return null;",
+          "url": "https://github.com/sharetribe/web-template/blob/1811b6a188a71e9ee6a41effed3139606cdd9f94/server/api-util/lineItemHelpers.js#L50-L87"
+        },
+        {
+          "endLine": 423,
+          "fileSha256": "9a7190a62cfaf7513842cf449afd2bf289c52d53f5c69131d93aaeb15c0d2cb7",
+          "path": "server/api-util/lineItems.test.js",
+          "startLine": 379,
+          "text": "    it('should create line items for item purchase with shipping delivery', () => {\n      const listing = {\n        ...mockListing,\n        attributes: {\n          ...mockListing.attributes,\n          publicData: {\n            ...mockListing.attributes.publicData,\n            unitType: 'item',\n            shippingPriceInSubunitsOneItem: 500, // €5.00\n            shippingPriceInSubunitsAdditionalItems: 200, // €2.00\n          },\n        },\n      };\n\n      const orderData = {\n        stockReservationQuantity: 3,\n        deliveryMethod: 'shipping',\n        currency: 'EUR',\n      };\n\n      const result = transactionLineItems(\n        listing,\n        orderData,\n        mockProviderCommission,\n        mockCustomerCommission\n      );\n\n      expect(result).toHaveLength(4); // order + shipping + provider commission + customer commission\n\n      // Check main order line item\n      expect(result[0]).toEqual({\n        code: 'line-item/item',\n        unitPrice: new Money(10000, 'EUR'),\n        quantity: 3,\n        includeFor: ['customer', 'provider'],\n      });\n\n      // Check shipping line item\n      expect(result[1]).toEqual({\n        code: 'line-item/shipping-fee',\n        unitPrice: new Money(900, 'EUR'), // €5.00 + (2 * €2.00) = €9.00\n        quantity: 1,\n        includeFor: ['customer', 'provider'],\n      });\n    });",
+          "url": "https://github.com/sharetribe/web-template/blob/1811b6a188a71e9ee6a41effed3139606cdd9f94/server/api-util/lineItems.test.js#L379-L423"
+        }
+      ],
+      "extractorStatus": "outside-v1-model",
+      "id": "ST-07",
+      "outcome": "missed"
+    }
+  ],
+  "goldHash": "f827aec0de1bd848655f77aabd584e0aa712d3764688c8a4178576268d8c1764",
+  "license": "Apache-2.0",
+  "limitation": "Automatic extraction currently supports the bundled checkout/referral fixture. The independent marketplace payment slice requires assisted modeling; unresolved rules cannot be approved.",
+  "manifestHash": "a25ca77b1cdd344fb741019e9187aa0fb9ca7f999c328bc12cb5c2ecfbe9b420",
+  "notEstablished": [
+    {
+      "claimId": "affiliateBonusSource",
+      "reason": "Not established by this bounded payment slice; no claim about the whole application."
+    },
+    {
+      "claimId": "minimumEligiblePurchaseSource",
+      "reason": "Not established by this bounded payment slice; no claim about the whole application."
+    },
+    {
+      "claimId": "firstPurchaseSource",
+      "reason": "Not established by this bounded payment slice; no claim about the whole application."
+    },
+    {
+      "claimId": "distinctAffiliateSource",
+      "reason": "Not established by this bounded payment slice; no claim about the whole application."
+    },
+    {
+      "claimId": "creatorPayoutSource",
+      "reason": "Not established by this bounded payment slice; no claim about the whole application."
+    },
+    {
+      "claimId": "buyerCreatorSource",
+      "reason": "Not established by this bounded payment slice; no claim about the whole application."
+    }
+  ],
+  "reviewMethod": "Agent-reviewed source facts with independently authored upstream test assertions. Human reviewer signoff remains pending; this is not certified human gold.",
+  "schemaVersion": 1,
+  "scope": "Bounded payment slice: three implementation files and two upstream test files; not the whole repository.",
+  "snapshotHash": "bdc9ec775c3afbdd75665a7338d48f1f7d99b453e7bf0871a284367314351912",
+  "source": {
+    "commit": "1811b6a188a71e9ee6a41effed3139606cdd9f94",
+    "repository": "sharetribe/web-template",
+    "type": "github"
+  }
+}
