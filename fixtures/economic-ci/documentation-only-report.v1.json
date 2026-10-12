@@ -1,0 +1,2345 @@
+{
+  "afterCommit": "3333333333333333333333333333333333333333",
+  "afterPackageHash": "4bb1ecd6140703c3a6b51dff66e5ab8bffc0e8f7f36478ec04c71056295d69be",
+  "alert": false,
+  "approvedInputHash": "52554e8f734515881b6460be436f219a8db059bed8a037ddd416ed19ae910520",
+  "baseline": {
+    "engineVersion": "population-scenario.v1",
+    "events": [
+      {
+        "action": {
+          "affiliate": "honest-affiliate",
+          "amountMicros": "5000000",
+          "buyer": "honest-buyer-2",
+          "creator": "honest-creator",
+          "type": "purchase"
+        },
+        "afterStateHash": "9949d5bdeb676caa7025996ca3b758ea58bc04d22a453965c386c69848fc3603",
+        "beforeStateHash": "8ba1e233c481864708f867cc64159c60f7cb00a44a4c7fc003bf5f073e9ce4e7",
+        "diagnostics": [],
+        "evaluations": [
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "platformFee"
+          },
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "creatorPayout"
+          },
+          {
+            "eligible": true,
+            "predicates": [
+              {
+                "op": "and",
+                "path": "model.actions.purchase.transfers.2.when",
+                "result": true
+              },
+              {
+                "op": "present",
+                "path": "model.actions.purchase.transfers.2.when.all.0",
+                "result": true
+              },
+              {
+                "op": "differentAccount",
+                "path": "model.actions.purchase.transfers.2.when.all.1",
+                "result": true
+              },
+              {
+                "op": "eq",
+                "path": "model.actions.purchase.transfers.2.when.all.2",
+                "result": true
+              },
+              {
+                "op": "gte",
+                "path": "model.actions.purchase.transfers.2.when.all.3",
+                "result": true
+              }
+            ],
+            "ruleId": "affiliateBonus"
+          }
+        ],
+        "journal": [
+          {
+            "amountMicros": "500000",
+            "asset": "USDC",
+            "evidence": [
+              "platformFeeSource"
+            ],
+            "from": "honest-buyer-2",
+            "ruleId": "platformFee",
+            "to": "platform"
+          },
+          {
+            "amountMicros": "4500000",
+            "asset": "USDC",
+            "evidence": [
+              "creatorPayoutSource"
+            ],
+            "from": "honest-buyer-2",
+            "ruleId": "creatorPayout",
+            "to": "honest-creator"
+          },
+          {
+            "amountMicros": "1000000",
+            "asset": "USDC",
+            "evidence": [
+              "affiliateBonusSource",
+              "minimumEligiblePurchaseSource",
+              "firstPurchaseSource",
+              "distinctAffiliateSource"
+            ],
+            "from": "campaignTreasury",
+            "ruleId": "affiliateBonus",
+            "to": "honest-affiliate"
+          }
+        ],
+        "kind": "purchase",
+        "policy": "honest",
+        "status": "accepted",
+        "tick": 1
+      },
+      {
+        "action": {
+          "affiliate": "honest-affiliate",
+          "amountMicros": "5000000",
+          "buyer": "honest-buyer-1",
+          "creator": "honest-creator",
+          "type": "purchase"
+        },
+        "afterStateHash": "59412213ddfd397ce2a9245baf98ffc3c43e5efb91712a08d0ddadd33c310223",
+        "beforeStateHash": "9949d5bdeb676caa7025996ca3b758ea58bc04d22a453965c386c69848fc3603",
+        "diagnostics": [],
+        "evaluations": [
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "platformFee"
+          },
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "creatorPayout"
+          },
+          {
+            "eligible": true,
+            "predicates": [
+              {
+                "op": "and",
+                "path": "model.actions.purchase.transfers.2.when",
+                "result": true
+              },
+              {
+                "op": "present",
+                "path": "model.actions.purchase.transfers.2.when.all.0",
+                "result": true
+              },
+              {
+                "op": "differentAccount",
+                "path": "model.actions.purchase.transfers.2.when.all.1",
+                "result": true
+              },
+              {
+                "op": "eq",
+                "path": "model.actions.purchase.transfers.2.when.all.2",
+                "result": true
+              },
+              {
+                "op": "gte",
+                "path": "model.actions.purchase.transfers.2.when.all.3",
+                "result": true
+              }
+            ],
+            "ruleId": "affiliateBonus"
+          }
+        ],
+        "journal": [
+          {
+            "amountMicros": "500000",
+            "asset": "USDC",
+            "evidence": [
+              "platformFeeSource"
+            ],
+            "from": "honest-buyer-1",
+            "ruleId": "platformFee",
+            "to": "platform"
+          },
+          {
+            "amountMicros": "4500000",
+            "asset": "USDC",
+            "evidence": [
+              "creatorPayoutSource"
+            ],
+            "from": "honest-buyer-1",
+            "ruleId": "creatorPayout",
+            "to": "honest-creator"
+          },
+          {
+            "amountMicros": "1000000",
+            "asset": "USDC",
+            "evidence": [
+              "affiliateBonusSource",
+              "minimumEligiblePurchaseSource",
+              "firstPurchaseSource",
+              "distinctAffiliateSource"
+            ],
+            "from": "campaignTreasury",
+            "ruleId": "affiliateBonus",
+            "to": "honest-affiliate"
+          }
+        ],
+        "kind": "purchase",
+        "policy": "honest",
+        "status": "accepted",
+        "tick": 2
+      },
+      {
+        "action": {
+          "affiliate": "honest-affiliate",
+          "amountMicros": "20000000",
+          "buyer": "honest-buyer-1",
+          "creator": "honest-creator",
+          "type": "purchase"
+        },
+        "afterStateHash": "e7291541403ab029175c043e025d55ef5c1af218be3e2efb08936a28306cfae1",
+        "beforeStateHash": "59412213ddfd397ce2a9245baf98ffc3c43e5efb91712a08d0ddadd33c310223",
+        "diagnostics": [],
+        "evaluations": [
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "platformFee"
+          },
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "creatorPayout"
+          },
+          {
+            "eligible": false,
+            "predicates": [
+              {
+                "op": "and",
+                "path": "model.actions.purchase.transfers.2.when",
+                "result": false
+              },
+              {
+                "op": "present",
+                "path": "model.actions.purchase.transfers.2.when.all.0",
+                "result": true
+              },
+              {
+                "op": "differentAccount",
+                "path": "model.actions.purchase.transfers.2.when.all.1",
+                "result": true
+              },
+              {
+                "op": "eq",
+                "path": "model.actions.purchase.transfers.2.when.all.2",
+                "result": false
+              },
+              {
+                "op": "gte",
+                "path": "model.actions.purchase.transfers.2.when.all.3",
+                "result": true
+              }
+            ],
+            "ruleId": "affiliateBonus"
+          }
+        ],
+        "journal": [
+          {
+            "amountMicros": "2000000",
+            "asset": "USDC",
+            "evidence": [
+              "platformFeeSource"
+            ],
+            "from": "honest-buyer-1",
+            "ruleId": "platformFee",
+            "to": "platform"
+          },
+          {
+            "amountMicros": "18000000",
+            "asset": "USDC",
+            "evidence": [
+              "creatorPayoutSource"
+            ],
+            "from": "honest-buyer-1",
+            "ruleId": "creatorPayout",
+            "to": "honest-creator"
+          }
+        ],
+        "kind": "purchase",
+        "policy": "honest",
+        "status": "accepted",
+        "tick": 3
+      },
+      {
+        "action": {
+          "affiliate": "honest-affiliate",
+          "amountMicros": "20000000",
+          "buyer": "honest-buyer-2",
+          "creator": "honest-creator",
+          "type": "purchase"
+        },
+        "afterStateHash": "cd9d89d874ed2f7a28457f7ea96cc43611c142920ae4519d497990b0232dc29a",
+        "beforeStateHash": "e7291541403ab029175c043e025d55ef5c1af218be3e2efb08936a28306cfae1",
+        "diagnostics": [],
+        "evaluations": [
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "platformFee"
+          },
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "creatorPayout"
+          },
+          {
+            "eligible": false,
+            "predicates": [
+              {
+                "op": "and",
+                "path": "model.actions.purchase.transfers.2.when",
+                "result": false
+              },
+              {
+                "op": "present",
+                "path": "model.actions.purchase.transfers.2.when.all.0",
+                "result": true
+              },
+              {
+                "op": "differentAccount",
+                "path": "model.actions.purchase.transfers.2.when.all.1",
+                "result": true
+              },
+              {
+                "op": "eq",
+                "path": "model.actions.purchase.transfers.2.when.all.2",
+                "result": false
+              },
+              {
+                "op": "gte",
+                "path": "model.actions.purchase.transfers.2.when.all.3",
+                "result": true
+              }
+            ],
+            "ruleId": "affiliateBonus"
+          }
+        ],
+        "journal": [
+          {
+            "amountMicros": "2000000",
+            "asset": "USDC",
+            "evidence": [
+              "platformFeeSource"
+            ],
+            "from": "honest-buyer-2",
+            "ruleId": "platformFee",
+            "to": "platform"
+          },
+          {
+            "amountMicros": "18000000",
+            "asset": "USDC",
+            "evidence": [
+              "creatorPayoutSource"
+            ],
+            "from": "honest-buyer-2",
+            "ruleId": "creatorPayout",
+            "to": "honest-creator"
+          }
+        ],
+        "kind": "purchase",
+        "policy": "honest",
+        "status": "accepted",
+        "tick": 4
+      },
+      {
+        "action": {
+          "affiliate": "honest-affiliate",
+          "amountMicros": "5000000",
+          "buyer": "honest-buyer-2",
+          "creator": "honest-creator",
+          "type": "purchase"
+        },
+        "afterStateHash": "06ce707d542d2c88407c52d5aaad9eece8978b85f66cb274e4e50723470ba122",
+        "beforeStateHash": "cd9d89d874ed2f7a28457f7ea96cc43611c142920ae4519d497990b0232dc29a",
+        "diagnostics": [],
+        "evaluations": [
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "platformFee"
+          },
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "creatorPayout"
+          },
+          {
+            "eligible": false,
+            "predicates": [
+              {
+                "op": "and",
+                "path": "model.actions.purchase.transfers.2.when",
+                "result": false
+              },
+              {
+                "op": "present",
+                "path": "model.actions.purchase.transfers.2.when.all.0",
+                "result": true
+              },
+              {
+                "op": "differentAccount",
+                "path": "model.actions.purchase.transfers.2.when.all.1",
+                "result": true
+              },
+              {
+                "op": "eq",
+                "path": "model.actions.purchase.transfers.2.when.all.2",
+                "result": false
+              },
+              {
+                "op": "gte",
+                "path": "model.actions.purchase.transfers.2.when.all.3",
+                "result": true
+              }
+            ],
+            "ruleId": "affiliateBonus"
+          }
+        ],
+        "journal": [
+          {
+            "amountMicros": "500000",
+            "asset": "USDC",
+            "evidence": [
+              "platformFeeSource"
+            ],
+            "from": "honest-buyer-2",
+            "ruleId": "platformFee",
+            "to": "platform"
+          },
+          {
+            "amountMicros": "4500000",
+            "asset": "USDC",
+            "evidence": [
+              "creatorPayoutSource"
+            ],
+            "from": "honest-buyer-2",
+            "ruleId": "creatorPayout",
+            "to": "honest-creator"
+          }
+        ],
+        "kind": "purchase",
+        "policy": "honest",
+        "status": "accepted",
+        "tick": 5
+      },
+      {
+        "action": {
+          "affiliate": "honest-affiliate",
+          "amountMicros": "5000000",
+          "buyer": "honest-buyer-1",
+          "creator": "honest-creator",
+          "type": "purchase"
+        },
+        "afterStateHash": "53c6b33301623854f568b165c17469ae7ed869b0e997354791fccf15a88ad06f",
+        "beforeStateHash": "06ce707d542d2c88407c52d5aaad9eece8978b85f66cb274e4e50723470ba122",
+        "diagnostics": [],
+        "evaluations": [
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "platformFee"
+          },
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "creatorPayout"
+          },
+          {
+            "eligible": false,
+            "predicates": [
+              {
+                "op": "and",
+                "path": "model.actions.purchase.transfers.2.when",
+                "result": false
+              },
+              {
+                "op": "present",
+                "path": "model.actions.purchase.transfers.2.when.all.0",
+                "result": true
+              },
+              {
+                "op": "differentAccount",
+                "path": "model.actions.purchase.transfers.2.when.all.1",
+                "result": true
+              },
+              {
+                "op": "eq",
+                "path": "model.actions.purchase.transfers.2.when.all.2",
+                "result": false
+              },
+              {
+                "op": "gte",
+                "path": "model.actions.purchase.transfers.2.when.all.3",
+                "result": true
+              }
+            ],
+            "ruleId": "affiliateBonus"
+          }
+        ],
+        "journal": [
+          {
+            "amountMicros": "500000",
+            "asset": "USDC",
+            "evidence": [
+              "platformFeeSource"
+            ],
+            "from": "honest-buyer-1",
+            "ruleId": "platformFee",
+            "to": "platform"
+          },
+          {
+            "amountMicros": "4500000",
+            "asset": "USDC",
+            "evidence": [
+              "creatorPayoutSource"
+            ],
+            "from": "honest-buyer-1",
+            "ruleId": "creatorPayout",
+            "to": "honest-creator"
+          }
+        ],
+        "kind": "purchase",
+        "policy": "honest",
+        "status": "accepted",
+        "tick": 6
+      },
+      {
+        "action": {
+          "affiliate": "honest-affiliate",
+          "amountMicros": "20000000",
+          "buyer": "honest-buyer-1",
+          "creator": "honest-creator",
+          "type": "purchase"
+        },
+        "afterStateHash": "0fe42750af04595305ba9c09aa380f842a78c70ba74492873acf243d2928583b",
+        "beforeStateHash": "53c6b33301623854f568b165c17469ae7ed869b0e997354791fccf15a88ad06f",
+        "diagnostics": [],
+        "evaluations": [
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "platformFee"
+          },
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "creatorPayout"
+          },
+          {
+            "eligible": false,
+            "predicates": [
+              {
+                "op": "and",
+                "path": "model.actions.purchase.transfers.2.when",
+                "result": false
+              },
+              {
+                "op": "present",
+                "path": "model.actions.purchase.transfers.2.when.all.0",
+                "result": true
+              },
+              {
+                "op": "differentAccount",
+                "path": "model.actions.purchase.transfers.2.when.all.1",
+                "result": true
+              },
+              {
+                "op": "eq",
+                "path": "model.actions.purchase.transfers.2.when.all.2",
+                "result": false
+              },
+              {
+                "op": "gte",
+                "path": "model.actions.purchase.transfers.2.when.all.3",
+                "result": true
+              }
+            ],
+            "ruleId": "affiliateBonus"
+          }
+        ],
+        "journal": [
+          {
+            "amountMicros": "2000000",
+            "asset": "USDC",
+            "evidence": [
+              "platformFeeSource"
+            ],
+            "from": "honest-buyer-1",
+            "ruleId": "platformFee",
+            "to": "platform"
+          },
+          {
+            "amountMicros": "18000000",
+            "asset": "USDC",
+            "evidence": [
+              "creatorPayoutSource"
+            ],
+            "from": "honest-buyer-1",
+            "ruleId": "creatorPayout",
+            "to": "honest-creator"
+          }
+        ],
+        "kind": "purchase",
+        "policy": "honest",
+        "status": "accepted",
+        "tick": 7
+      },
+      {
+        "action": {
+          "affiliate": "attacker-affiliate",
+          "amountMicros": "5000000",
+          "buyer": "attacker-buyer-1",
+          "creator": "attacker-creator",
+          "type": "purchase"
+        },
+        "afterStateHash": "0bbfd36020a60b9d5774a74d6a5ace0d5928797450ca91f05a61465b9320bbdb",
+        "beforeStateHash": "0fe42750af04595305ba9c09aa380f842a78c70ba74492873acf243d2928583b",
+        "diagnostics": [],
+        "evaluations": [
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "platformFee"
+          },
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "creatorPayout"
+          },
+          {
+            "eligible": true,
+            "predicates": [
+              {
+                "op": "and",
+                "path": "model.actions.purchase.transfers.2.when",
+                "result": true
+              },
+              {
+                "op": "present",
+                "path": "model.actions.purchase.transfers.2.when.all.0",
+                "result": true
+              },
+              {
+                "op": "differentAccount",
+                "path": "model.actions.purchase.transfers.2.when.all.1",
+                "result": true
+              },
+              {
+                "op": "eq",
+                "path": "model.actions.purchase.transfers.2.when.all.2",
+                "result": true
+              },
+              {
+                "op": "gte",
+                "path": "model.actions.purchase.transfers.2.when.all.3",
+                "result": true
+              }
+            ],
+            "ruleId": "affiliateBonus"
+          }
+        ],
+        "journal": [
+          {
+            "amountMicros": "500000",
+            "asset": "USDC",
+            "evidence": [
+              "platformFeeSource"
+            ],
+            "from": "attacker-buyer-1",
+            "ruleId": "platformFee",
+            "to": "platform"
+          },
+          {
+            "amountMicros": "4500000",
+            "asset": "USDC",
+            "evidence": [
+              "creatorPayoutSource"
+            ],
+            "from": "attacker-buyer-1",
+            "ruleId": "creatorPayout",
+            "to": "attacker-creator"
+          },
+          {
+            "amountMicros": "1000000",
+            "asset": "USDC",
+            "evidence": [
+              "affiliateBonusSource",
+              "minimumEligiblePurchaseSource",
+              "firstPurchaseSource",
+              "distinctAffiliateSource"
+            ],
+            "from": "campaignTreasury",
+            "ruleId": "affiliateBonus",
+            "to": "attacker-affiliate"
+          }
+        ],
+        "kind": "purchase",
+        "policy": "attacker",
+        "status": "accepted",
+        "tick": 8
+      },
+      {
+        "action": {
+          "affiliate": "attacker-affiliate",
+          "amountMicros": "5000000",
+          "buyer": "attacker-buyer-2",
+          "creator": "attacker-creator",
+          "type": "purchase"
+        },
+        "afterStateHash": "4c448c09b0b8d935e7fb9877ee9387b3f081d5837c3ee72a61a9663be1c5e268",
+        "beforeStateHash": "0bbfd36020a60b9d5774a74d6a5ace0d5928797450ca91f05a61465b9320bbdb",
+        "diagnostics": [],
+        "evaluations": [
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "platformFee"
+          },
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "creatorPayout"
+          },
+          {
+            "eligible": true,
+            "predicates": [
+              {
+                "op": "and",
+                "path": "model.actions.purchase.transfers.2.when",
+                "result": true
+              },
+              {
+                "op": "present",
+                "path": "model.actions.purchase.transfers.2.when.all.0",
+                "result": true
+              },
+              {
+                "op": "differentAccount",
+                "path": "model.actions.purchase.transfers.2.when.all.1",
+                "result": true
+              },
+              {
+                "op": "eq",
+                "path": "model.actions.purchase.transfers.2.when.all.2",
+                "result": true
+              },
+              {
+                "op": "gte",
+                "path": "model.actions.purchase.transfers.2.when.all.3",
+                "result": true
+              }
+            ],
+            "ruleId": "affiliateBonus"
+          }
+        ],
+        "journal": [
+          {
+            "amountMicros": "500000",
+            "asset": "USDC",
+            "evidence": [
+              "platformFeeSource"
+            ],
+            "from": "attacker-buyer-2",
+            "ruleId": "platformFee",
+            "to": "platform"
+          },
+          {
+            "amountMicros": "4500000",
+            "asset": "USDC",
+            "evidence": [
+              "creatorPayoutSource"
+            ],
+            "from": "attacker-buyer-2",
+            "ruleId": "creatorPayout",
+            "to": "attacker-creator"
+          },
+          {
+            "amountMicros": "1000000",
+            "asset": "USDC",
+            "evidence": [
+              "affiliateBonusSource",
+              "minimumEligiblePurchaseSource",
+              "firstPurchaseSource",
+              "distinctAffiliateSource"
+            ],
+            "from": "campaignTreasury",
+            "ruleId": "affiliateBonus",
+            "to": "attacker-affiliate"
+          }
+        ],
+        "kind": "purchase",
+        "policy": "attacker",
+        "status": "accepted",
+        "tick": 9
+      },
+      {
+        "action": {
+          "affiliate": "honest-affiliate",
+          "amountMicros": "5000000",
+          "buyer": "honest-buyer-2",
+          "creator": "honest-creator",
+          "type": "purchase"
+        },
+        "afterStateHash": "46afaaa0a0e3b63903b97fb37f71e5ae95bafc144b16ec23c1f4824d3dc015fd",
+        "beforeStateHash": "4c448c09b0b8d935e7fb9877ee9387b3f081d5837c3ee72a61a9663be1c5e268",
+        "diagnostics": [],
+        "evaluations": [
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "platformFee"
+          },
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "creatorPayout"
+          },
+          {
+            "eligible": false,
+            "predicates": [
+              {
+                "op": "and",
+                "path": "model.actions.purchase.transfers.2.when",
+                "result": false
+              },
+              {
+                "op": "present",
+                "path": "model.actions.purchase.transfers.2.when.all.0",
+                "result": true
+              },
+              {
+                "op": "differentAccount",
+                "path": "model.actions.purchase.transfers.2.when.all.1",
+                "result": true
+              },
+              {
+                "op": "eq",
+                "path": "model.actions.purchase.transfers.2.when.all.2",
+                "result": false
+              },
+              {
+                "op": "gte",
+                "path": "model.actions.purchase.transfers.2.when.all.3",
+                "result": true
+              }
+            ],
+            "ruleId": "affiliateBonus"
+          }
+        ],
+        "journal": [
+          {
+            "amountMicros": "500000",
+            "asset": "USDC",
+            "evidence": [
+              "platformFeeSource"
+            ],
+            "from": "honest-buyer-2",
+            "ruleId": "platformFee",
+            "to": "platform"
+          },
+          {
+            "amountMicros": "4500000",
+            "asset": "USDC",
+            "evidence": [
+              "creatorPayoutSource"
+            ],
+            "from": "honest-buyer-2",
+            "ruleId": "creatorPayout",
+            "to": "honest-creator"
+          }
+        ],
+        "kind": "purchase",
+        "policy": "honest",
+        "status": "accepted",
+        "tick": 10
+      },
+      {
+        "action": {
+          "affiliate": "honest-affiliate",
+          "amountMicros": "20000000",
+          "buyer": "honest-buyer-1",
+          "creator": "honest-creator",
+          "type": "purchase"
+        },
+        "afterStateHash": "8561e4b7853e763dffceb8c805b596fa5d5e297df142bdd77e95bc00fc698326",
+        "beforeStateHash": "46afaaa0a0e3b63903b97fb37f71e5ae95bafc144b16ec23c1f4824d3dc015fd",
+        "diagnostics": [],
+        "evaluations": [
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "platformFee"
+          },
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "creatorPayout"
+          },
+          {
+            "eligible": false,
+            "predicates": [
+              {
+                "op": "and",
+                "path": "model.actions.purchase.transfers.2.when",
+                "result": false
+              },
+              {
+                "op": "present",
+                "path": "model.actions.purchase.transfers.2.when.all.0",
+                "result": true
+              },
+              {
+                "op": "differentAccount",
+                "path": "model.actions.purchase.transfers.2.when.all.1",
+                "result": true
+              },
+              {
+                "op": "eq",
+                "path": "model.actions.purchase.transfers.2.when.all.2",
+                "result": false
+              },
+              {
+                "op": "gte",
+                "path": "model.actions.purchase.transfers.2.when.all.3",
+                "result": true
+              }
+            ],
+            "ruleId": "affiliateBonus"
+          }
+        ],
+        "journal": [
+          {
+            "amountMicros": "2000000",
+            "asset": "USDC",
+            "evidence": [
+              "platformFeeSource"
+            ],
+            "from": "honest-buyer-1",
+            "ruleId": "platformFee",
+            "to": "platform"
+          },
+          {
+            "amountMicros": "18000000",
+            "asset": "USDC",
+            "evidence": [
+              "creatorPayoutSource"
+            ],
+            "from": "honest-buyer-1",
+            "ruleId": "creatorPayout",
+            "to": "honest-creator"
+          }
+        ],
+        "kind": "purchase",
+        "policy": "honest",
+        "status": "accepted",
+        "tick": 11
+      },
+      {
+        "action": {
+          "affiliate": "honest-affiliate",
+          "amountMicros": "20000000",
+          "buyer": "honest-buyer-2",
+          "creator": "honest-creator",
+          "type": "purchase"
+        },
+        "afterStateHash": "8e42d4284e1eb225882766d29578e2fdefb6172493628716b90d6297e0b09ef6",
+        "beforeStateHash": "8561e4b7853e763dffceb8c805b596fa5d5e297df142bdd77e95bc00fc698326",
+        "diagnostics": [],
+        "evaluations": [
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "platformFee"
+          },
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "creatorPayout"
+          },
+          {
+            "eligible": false,
+            "predicates": [
+              {
+                "op": "and",
+                "path": "model.actions.purchase.transfers.2.when",
+                "result": false
+              },
+              {
+                "op": "present",
+                "path": "model.actions.purchase.transfers.2.when.all.0",
+                "result": true
+              },
+              {
+                "op": "differentAccount",
+                "path": "model.actions.purchase.transfers.2.when.all.1",
+                "result": true
+              },
+              {
+                "op": "eq",
+                "path": "model.actions.purchase.transfers.2.when.all.2",
+                "result": false
+              },
+              {
+                "op": "gte",
+                "path": "model.actions.purchase.transfers.2.when.all.3",
+                "result": true
+              }
+            ],
+            "ruleId": "affiliateBonus"
+          }
+        ],
+        "journal": [
+          {
+            "amountMicros": "2000000",
+            "asset": "USDC",
+            "evidence": [
+              "platformFeeSource"
+            ],
+            "from": "honest-buyer-2",
+            "ruleId": "platformFee",
+            "to": "platform"
+          },
+          {
+            "amountMicros": "18000000",
+            "asset": "USDC",
+            "evidence": [
+              "creatorPayoutSource"
+            ],
+            "from": "honest-buyer-2",
+            "ruleId": "creatorPayout",
+            "to": "honest-creator"
+          }
+        ],
+        "kind": "purchase",
+        "policy": "honest",
+        "status": "accepted",
+        "tick": 12
+      }
+    ],
+    "finalState": {
+      "balances": {
+        "attacker-affiliate": "2000000",
+        "attacker-buyer-1": "5000000",
+        "attacker-buyer-2": "5000000",
+        "attacker-creator": "9000000",
+        "campaignTreasury": "1000000",
+        "honest-affiliate": "2000000",
+        "honest-buyer-1": "30000000",
+        "honest-buyer-2": "45000000",
+        "honest-creator": "112500000",
+        "platform": "13500000"
+      },
+      "completedPurchases": {
+        "attacker-buyer-1": 1,
+        "attacker-buyer-2": 1,
+        "honest-buyer-1": 5,
+        "honest-buyer-2": 5
+      },
+      "tick": 12
+    },
+    "finalStateHash": "8e42d4284e1eb225882766d29578e2fdefb6172493628716b90d6297e0b09ef6",
+    "initialState": {
+      "balances": {
+        "attacker-affiliate": "0",
+        "attacker-buyer-1": "10000000",
+        "attacker-buyer-2": "10000000",
+        "attacker-creator": "0",
+        "campaignTreasury": "5000000",
+        "honest-affiliate": "0",
+        "honest-buyer-1": "100000000",
+        "honest-buyer-2": "100000000",
+        "honest-creator": "0",
+        "platform": "0"
+      },
+      "completedPurchases": {},
+      "tick": 0
+    },
+    "initialStateHash": "8ba1e233c481864708f867cc64159c60f7cb00a44a4c7fc003bf5f073e9ce4e7",
+    "journalHash": "fb5f5b9852c00adf6c8a9270af6d91902c602097ddf3a636325feb7f07d025a5",
+    "limitation": "This seeded run is conditional on declared population, arrival and order distributions, identity costs, and mechanism. It is not a forecast.",
+    "metrics": {
+      "acceptedActions": 12,
+      "affiliatePayoutMicros": "4000000",
+      "attackerAccepted": 2,
+      "attackerAttempts": 2,
+      "attackerIdentityCostMicros": "300000",
+      "attackerLedgerDeltaMicros": "1000000",
+      "attackerProfitMicros": "680000",
+      "attackerTransactionCostMicros": "20000",
+      "attackerTreasuryExtractionMicros": "2000000",
+      "attemptedActions": 12,
+      "creatorEarningsMicros": "121500000",
+      "failedActions": 0,
+      "finalTreasuryMicros": "1000000",
+      "honestAccepted": 10,
+      "initialTreasuryMicros": "5000000",
+      "platformRevenueMicros": "13500000",
+      "treasuryBlockedActions": 0,
+      "treasurySpentMicros": "4000000"
+    },
+    "modelHash": "fc2b0aa01ed7a181ecbafdfe83bcd80f9fa0c5aa9567319ebe8cf25f8060beab",
+    "runHash": "0d1f2b84176a75fd67ff78c9f0ad9bb27aad88c18012e040739c5727473e95b6",
+    "scenario": {
+      "arrivalBps": 10000,
+      "assumptions": [
+        "Each tick has one order arrival; half of arrivals select the bounded attacker policy.",
+        "Honest order sizes are sampled uniformly from 5 and 20 USDC; buyer identities are sampled uniformly.",
+        "The attacker controls its creator, affiliate, and two pre-funded fresh buyer identities."
+      ],
+      "attacker": {
+        "affiliate": "attacker-affiliate",
+        "buyers": [
+          {
+            "accountId": "attacker-buyer-1",
+            "identityCost": {
+              "amountMicros": "150000",
+              "evidence": {
+                "kind": "user_supplied",
+                "notes": "Scenario assumption: the first fresh buyer identity costs 0.15 USDC.",
+                "source": {
+                  "type": "user"
+                }
+              }
+            }
+          },
+          {
+            "accountId": "attacker-buyer-2",
+            "identityCost": {
+              "amountMicros": "150000",
+              "evidence": {
+                "kind": "user_supplied",
+                "notes": "Scenario assumption: the second fresh buyer identity costs 0.15 USDC.",
+                "source": {
+                  "type": "user"
+                }
+              }
+            }
+          }
+        ],
+        "creator": "attacker-creator",
+        "maxAttempts": 4,
+        "orderAmountMicros": "5000000",
+        "transactionCost": {
+          "amountMicros": "10000",
+          "evidence": {
+            "kind": "user_supplied",
+            "notes": "Scenario assumption: every attempted attacker purchase costs 0.01 USDC outside the ledger.",
+            "source": {
+              "type": "user"
+            }
+          }
+        }
+      },
+      "attackerArrivalBps": 5000,
+      "honest": {
+        "affiliate": "honest-affiliate",
+        "buyers": [
+          "honest-buyer-1",
+          "honest-buyer-2"
+        ],
+        "creator": "honest-creator",
+        "orderAmountsMicros": [
+          "5000000",
+          "20000000"
+        ]
+      },
+      "horizonTicks": 12,
+      "id": "mixed-marketplace-population",
+      "schemaVersion": 1,
+      "seed": 42
+    },
+    "scenarioHash": "52554e8f734515881b6460be436f219a8db059bed8a037ddd416ed19ae910520",
+    "schemaVersion": 1,
+    "stepEngineVersion": "purchase-step.v1"
+  },
+  "beforeCommit": "1111111111111111111111111111111111111111",
+  "beforePackageHash": "d9a793d81dca06a96f8da7844c27c5c73df0629b29c36b547a8d03ce3823bd5a",
+  "candidate": {
+    "engineVersion": "population-scenario.v1",
+    "events": [
+      {
+        "action": {
+          "affiliate": "honest-affiliate",
+          "amountMicros": "5000000",
+          "buyer": "honest-buyer-2",
+          "creator": "honest-creator",
+          "type": "purchase"
+        },
+        "afterStateHash": "9949d5bdeb676caa7025996ca3b758ea58bc04d22a453965c386c69848fc3603",
+        "beforeStateHash": "8ba1e233c481864708f867cc64159c60f7cb00a44a4c7fc003bf5f073e9ce4e7",
+        "diagnostics": [],
+        "evaluations": [
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "platformFee"
+          },
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "creatorPayout"
+          },
+          {
+            "eligible": true,
+            "predicates": [
+              {
+                "op": "and",
+                "path": "model.actions.purchase.transfers.2.when",
+                "result": true
+              },
+              {
+                "op": "present",
+                "path": "model.actions.purchase.transfers.2.when.all.0",
+                "result": true
+              },
+              {
+                "op": "differentAccount",
+                "path": "model.actions.purchase.transfers.2.when.all.1",
+                "result": true
+              },
+              {
+                "op": "eq",
+                "path": "model.actions.purchase.transfers.2.when.all.2",
+                "result": true
+              },
+              {
+                "op": "gte",
+                "path": "model.actions.purchase.transfers.2.when.all.3",
+                "result": true
+              }
+            ],
+            "ruleId": "affiliateBonus"
+          }
+        ],
+        "journal": [
+          {
+            "amountMicros": "500000",
+            "asset": "USDC",
+            "evidence": [
+              "platformFeeSource"
+            ],
+            "from": "honest-buyer-2",
+            "ruleId": "platformFee",
+            "to": "platform"
+          },
+          {
+            "amountMicros": "4500000",
+            "asset": "USDC",
+            "evidence": [
+              "creatorPayoutSource"
+            ],
+            "from": "honest-buyer-2",
+            "ruleId": "creatorPayout",
+            "to": "honest-creator"
+          },
+          {
+            "amountMicros": "1000000",
+            "asset": "USDC",
+            "evidence": [
+              "affiliateBonusSource",
+              "minimumEligiblePurchaseSource",
+              "firstPurchaseSource",
+              "distinctAffiliateSource"
+            ],
+            "from": "campaignTreasury",
+            "ruleId": "affiliateBonus",
+            "to": "honest-affiliate"
+          }
+        ],
+        "kind": "purchase",
+        "policy": "honest",
+        "status": "accepted",
+        "tick": 1
+      },
+      {
+        "action": {
+          "affiliate": "honest-affiliate",
+          "amountMicros": "5000000",
+          "buyer": "honest-buyer-1",
+          "creator": "honest-creator",
+          "type": "purchase"
+        },
+        "afterStateHash": "59412213ddfd397ce2a9245baf98ffc3c43e5efb91712a08d0ddadd33c310223",
+        "beforeStateHash": "9949d5bdeb676caa7025996ca3b758ea58bc04d22a453965c386c69848fc3603",
+        "diagnostics": [],
+        "evaluations": [
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "platformFee"
+          },
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "creatorPayout"
+          },
+          {
+            "eligible": true,
+            "predicates": [
+              {
+                "op": "and",
+                "path": "model.actions.purchase.transfers.2.when",
+                "result": true
+              },
+              {
+                "op": "present",
+                "path": "model.actions.purchase.transfers.2.when.all.0",
+                "result": true
+              },
+              {
+                "op": "differentAccount",
+                "path": "model.actions.purchase.transfers.2.when.all.1",
+                "result": true
+              },
+              {
+                "op": "eq",
+                "path": "model.actions.purchase.transfers.2.when.all.2",
+                "result": true
+              },
+              {
+                "op": "gte",
+                "path": "model.actions.purchase.transfers.2.when.all.3",
+                "result": true
+              }
+            ],
+            "ruleId": "affiliateBonus"
+          }
+        ],
+        "journal": [
+          {
+            "amountMicros": "500000",
+            "asset": "USDC",
+            "evidence": [
+              "platformFeeSource"
+            ],
+            "from": "honest-buyer-1",
+            "ruleId": "platformFee",
+            "to": "platform"
+          },
+          {
+            "amountMicros": "4500000",
+            "asset": "USDC",
+            "evidence": [
+              "creatorPayoutSource"
+            ],
+            "from": "honest-buyer-1",
+            "ruleId": "creatorPayout",
+            "to": "honest-creator"
+          },
+          {
+            "amountMicros": "1000000",
+            "asset": "USDC",
+            "evidence": [
+              "affiliateBonusSource",
+              "minimumEligiblePurchaseSource",
+              "firstPurchaseSource",
+              "distinctAffiliateSource"
+            ],
+            "from": "campaignTreasury",
+            "ruleId": "affiliateBonus",
+            "to": "honest-affiliate"
+          }
+        ],
+        "kind": "purchase",
+        "policy": "honest",
+        "status": "accepted",
+        "tick": 2
+      },
+      {
+        "action": {
+          "affiliate": "honest-affiliate",
+          "amountMicros": "20000000",
+          "buyer": "honest-buyer-1",
+          "creator": "honest-creator",
+          "type": "purchase"
+        },
+        "afterStateHash": "e7291541403ab029175c043e025d55ef5c1af218be3e2efb08936a28306cfae1",
+        "beforeStateHash": "59412213ddfd397ce2a9245baf98ffc3c43e5efb91712a08d0ddadd33c310223",
+        "diagnostics": [],
+        "evaluations": [
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "platformFee"
+          },
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "creatorPayout"
+          },
+          {
+            "eligible": false,
+            "predicates": [
+              {
+                "op": "and",
+                "path": "model.actions.purchase.transfers.2.when",
+                "result": false
+              },
+              {
+                "op": "present",
+                "path": "model.actions.purchase.transfers.2.when.all.0",
+                "result": true
+              },
+              {
+                "op": "differentAccount",
+                "path": "model.actions.purchase.transfers.2.when.all.1",
+                "result": true
+              },
+              {
+                "op": "eq",
+                "path": "model.actions.purchase.transfers.2.when.all.2",
+                "result": false
+              },
+              {
+                "op": "gte",
+                "path": "model.actions.purchase.transfers.2.when.all.3",
+                "result": true
+              }
+            ],
+            "ruleId": "affiliateBonus"
+          }
+        ],
+        "journal": [
+          {
+            "amountMicros": "2000000",
+            "asset": "USDC",
+            "evidence": [
+              "platformFeeSource"
+            ],
+            "from": "honest-buyer-1",
+            "ruleId": "platformFee",
+            "to": "platform"
+          },
+          {
+            "amountMicros": "18000000",
+            "asset": "USDC",
+            "evidence": [
+              "creatorPayoutSource"
+            ],
+            "from": "honest-buyer-1",
+            "ruleId": "creatorPayout",
+            "to": "honest-creator"
+          }
+        ],
+        "kind": "purchase",
+        "policy": "honest",
+        "status": "accepted",
+        "tick": 3
+      },
+      {
+        "action": {
+          "affiliate": "honest-affiliate",
+          "amountMicros": "20000000",
+          "buyer": "honest-buyer-2",
+          "creator": "honest-creator",
+          "type": "purchase"
+        },
+        "afterStateHash": "cd9d89d874ed2f7a28457f7ea96cc43611c142920ae4519d497990b0232dc29a",
+        "beforeStateHash": "e7291541403ab029175c043e025d55ef5c1af218be3e2efb08936a28306cfae1",
+        "diagnostics": [],
+        "evaluations": [
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "platformFee"
+          },
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "creatorPayout"
+          },
+          {
+            "eligible": false,
+            "predicates": [
+              {
+                "op": "and",
+                "path": "model.actions.purchase.transfers.2.when",
+                "result": false
+              },
+              {
+                "op": "present",
+                "path": "model.actions.purchase.transfers.2.when.all.0",
+                "result": true
+              },
+              {
+                "op": "differentAccount",
+                "path": "model.actions.purchase.transfers.2.when.all.1",
+                "result": true
+              },
+              {
+                "op": "eq",
+                "path": "model.actions.purchase.transfers.2.when.all.2",
+                "result": false
+              },
+              {
+                "op": "gte",
+                "path": "model.actions.purchase.transfers.2.when.all.3",
+                "result": true
+              }
+            ],
+            "ruleId": "affiliateBonus"
+          }
+        ],
+        "journal": [
+          {
+            "amountMicros": "2000000",
+            "asset": "USDC",
+            "evidence": [
+              "platformFeeSource"
+            ],
+            "from": "honest-buyer-2",
+            "ruleId": "platformFee",
+            "to": "platform"
+          },
+          {
+            "amountMicros": "18000000",
+            "asset": "USDC",
+            "evidence": [
+              "creatorPayoutSource"
+            ],
+            "from": "honest-buyer-2",
+            "ruleId": "creatorPayout",
+            "to": "honest-creator"
+          }
+        ],
+        "kind": "purchase",
+        "policy": "honest",
+        "status": "accepted",
+        "tick": 4
+      },
+      {
+        "action": {
+          "affiliate": "honest-affiliate",
+          "amountMicros": "5000000",
+          "buyer": "honest-buyer-2",
+          "creator": "honest-creator",
+          "type": "purchase"
+        },
+        "afterStateHash": "06ce707d542d2c88407c52d5aaad9eece8978b85f66cb274e4e50723470ba122",
+        "beforeStateHash": "cd9d89d874ed2f7a28457f7ea96cc43611c142920ae4519d497990b0232dc29a",
+        "diagnostics": [],
+        "evaluations": [
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "platformFee"
+          },
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "creatorPayout"
+          },
+          {
+            "eligible": false,
+            "predicates": [
+              {
+                "op": "and",
+                "path": "model.actions.purchase.transfers.2.when",
+                "result": false
+              },
+              {
+                "op": "present",
+                "path": "model.actions.purchase.transfers.2.when.all.0",
+                "result": true
+              },
+              {
+                "op": "differentAccount",
+                "path": "model.actions.purchase.transfers.2.when.all.1",
+                "result": true
+              },
+              {
+                "op": "eq",
+                "path": "model.actions.purchase.transfers.2.when.all.2",
+                "result": false
+              },
+              {
+                "op": "gte",
+                "path": "model.actions.purchase.transfers.2.when.all.3",
+                "result": true
+              }
+            ],
+            "ruleId": "affiliateBonus"
+          }
+        ],
+        "journal": [
+          {
+            "amountMicros": "500000",
+            "asset": "USDC",
+            "evidence": [
+              "platformFeeSource"
+            ],
+            "from": "honest-buyer-2",
+            "ruleId": "platformFee",
+            "to": "platform"
+          },
+          {
+            "amountMicros": "4500000",
+            "asset": "USDC",
+            "evidence": [
+              "creatorPayoutSource"
+            ],
+            "from": "honest-buyer-2",
+            "ruleId": "creatorPayout",
+            "to": "honest-creator"
+          }
+        ],
+        "kind": "purchase",
+        "policy": "honest",
+        "status": "accepted",
+        "tick": 5
+      },
+      {
+        "action": {
+          "affiliate": "honest-affiliate",
+          "amountMicros": "5000000",
+          "buyer": "honest-buyer-1",
+          "creator": "honest-creator",
+          "type": "purchase"
+        },
+        "afterStateHash": "53c6b33301623854f568b165c17469ae7ed869b0e997354791fccf15a88ad06f",
+        "beforeStateHash": "06ce707d542d2c88407c52d5aaad9eece8978b85f66cb274e4e50723470ba122",
+        "diagnostics": [],
+        "evaluations": [
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "platformFee"
+          },
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "creatorPayout"
+          },
+          {
+            "eligible": false,
+            "predicates": [
+              {
+                "op": "and",
+                "path": "model.actions.purchase.transfers.2.when",
+                "result": false
+              },
+              {
+                "op": "present",
+                "path": "model.actions.purchase.transfers.2.when.all.0",
+                "result": true
+              },
+              {
+                "op": "differentAccount",
+                "path": "model.actions.purchase.transfers.2.when.all.1",
+                "result": true
+              },
+              {
+                "op": "eq",
+                "path": "model.actions.purchase.transfers.2.when.all.2",
+                "result": false
+              },
+              {
+                "op": "gte",
+                "path": "model.actions.purchase.transfers.2.when.all.3",
+                "result": true
+              }
+            ],
+            "ruleId": "affiliateBonus"
+          }
+        ],
+        "journal": [
+          {
+            "amountMicros": "500000",
+            "asset": "USDC",
+            "evidence": [
+              "platformFeeSource"
+            ],
+            "from": "honest-buyer-1",
+            "ruleId": "platformFee",
+            "to": "platform"
+          },
+          {
+            "amountMicros": "4500000",
+            "asset": "USDC",
+            "evidence": [
+              "creatorPayoutSource"
+            ],
+            "from": "honest-buyer-1",
+            "ruleId": "creatorPayout",
+            "to": "honest-creator"
+          }
+        ],
+        "kind": "purchase",
+        "policy": "honest",
+        "status": "accepted",
+        "tick": 6
+      },
+      {
+        "action": {
+          "affiliate": "honest-affiliate",
+          "amountMicros": "20000000",
+          "buyer": "honest-buyer-1",
+          "creator": "honest-creator",
+          "type": "purchase"
+        },
+        "afterStateHash": "0fe42750af04595305ba9c09aa380f842a78c70ba74492873acf243d2928583b",
+        "beforeStateHash": "53c6b33301623854f568b165c17469ae7ed869b0e997354791fccf15a88ad06f",
+        "diagnostics": [],
+        "evaluations": [
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "platformFee"
+          },
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "creatorPayout"
+          },
+          {
+            "eligible": false,
+            "predicates": [
+              {
+                "op": "and",
+                "path": "model.actions.purchase.transfers.2.when",
+                "result": false
+              },
+              {
+                "op": "present",
+                "path": "model.actions.purchase.transfers.2.when.all.0",
+                "result": true
+              },
+              {
+                "op": "differentAccount",
+                "path": "model.actions.purchase.transfers.2.when.all.1",
+                "result": true
+              },
+              {
+                "op": "eq",
+                "path": "model.actions.purchase.transfers.2.when.all.2",
+                "result": false
+              },
+              {
+                "op": "gte",
+                "path": "model.actions.purchase.transfers.2.when.all.3",
+                "result": true
+              }
+            ],
+            "ruleId": "affiliateBonus"
+          }
+        ],
+        "journal": [
+          {
+            "amountMicros": "2000000",
+            "asset": "USDC",
+            "evidence": [
+              "platformFeeSource"
+            ],
+            "from": "honest-buyer-1",
+            "ruleId": "platformFee",
+            "to": "platform"
+          },
+          {
+            "amountMicros": "18000000",
+            "asset": "USDC",
+            "evidence": [
+              "creatorPayoutSource"
+            ],
+            "from": "honest-buyer-1",
+            "ruleId": "creatorPayout",
+            "to": "honest-creator"
+          }
+        ],
+        "kind": "purchase",
+        "policy": "honest",
+        "status": "accepted",
+        "tick": 7
+      },
+      {
+        "action": {
+          "affiliate": "attacker-affiliate",
+          "amountMicros": "5000000",
+          "buyer": "attacker-buyer-1",
+          "creator": "attacker-creator",
+          "type": "purchase"
+        },
+        "afterStateHash": "0bbfd36020a60b9d5774a74d6a5ace0d5928797450ca91f05a61465b9320bbdb",
+        "beforeStateHash": "0fe42750af04595305ba9c09aa380f842a78c70ba74492873acf243d2928583b",
+        "diagnostics": [],
+        "evaluations": [
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "platformFee"
+          },
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "creatorPayout"
+          },
+          {
+            "eligible": true,
+            "predicates": [
+              {
+                "op": "and",
+                "path": "model.actions.purchase.transfers.2.when",
+                "result": true
+              },
+              {
+                "op": "present",
+                "path": "model.actions.purchase.transfers.2.when.all.0",
+                "result": true
+              },
+              {
+                "op": "differentAccount",
+                "path": "model.actions.purchase.transfers.2.when.all.1",
+                "result": true
+              },
+              {
+                "op": "eq",
+                "path": "model.actions.purchase.transfers.2.when.all.2",
+                "result": true
+              },
+              {
+                "op": "gte",
+                "path": "model.actions.purchase.transfers.2.when.all.3",
+                "result": true
+              }
+            ],
+            "ruleId": "affiliateBonus"
+          }
+        ],
+        "journal": [
+          {
+            "amountMicros": "500000",
+            "asset": "USDC",
+            "evidence": [
+              "platformFeeSource"
+            ],
+            "from": "attacker-buyer-1",
+            "ruleId": "platformFee",
+            "to": "platform"
+          },
+          {
+            "amountMicros": "4500000",
+            "asset": "USDC",
+            "evidence": [
+              "creatorPayoutSource"
+            ],
+            "from": "attacker-buyer-1",
+            "ruleId": "creatorPayout",
+            "to": "attacker-creator"
+          },
+          {
+            "amountMicros": "1000000",
+            "asset": "USDC",
+            "evidence": [
+              "affiliateBonusSource",
+              "minimumEligiblePurchaseSource",
+              "firstPurchaseSource",
+              "distinctAffiliateSource"
+            ],
+            "from": "campaignTreasury",
+            "ruleId": "affiliateBonus",
+            "to": "attacker-affiliate"
+          }
+        ],
+        "kind": "purchase",
+        "policy": "attacker",
+        "status": "accepted",
+        "tick": 8
+      },
+      {
+        "action": {
+          "affiliate": "attacker-affiliate",
+          "amountMicros": "5000000",
+          "buyer": "attacker-buyer-2",
+          "creator": "attacker-creator",
+          "type": "purchase"
+        },
+        "afterStateHash": "4c448c09b0b8d935e7fb9877ee9387b3f081d5837c3ee72a61a9663be1c5e268",
+        "beforeStateHash": "0bbfd36020a60b9d5774a74d6a5ace0d5928797450ca91f05a61465b9320bbdb",
+        "diagnostics": [],
+        "evaluations": [
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "platformFee"
+          },
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "creatorPayout"
+          },
+          {
+            "eligible": true,
+            "predicates": [
+              {
+                "op": "and",
+                "path": "model.actions.purchase.transfers.2.when",
+                "result": true
+              },
+              {
+                "op": "present",
+                "path": "model.actions.purchase.transfers.2.when.all.0",
+                "result": true
+              },
+              {
+                "op": "differentAccount",
+                "path": "model.actions.purchase.transfers.2.when.all.1",
+                "result": true
+              },
+              {
+                "op": "eq",
+                "path": "model.actions.purchase.transfers.2.when.all.2",
+                "result": true
+              },
+              {
+                "op": "gte",
+                "path": "model.actions.purchase.transfers.2.when.all.3",
+                "result": true
+              }
+            ],
+            "ruleId": "affiliateBonus"
+          }
+        ],
+        "journal": [
+          {
+            "amountMicros": "500000",
+            "asset": "USDC",
+            "evidence": [
+              "platformFeeSource"
+            ],
+            "from": "attacker-buyer-2",
+            "ruleId": "platformFee",
+            "to": "platform"
+          },
+          {
+            "amountMicros": "4500000",
+            "asset": "USDC",
+            "evidence": [
+              "creatorPayoutSource"
+            ],
+            "from": "attacker-buyer-2",
+            "ruleId": "creatorPayout",
+            "to": "attacker-creator"
+          },
+          {
+            "amountMicros": "1000000",
+            "asset": "USDC",
+            "evidence": [
+              "affiliateBonusSource",
+              "minimumEligiblePurchaseSource",
+              "firstPurchaseSource",
+              "distinctAffiliateSource"
+            ],
+            "from": "campaignTreasury",
+            "ruleId": "affiliateBonus",
+            "to": "attacker-affiliate"
+          }
+        ],
+        "kind": "purchase",
+        "policy": "attacker",
+        "status": "accepted",
+        "tick": 9
+      },
+      {
+        "action": {
+          "affiliate": "honest-affiliate",
+          "amountMicros": "5000000",
+          "buyer": "honest-buyer-2",
+          "creator": "honest-creator",
+          "type": "purchase"
+        },
+        "afterStateHash": "46afaaa0a0e3b63903b97fb37f71e5ae95bafc144b16ec23c1f4824d3dc015fd",
+        "beforeStateHash": "4c448c09b0b8d935e7fb9877ee9387b3f081d5837c3ee72a61a9663be1c5e268",
+        "diagnostics": [],
+        "evaluations": [
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "platformFee"
+          },
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "creatorPayout"
+          },
+          {
+            "eligible": false,
+            "predicates": [
+              {
+                "op": "and",
+                "path": "model.actions.purchase.transfers.2.when",
+                "result": false
+              },
+              {
+                "op": "present",
+                "path": "model.actions.purchase.transfers.2.when.all.0",
+                "result": true
+              },
+              {
+                "op": "differentAccount",
+                "path": "model.actions.purchase.transfers.2.when.all.1",
+                "result": true
+              },
+              {
+                "op": "eq",
+                "path": "model.actions.purchase.transfers.2.when.all.2",
+                "result": false
+              },
+              {
+                "op": "gte",
+                "path": "model.actions.purchase.transfers.2.when.all.3",
+                "result": true
+              }
+            ],
+            "ruleId": "affiliateBonus"
+          }
+        ],
+        "journal": [
+          {
+            "amountMicros": "500000",
+            "asset": "USDC",
+            "evidence": [
+              "platformFeeSource"
+            ],
+            "from": "honest-buyer-2",
+            "ruleId": "platformFee",
+            "to": "platform"
+          },
+          {
+            "amountMicros": "4500000",
+            "asset": "USDC",
+            "evidence": [
+              "creatorPayoutSource"
+            ],
+            "from": "honest-buyer-2",
+            "ruleId": "creatorPayout",
+            "to": "honest-creator"
+          }
+        ],
+        "kind": "purchase",
+        "policy": "honest",
+        "status": "accepted",
+        "tick": 10
+      },
+      {
+        "action": {
+          "affiliate": "honest-affiliate",
+          "amountMicros": "20000000",
+          "buyer": "honest-buyer-1",
+          "creator": "honest-creator",
+          "type": "purchase"
+        },
+        "afterStateHash": "8561e4b7853e763dffceb8c805b596fa5d5e297df142bdd77e95bc00fc698326",
+        "beforeStateHash": "46afaaa0a0e3b63903b97fb37f71e5ae95bafc144b16ec23c1f4824d3dc015fd",
+        "diagnostics": [],
+        "evaluations": [
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "platformFee"
+          },
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "creatorPayout"
+          },
+          {
+            "eligible": false,
+            "predicates": [
+              {
+                "op": "and",
+                "path": "model.actions.purchase.transfers.2.when",
+                "result": false
+              },
+              {
+                "op": "present",
+                "path": "model.actions.purchase.transfers.2.when.all.0",
+                "result": true
+              },
+              {
+                "op": "differentAccount",
+                "path": "model.actions.purchase.transfers.2.when.all.1",
+                "result": true
+              },
+              {
+                "op": "eq",
+                "path": "model.actions.purchase.transfers.2.when.all.2",
+                "result": false
+              },
+              {
+                "op": "gte",
+                "path": "model.actions.purchase.transfers.2.when.all.3",
+                "result": true
+              }
+            ],
+            "ruleId": "affiliateBonus"
+          }
+        ],
+        "journal": [
+          {
+            "amountMicros": "2000000",
+            "asset": "USDC",
+            "evidence": [
+              "platformFeeSource"
+            ],
+            "from": "honest-buyer-1",
+            "ruleId": "platformFee",
+            "to": "platform"
+          },
+          {
+            "amountMicros": "18000000",
+            "asset": "USDC",
+            "evidence": [
+              "creatorPayoutSource"
+            ],
+            "from": "honest-buyer-1",
+            "ruleId": "creatorPayout",
+            "to": "honest-creator"
+          }
+        ],
+        "kind": "purchase",
+        "policy": "honest",
+        "status": "accepted",
+        "tick": 11
+      },
+      {
+        "action": {
+          "affiliate": "honest-affiliate",
+          "amountMicros": "20000000",
+          "buyer": "honest-buyer-2",
+          "creator": "honest-creator",
+          "type": "purchase"
+        },
+        "afterStateHash": "8e42d4284e1eb225882766d29578e2fdefb6172493628716b90d6297e0b09ef6",
+        "beforeStateHash": "8561e4b7853e763dffceb8c805b596fa5d5e297df142bdd77e95bc00fc698326",
+        "diagnostics": [],
+        "evaluations": [
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "platformFee"
+          },
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "creatorPayout"
+          },
+          {
+            "eligible": false,
+            "predicates": [
+              {
+                "op": "and",
+                "path": "model.actions.purchase.transfers.2.when",
+                "result": false
+              },
+              {
+                "op": "present",
+                "path": "model.actions.purchase.transfers.2.when.all.0",
+                "result": true
+              },
+              {
+                "op": "differentAccount",
+                "path": "model.actions.purchase.transfers.2.when.all.1",
+                "result": true
+              },
+              {
+                "op": "eq",
+                "path": "model.actions.purchase.transfers.2.when.all.2",
+                "result": false
+              },
+              {
+                "op": "gte",
+                "path": "model.actions.purchase.transfers.2.when.all.3",
+                "result": true
+              }
+            ],
+            "ruleId": "affiliateBonus"
+          }
+        ],
+        "journal": [
+          {
+            "amountMicros": "2000000",
+            "asset": "USDC",
+            "evidence": [
+              "platformFeeSource"
+            ],
+            "from": "honest-buyer-2",
+            "ruleId": "platformFee",
+            "to": "platform"
+          },
+          {
+            "amountMicros": "18000000",
+            "asset": "USDC",
+            "evidence": [
+              "creatorPayoutSource"
+            ],
+            "from": "honest-buyer-2",
+            "ruleId": "creatorPayout",
+            "to": "honest-creator"
+          }
+        ],
+        "kind": "purchase",
+        "policy": "honest",
+        "status": "accepted",
+        "tick": 12
+      }
+    ],
+    "finalState": {
+      "balances": {
+        "attacker-affiliate": "2000000",
+        "attacker-buyer-1": "5000000",
+        "attacker-buyer-2": "5000000",
+        "attacker-creator": "9000000",
+        "campaignTreasury": "1000000",
+        "honest-affiliate": "2000000",
+        "honest-buyer-1": "30000000",
+        "honest-buyer-2": "45000000",
+        "honest-creator": "112500000",
+        "platform": "13500000"
+      },
+      "completedPurchases": {
+        "attacker-buyer-1": 1,
+        "attacker-buyer-2": 1,
+        "honest-buyer-1": 5,
+        "honest-buyer-2": 5
+      },
+      "tick": 12
+    },
+    "finalStateHash": "8e42d4284e1eb225882766d29578e2fdefb6172493628716b90d6297e0b09ef6",
+    "initialState": {
+      "balances": {
+        "attacker-affiliate": "0",
+        "attacker-buyer-1": "10000000",
+        "attacker-buyer-2": "10000000",
+        "attacker-creator": "0",
+        "campaignTreasury": "5000000",
+        "honest-affiliate": "0",
+        "honest-buyer-1": "100000000",
+        "honest-buyer-2": "100000000",
+        "honest-creator": "0",
+        "platform": "0"
+      },
+      "completedPurchases": {},
+      "tick": 0
+    },
+    "initialStateHash": "8ba1e233c481864708f867cc64159c60f7cb00a44a4c7fc003bf5f073e9ce4e7",
+    "journalHash": "fb5f5b9852c00adf6c8a9270af6d91902c602097ddf3a636325feb7f07d025a5",
+    "limitation": "This seeded run is conditional on declared population, arrival and order distributions, identity costs, and mechanism. It is not a forecast.",
+    "metrics": {
+      "acceptedActions": 12,
+      "affiliatePayoutMicros": "4000000",
+      "attackerAccepted": 2,
+      "attackerAttempts": 2,
+      "attackerIdentityCostMicros": "300000",
+      "attackerLedgerDeltaMicros": "1000000",
+      "attackerProfitMicros": "680000",
+      "attackerTransactionCostMicros": "20000",
+      "attackerTreasuryExtractionMicros": "2000000",
+      "attemptedActions": 12,
+      "creatorEarningsMicros": "121500000",
+      "failedActions": 0,
+      "finalTreasuryMicros": "1000000",
+      "honestAccepted": 10,
+      "initialTreasuryMicros": "5000000",
+      "platformRevenueMicros": "13500000",
+      "treasuryBlockedActions": 0,
+      "treasurySpentMicros": "4000000"
+    },
+    "modelHash": "fc2b0aa01ed7a181ecbafdfe83bcd80f9fa0c5aa9567319ebe8cf25f8060beab",
+    "runHash": "0d1f2b84176a75fd67ff78c9f0ad9bb27aad88c18012e040739c5727473e95b6",
+    "scenario": {
+      "arrivalBps": 10000,
+      "assumptions": [
+        "Each tick has one order arrival; half of arrivals select the bounded attacker policy.",
+        "Honest order sizes are sampled uniformly from 5 and 20 USDC; buyer identities are sampled uniformly.",
+        "The attacker controls its creator, affiliate, and two pre-funded fresh buyer identities."
+      ],
+      "attacker": {
+        "affiliate": "attacker-affiliate",
+        "buyers": [
+          {
+            "accountId": "attacker-buyer-1",
+            "identityCost": {
+              "amountMicros": "150000",
+              "evidence": {
+                "kind": "user_supplied",
+                "notes": "Scenario assumption: the first fresh buyer identity costs 0.15 USDC.",
+                "source": {
+                  "type": "user"
+                }
+              }
+            }
+          },
+          {
+            "accountId": "attacker-buyer-2",
+            "identityCost": {
+              "amountMicros": "150000",
+              "evidence": {
+                "kind": "user_supplied",
+                "notes": "Scenario assumption: the second fresh buyer identity costs 0.15 USDC.",
+                "source": {
+                  "type": "user"
+                }
+              }
+            }
+          }
+        ],
+        "creator": "attacker-creator",
+        "maxAttempts": 4,
+        "orderAmountMicros": "5000000",
+        "transactionCost": {
+          "amountMicros": "10000",
+          "evidence": {
+            "kind": "user_supplied",
+            "notes": "Scenario assumption: every attempted attacker purchase costs 0.01 USDC outside the ledger.",
+            "source": {
+              "type": "user"
+            }
+          }
+        }
+      },
+      "attackerArrivalBps": 5000,
+      "honest": {
+        "affiliate": "honest-affiliate",
+        "buyers": [
+          "honest-buyer-1",
+          "honest-buyer-2"
+        ],
+        "creator": "honest-creator",
+        "orderAmountsMicros": [
+          "5000000",
+          "20000000"
+        ]
+      },
+      "horizonTicks": 12,
+      "id": "mixed-marketplace-population",
+      "schemaVersion": 1,
+      "seed": 42
+    },
+    "scenarioHash": "52554e8f734515881b6460be436f219a8db059bed8a037ddd416ed19ae910520",
+    "schemaVersion": 1,
+    "stepEngineVersion": "purchase-step.v1"
+  },
+  "differences": [],
+  "engineVersion": "economic-ci.v1",
+  "failure": null,
+  "limitation": "One reviewed seeded marketplace scenario, not an exhaustive safety check. Changes are conditional economic differences, not verified adverse findings. Source drift or invalid runs require review; no automatic parameter or model updates.",
+  "modelChanged": false,
+  "reportHash": "24b0d6b2f7beef9624763c203483f8f0388e7b0fd43b3e8ee0e0a6f539ec8ddc",
+  "schemaVersion": 1,
+  "status": "unchanged",
+  "traceChanged": false
+}

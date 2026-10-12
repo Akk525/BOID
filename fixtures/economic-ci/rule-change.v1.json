@@ -1,0 +1,375 @@
+{
+  "commit": "2222222222222222222222222222222222222222",
+  "input": {
+    "initialState": {
+      "balances": {
+        "attacker-affiliate": "0",
+        "attacker-buyer-1": "10000000",
+        "attacker-buyer-2": "10000000",
+        "attacker-creator": "0",
+        "campaignTreasury": "5000000",
+        "honest-affiliate": "0",
+        "honest-buyer-1": "100000000",
+        "honest-buyer-2": "100000000",
+        "honest-creator": "0",
+        "platform": "0"
+      },
+      "completedPurchases": {},
+      "tick": 0
+    },
+    "scenario": {
+      "arrivalBps": 10000,
+      "assumptions": [
+        "Each tick has one order arrival; half of arrivals select the bounded attacker policy.",
+        "Honest order sizes are sampled uniformly from 5 and 20 USDC; buyer identities are sampled uniformly.",
+        "The attacker controls its creator, affiliate, and two pre-funded fresh buyer identities."
+      ],
+      "attacker": {
+        "affiliate": "attacker-affiliate",
+        "buyers": [
+          {
+            "accountId": "attacker-buyer-1",
+            "identityCost": {
+              "amountMicros": "150000",
+              "evidence": {
+                "kind": "user_supplied",
+                "notes": "Scenario assumption: the first fresh buyer identity costs 0.15 USDC.",
+                "source": {
+                  "type": "user"
+                }
+              }
+            }
+          },
+          {
+            "accountId": "attacker-buyer-2",
+            "identityCost": {
+              "amountMicros": "150000",
+              "evidence": {
+                "kind": "user_supplied",
+                "notes": "Scenario assumption: the second fresh buyer identity costs 0.15 USDC.",
+                "source": {
+                  "type": "user"
+                }
+              }
+            }
+          }
+        ],
+        "creator": "attacker-creator",
+        "maxAttempts": 4,
+        "orderAmountMicros": "5000000",
+        "transactionCost": {
+          "amountMicros": "10000",
+          "evidence": {
+            "kind": "user_supplied",
+            "notes": "Scenario assumption: every attempted attacker purchase costs 0.01 USDC outside the ledger.",
+            "source": {
+              "type": "user"
+            }
+          }
+        }
+      },
+      "attackerArrivalBps": 5000,
+      "honest": {
+        "affiliate": "honest-affiliate",
+        "buyers": [
+          "honest-buyer-1",
+          "honest-buyer-2"
+        ],
+        "creator": "honest-creator",
+        "orderAmountsMicros": [
+          "5000000",
+          "20000000"
+        ]
+      },
+      "horizonTicks": 12,
+      "id": "mixed-marketplace-population",
+      "schemaVersion": 1,
+      "seed": 42
+    }
+  },
+  "model": {
+    "actions": {
+      "purchase": {
+        "transfers": [
+          {
+            "amount": {
+              "basis": "purchase.amount",
+              "op": "share",
+              "rate": {
+                "parameter": "platformFeeRate"
+              }
+            },
+            "evidence": [
+              "platformFeeSource"
+            ],
+            "from": "buyer",
+            "id": "platformFee",
+            "to": "platform"
+          },
+          {
+            "amount": {
+              "basis": "purchase.amount",
+              "minusRule": "platformFee",
+              "op": "remainder"
+            },
+            "evidence": [
+              "creatorPayoutSource"
+            ],
+            "from": "buyer",
+            "id": "creatorPayout",
+            "to": "creator"
+          },
+          {
+            "amount": {
+              "op": "fixed",
+              "parameter": "affiliateBonus"
+            },
+            "evidence": [
+              "affiliateBonusSource",
+              "minimumEligiblePurchaseSource",
+              "firstPurchaseSource",
+              "distinctAffiliateSource"
+            ],
+            "from": "campaignTreasury",
+            "id": "affiliateBonus",
+            "to": "affiliate",
+            "when": {
+              "all": [
+                {
+                  "op": "present",
+                  "role": "affiliate"
+                },
+                {
+                  "left": "buyer",
+                  "op": "differentAccount",
+                  "right": "affiliate"
+                },
+                {
+                  "left": "buyer.completedPurchases",
+                  "op": "eq",
+                  "right": 0
+                },
+                {
+                  "left": "purchase.amount",
+                  "op": "gte",
+                  "right": {
+                    "parameter": "minimumEligiblePurchase"
+                  }
+                }
+              ],
+              "op": "and"
+            }
+          }
+        ]
+      }
+    },
+    "actors": [
+      {
+        "id": "honest-buyer-1",
+        "roles": [
+          "buyer"
+        ]
+      },
+      {
+        "id": "honest-buyer-2",
+        "roles": [
+          "buyer"
+        ]
+      },
+      {
+        "id": "attacker-buyer-1",
+        "roles": [
+          "buyer"
+        ]
+      },
+      {
+        "id": "attacker-buyer-2",
+        "roles": [
+          "buyer"
+        ]
+      },
+      {
+        "id": "honest-creator",
+        "roles": [
+          "creator"
+        ]
+      },
+      {
+        "id": "honest-affiliate",
+        "roles": [
+          "affiliate"
+        ]
+      },
+      {
+        "id": "attacker-creator",
+        "roles": [
+          "creator"
+        ]
+      },
+      {
+        "id": "attacker-affiliate",
+        "roles": [
+          "affiliate"
+        ]
+      },
+      {
+        "id": "platform",
+        "roles": [
+          "platform"
+        ]
+      },
+      {
+        "id": "campaignTreasury",
+        "roles": [
+          "campaignTreasury"
+        ]
+      }
+    ],
+    "assets": [
+      {
+        "decimals": 6,
+        "id": "USDC"
+      }
+    ],
+    "constraints": {
+      "buyerCreatorDifferent": {
+        "evidence": "buyerCreatorSource",
+        "value": true
+      },
+      "noNegativeBalances": true
+    },
+    "evidence": {
+      "affiliateBonusSource": {
+        "kind": "user_supplied",
+        "notes": "Synthetic CI rule-change oracle: explicit alternate award assumption, not an extracted source fact.",
+        "source": {
+          "type": "user"
+        }
+      },
+      "buyerCreatorSource": {
+        "kind": "known",
+        "source": {
+          "commit": "5ee0fd0f87d1e1467af924990ed024c581915b04",
+          "endLine": 28,
+          "path": "fixtures/creator-marketplace/src/checkout.mjs",
+          "startLine": 28,
+          "type": "repo"
+        }
+      },
+      "creatorPayoutSource": {
+        "kind": "known",
+        "source": {
+          "commit": "5ee0fd0f87d1e1467af924990ed024c581915b04",
+          "endLine": 47,
+          "path": "fixtures/creator-marketplace/src/checkout.mjs",
+          "startLine": 44,
+          "type": "repo"
+        }
+      },
+      "distinctAffiliateSource": {
+        "kind": "known",
+        "source": {
+          "commit": "5ee0fd0f87d1e1467af924990ed024c581915b04",
+          "endLine": 7,
+          "path": "fixtures/creator-marketplace/src/referrals.mjs",
+          "startLine": 7,
+          "type": "repo"
+        }
+      },
+      "firstPurchaseSource": {
+        "kind": "known",
+        "source": {
+          "commit": "5ee0fd0f87d1e1467af924990ed024c581915b04",
+          "endLine": 8,
+          "path": "fixtures/creator-marketplace/src/referrals.mjs",
+          "startLine": 8,
+          "type": "repo"
+        }
+      },
+      "minimumEligiblePurchaseSource": {
+        "kind": "known",
+        "source": {
+          "commit": "5ee0fd0f87d1e1467af924990ed024c581915b04",
+          "endLine": 5,
+          "path": "fixtures/creator-marketplace/src/config.mjs",
+          "startLine": 5,
+          "type": "repo"
+        }
+      },
+      "objectiveSource": {
+        "kind": "user_supplied",
+        "notes": "Demo objective: preserve campaign treasury funds while rewarding legitimate referrals.",
+        "source": {
+          "type": "user"
+        }
+      },
+      "platformFeeSource": {
+        "kind": "known",
+        "source": {
+          "commit": "5ee0fd0f87d1e1467af924990ed024c581915b04",
+          "endLine": 3,
+          "path": "fixtures/creator-marketplace/src/config.mjs",
+          "startLine": 3,
+          "type": "repo"
+        }
+      }
+    },
+    "objectives": [
+      {
+        "direction": "max",
+        "evidence": "objectiveSource",
+        "id": "preserveCampaignTreasury",
+        "metric": "campaignTreasuryBalance"
+      }
+    ],
+    "parameters": {
+      "affiliateBonus": {
+        "evidence": "affiliateBonusSource",
+        "kind": "money",
+        "value": "2000000"
+      },
+      "minimumEligiblePurchase": {
+        "evidence": "minimumEligiblePurchaseSource",
+        "kind": "money",
+        "value": "5000000"
+      },
+      "platformFeeRate": {
+        "evidence": "platformFeeSource",
+        "kind": "rate",
+        "value": "0.10"
+      }
+    },
+    "schemaVersion": 1,
+    "source": {
+      "commit": "5ee0fd0f87d1e1467af924990ed024c581915b04",
+      "files": [
+        {
+          "path": "fixtures/creator-marketplace/src/config.mjs",
+          "sha256": "654663b4e16b6e5fb9b30ab77d540d93dc0bf44954bfa1f88be70944c94f9099"
+        },
+        {
+          "path": "fixtures/creator-marketplace/src/referrals.mjs",
+          "sha256": "1a35f642088b3e0377e79318b0f81ab630d7c4038118652fe0333bd5b16b4107"
+        },
+        {
+          "path": "fixtures/creator-marketplace/src/checkout.mjs",
+          "sha256": "ef560bd4295a494e7c0a0f7e60d0657c0786b884425f590af456d5f850c4a066"
+        }
+      ],
+      "repository": "fixtures/creator-marketplace"
+    },
+    "state": {
+      "balances": {
+        "asset": "USDC"
+      },
+      "completedPurchases": {
+        "actorRole": "buyer"
+      }
+    }
+  },
+  "sourceFiles": {
+    "fixtures/creator-marketplace/src/checkout.mjs": "ef560bd4295a494e7c0a0f7e60d0657c0786b884425f590af456d5f850c4a066",
+    "fixtures/creator-marketplace/src/config.mjs": "654663b4e16b6e5fb9b30ab77d540d93dc0bf44954bfa1f88be70944c94f9099",
+    "fixtures/creator-marketplace/src/referrals.mjs": "1a35f642088b3e0377e79318b0f81ab630d7c4038118652fe0333bd5b16b4107"
+  }
+}

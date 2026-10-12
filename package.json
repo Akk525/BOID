@@ -9,6 +9,7 @@
     "extract": "node src/repository/extract-cli.ts",
     "extraction-check": "node src/repository/extraction-check-cli.ts",
     "compare": "node src/economic-model/compare-cli.ts",
+    "economic-ci": "node src/economic-model/ci-check-cli.ts",
     "observe": "node src/economic-model/observations-cli.ts",
     "scenario": "node src/economic-model/scenario-cli.ts",
     "sensitivity": "node src/economic-model/sensitivity-cli.ts",

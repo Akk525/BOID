@@ -1,0 +1,49 @@
+name: Conditional economic check
+
+on:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      base:
+        description: Baseline commit SHA (40 lowercase hex characters)
+        required: true
+      head:
+        description: Candidate commit SHA (40 lowercase hex characters)
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  economic-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24.16.0'
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
+      - name: Compare approved scenario across commits
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha || inputs.base }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha || inputs.head }}
+        run: npm run --silent economic-ci -- "$BASE_SHA" "$HEAD_SHA" economic-ci-output
+      - name: Publish job summary
+        if: always()
+        run: |
+          if [ -f economic-ci-output/summary.md ]; then
+            cat economic-ci-output/summary.md >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: conditional-economic-evidence
+          path: economic-ci-output/
+          retention-days: 14
