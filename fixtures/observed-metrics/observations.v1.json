@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "observations": [
+    {
+      "id": "arrival-measurement",
+      "kind": "observed",
+      "metric": "arrivalBps",
+      "units": "basis-points",
+      "statistic": "rate",
+      "population": "synthetic marketplace eligible ticks",
+      "value": "6500",
+      "window": {
+        "start": "2026-10-01T00:00:00Z",
+        "end": "2026-10-02T00:00:00Z"
+      },
+      "sampleSize": 100,
+      "collectedAt": "2026-10-02T00:00:00Z",
+      "source": {
+        "kind": "application",
+        "uri": "https://example.org/synthetic-boid-fixture",
+        "query": "10000 * arrival_ticks / eligible_ticks; synthetic-counts.csv; not a live query",
+        "datasetSha256": "8d1995eeba47c796d17e14156771347ef16f8b2cb4aee79a9b46fdaa4ec1185f"
+      }
+    }
+  ]
+}

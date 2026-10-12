@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "ranges": [
+    {
+      "id": "arrival-prior",
+      "kind": "scenario-assumption",
+      "scenarioHash": "18d5b26d1dd3f6b92480bbbc3789a58282750bef165e898e08ccae98bfbd18da",
+      "metric": "arrivalBps",
+      "units": "basis-points",
+      "statistic": "rate",
+      "population": "synthetic marketplace eligible ticks",
+      "window": {
+        "start": "2026-10-01T00:00:00Z",
+        "end": "2026-10-02T00:00:00Z"
+      },
+      "minimum": "3000",
+      "maximum": "6000"
+    }
+  ]
+}

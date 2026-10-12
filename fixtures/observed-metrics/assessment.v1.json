@@ -1,0 +1,63 @@
+{
+  "assessmentHash": "9cb7ce46cd8daccee0404076e878e4daf27a26f047dd19024fed732910afb7c6",
+  "comparisons": [
+    {
+      "observationId": "arrival-measurement",
+      "outOfRange": true,
+      "priorId": "arrival-prior",
+      "reason": "Compared against inclusive scenario bounds for matching metric, population, statistic, units and window.",
+      "status": "above-range"
+    }
+  ],
+  "engineVersion": "observed-metrics.v1",
+  "importHash": "3ad0c6c9044e18073454a0f52945a4d6ffc9e33bb824c69e6d5a6606203ad6e7",
+  "imported": {
+    "observations": [
+      {
+        "collectedAt": "2026-10-02T00:00:00Z",
+        "id": "arrival-measurement",
+        "kind": "observed",
+        "metric": "arrivalBps",
+        "population": "synthetic marketplace eligible ticks",
+        "sampleSize": 100,
+        "source": {
+          "datasetSha256": "8d1995eeba47c796d17e14156771347ef16f8b2cb4aee79a9b46fdaa4ec1185f",
+          "kind": "application",
+          "query": "10000 * arrival_ticks / eligible_ticks; synthetic-counts.csv; not a live query",
+          "uri": "https://example.org/synthetic-boid-fixture"
+        },
+        "statistic": "rate",
+        "units": "basis-points",
+        "value": "6500",
+        "window": {
+          "end": "2026-10-02T00:00:00Z",
+          "start": "2026-10-01T00:00:00Z"
+        }
+      }
+    ],
+    "schemaVersion": 1
+  },
+  "limitation": "Offline provenance is recorded, not independently verified. Sample size is reported; no statistical confidence or causal inference is implied. Observations do not replace source-code facts or scenario assumptions.",
+  "priorHash": "21829e29b77e5085b7083459f99ae5151625e1aae4dfbc598ddd214b4d4f544b",
+  "priors": {
+    "ranges": [
+      {
+        "id": "arrival-prior",
+        "kind": "scenario-assumption",
+        "maximum": "6000",
+        "metric": "arrivalBps",
+        "minimum": "3000",
+        "population": "synthetic marketplace eligible ticks",
+        "scenarioHash": "18d5b26d1dd3f6b92480bbbc3789a58282750bef165e898e08ccae98bfbd18da",
+        "statistic": "rate",
+        "units": "basis-points",
+        "window": {
+          "end": "2026-10-02T00:00:00Z",
+          "start": "2026-10-01T00:00:00Z"
+        }
+      }
+    ],
+    "schemaVersion": 1
+  },
+  "schemaVersion": 1
+}
