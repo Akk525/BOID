@@ -1,0 +1,38 @@
+{
+  "accounts": {
+    "affiliate": {
+      "actor": "affiliate-1",
+      "owner": "DgGsFwBEDrAyiKFm3jsamVXWPgEQ9o9aFQnJ2q7MboDA",
+      "tokenAccount": "G9odA5dCVBWAgmN9WBKZ5vo5V3ncwKKhk2Nx4EgV1kLK"
+    },
+    "buyer": {
+      "actor": "buyer-1",
+      "owner": "3UvRBap4UMUmEayJw6hNLe2Xk43oXrpTcMNnUJEMPwL9",
+      "tokenAccount": "FrifqWEd4qxJtMbRScC16uDFQowfrHcwGmCnkwmikmzC"
+    },
+    "campaignTreasury": {
+      "actor": "campaignTreasury",
+      "owner": "7ZtbeEXG4q84Lm45ganQN5oXPKW3pYM1nPfpCxcfpksB",
+      "tokenAccount": "EQmaQLXncFjtSzQojdAy9EshLDThptVzbbtri5nzkT5V"
+    },
+    "creator": {
+      "actor": "creator-1",
+      "owner": "839jJmijWZ3wPawjBtwrjYKYz4h7SHJttz6TiLwAC1As",
+      "tokenAccount": "GpqvuDiqQoq8y2xgFWLyY5YPYrfsY8AUp9tdBxY9SA3K"
+    },
+    "platform": {
+      "actor": "platform",
+      "owner": "2rjrth4HKKVyNpG1fmHmgaPwobbMRjwyxgaAw88L89RG",
+      "tokenAccount": "AGYYrommK4bWA3K9SkMRodFrU4GDWSPx8TYVR5oUi8uz"
+    }
+  },
+  "decimals": 6,
+  "eligibilityAuthority": "aJH4wogwxveCqzDK2M3Q84xko8iTAo5hXen9ARfzqsN",
+  "feePayer": "7HZpNiGJq1kdhGCHxUMQPUR4N11EhFt9knnMqdZw4xYu",
+  "mint": "6U7iwmerp2Jaw8h4ihN2fATFL8jk6iSpytAUzDyd8WNR",
+  "review": {
+    "note": "Example public bindings for artifact review only. No deployed accounts or retained signing keys. Generated tests explicitly rebind to fresh local token accounts.",
+    "reviewer": "BOID local fixture"
+  },
+  "tokenProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+}

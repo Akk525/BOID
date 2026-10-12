@@ -1,0 +1,49 @@
+{
+  "affiliateAward": {
+    "after": {
+      "kind": "fee-share",
+      "rate": {
+        "denominator": "100",
+        "numerator": "40"
+      }
+    },
+    "before": {
+      "amountMicros": "1000000",
+      "kind": "fixed"
+    }
+  },
+  "evidence": {
+    "after": {
+      "award": [
+        "affiliateFeeShareSource",
+        "minimumEligiblePurchaseSource",
+        "firstPurchaseSource",
+        "distinctAffiliateSource"
+      ],
+      "creator": [
+        "creatorPayoutSource"
+      ],
+      "fee": [
+        "platformFeeSource"
+      ]
+    },
+    "before": {
+      "award": [
+        "affiliateBonusSource",
+        "minimumEligiblePurchaseSource",
+        "firstPurchaseSource",
+        "distinctAffiliateSource"
+      ],
+      "creator": [
+        "creatorPayoutSource"
+      ],
+      "fee": [
+        "platformFeeSource"
+      ]
+    }
+  },
+  "modelHash": {
+    "after": "eda97824b34bf7b43f540657a66d6c86642f4ba08c6bb20e4b0298306d429b47",
+    "before": "846ae0b554a5414fd56aab4c3b298a3a576aabb141c54284c2439f8aa1285876"
+  }
+}

@@ -8,6 +8,8 @@ The first end-to-end milestone is **Repo → Economic Model → Boid → Finding
 
 The [local SPL payout fixture](docs/B14_SPL_PAYOUT.md) realizes the marketplace repair as a signed token-transfer transaction and compares actual balances with BOID. Run `npm run payout` for local execution; `--validator` checks the same cases against a loopback Solana validator. Referral eligibility and receipt tracking remain trusted service assumptions.
 
+The [reviewed payout generator](docs/B15_GENERATED_PAYOUT.md) maps the validated baseline and repair into the fixed SPL settlement template, emitting account-bound configurations, a diff, assumptions and runnable local tests. Unsupported rules and missing authorities refuse generation.
+
 With Node 24 or newer and dependencies installed (`npm ci`), print the fixture finding:
 
 ```sh

@@ -1,0 +1,1329 @@
+{
+  "artifactHash": "73981b4c62d4aba54daa080971654aa31cec85b28dd80714ca997d9b449fbe0a",
+  "assumptions": [
+    "Reviewed client settlement, not onchain enforcement of rates or referral policy.",
+    "Buyer owner signs purchase debits; treasury owner signs affiliate debits; fee payer signs and pays SOL fees.",
+    "Trusted offchain eligibility authority: aJH4wogwxveCqzDK2M3Q84xko8iTAo5hXen9ARfzqsN. First-purchase state and referral attestation come from this service.",
+    "Distinct account addresses do not prove independent users. Receipt persistence, concurrency and crash recovery require application integration.",
+    "Award is debited from campaign treasury, including when its amount is sized from platform fees.",
+    "SPL Token only; six decimals; no Token-2022 extensions, PDA derivation, escrow or deployment.",
+    "Bindings are declarations to review, not proof that these accounts exist or are controlled by the listed owners."
+  ],
+  "cases": [
+    {
+      "action": {
+        "affiliate": "affiliate-1",
+        "amountMicros": "1",
+        "buyer": "buyer-1",
+        "creator": "creator-1",
+        "type": "purchase"
+      },
+      "expected": {
+        "evaluations": [
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "platformFee"
+          },
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "creatorPayout"
+          },
+          {
+            "eligible": false,
+            "predicates": [
+              {
+                "op": "and",
+                "path": "model.actions.purchase.transfers.2.when",
+                "result": false
+              },
+              {
+                "op": "present",
+                "path": "model.actions.purchase.transfers.2.when.all.0",
+                "result": true
+              },
+              {
+                "op": "differentAccount",
+                "path": "model.actions.purchase.transfers.2.when.all.1",
+                "result": true
+              },
+              {
+                "op": "eq",
+                "path": "model.actions.purchase.transfers.2.when.all.2",
+                "result": true
+              },
+              {
+                "op": "gte",
+                "path": "model.actions.purchase.transfers.2.when.all.3",
+                "result": false
+              }
+            ],
+            "ruleId": "affiliateBonus"
+          }
+        ],
+        "journal": [
+          {
+            "amountMicros": "0",
+            "asset": "USDC",
+            "evidence": [
+              "platformFeeSource"
+            ],
+            "from": "buyer-1",
+            "ruleId": "platformFee",
+            "to": "platform"
+          },
+          {
+            "amountMicros": "1",
+            "asset": "USDC",
+            "evidence": [
+              "creatorPayoutSource"
+            ],
+            "from": "buyer-1",
+            "ruleId": "creatorPayout",
+            "to": "creator-1"
+          }
+        ],
+        "ok": true,
+        "state": {
+          "balances": {
+            "affiliate-1": "0",
+            "buyer-1": "39999999",
+            "campaignTreasury": "10000000",
+            "creator-1": "1",
+            "platform": "0"
+          },
+          "completedPurchases": {
+            "buyer-1": 1
+          },
+          "tick": 1
+        }
+      },
+      "initialState": {
+        "balances": {
+          "affiliate-1": "0",
+          "buyer-1": "40000000",
+          "campaignTreasury": "10000000",
+          "creator-1": "0",
+          "platform": "0"
+        },
+        "completedPurchases": {},
+        "tick": 0
+      },
+      "name": "purchase-1"
+    },
+    {
+      "action": {
+        "affiliate": "affiliate-1",
+        "amountMicros": "11",
+        "buyer": "buyer-1",
+        "creator": "creator-1",
+        "type": "purchase"
+      },
+      "expected": {
+        "evaluations": [
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "platformFee"
+          },
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "creatorPayout"
+          },
+          {
+            "eligible": false,
+            "predicates": [
+              {
+                "op": "and",
+                "path": "model.actions.purchase.transfers.2.when",
+                "result": false
+              },
+              {
+                "op": "present",
+                "path": "model.actions.purchase.transfers.2.when.all.0",
+                "result": true
+              },
+              {
+                "op": "differentAccount",
+                "path": "model.actions.purchase.transfers.2.when.all.1",
+                "result": true
+              },
+              {
+                "op": "eq",
+                "path": "model.actions.purchase.transfers.2.when.all.2",
+                "result": true
+              },
+              {
+                "op": "gte",
+                "path": "model.actions.purchase.transfers.2.when.all.3",
+                "result": false
+              }
+            ],
+            "ruleId": "affiliateBonus"
+          }
+        ],
+        "journal": [
+          {
+            "amountMicros": "1",
+            "asset": "USDC",
+            "evidence": [
+              "platformFeeSource"
+            ],
+            "from": "buyer-1",
+            "ruleId": "platformFee",
+            "to": "platform"
+          },
+          {
+            "amountMicros": "10",
+            "asset": "USDC",
+            "evidence": [
+              "creatorPayoutSource"
+            ],
+            "from": "buyer-1",
+            "ruleId": "creatorPayout",
+            "to": "creator-1"
+          }
+        ],
+        "ok": true,
+        "state": {
+          "balances": {
+            "affiliate-1": "0",
+            "buyer-1": "39999989",
+            "campaignTreasury": "10000000",
+            "creator-1": "10",
+            "platform": "1"
+          },
+          "completedPurchases": {
+            "buyer-1": 1
+          },
+          "tick": 1
+        }
+      },
+      "initialState": {
+        "balances": {
+          "affiliate-1": "0",
+          "buyer-1": "40000000",
+          "campaignTreasury": "10000000",
+          "creator-1": "0",
+          "platform": "0"
+        },
+        "completedPurchases": {},
+        "tick": 0
+      },
+      "name": "purchase-11"
+    },
+    {
+      "action": {
+        "affiliate": "affiliate-1",
+        "amountMicros": "4999999",
+        "buyer": "buyer-1",
+        "creator": "creator-1",
+        "type": "purchase"
+      },
+      "expected": {
+        "evaluations": [
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "platformFee"
+          },
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "creatorPayout"
+          },
+          {
+            "eligible": false,
+            "predicates": [
+              {
+                "op": "and",
+                "path": "model.actions.purchase.transfers.2.when",
+                "result": false
+              },
+              {
+                "op": "present",
+                "path": "model.actions.purchase.transfers.2.when.all.0",
+                "result": true
+              },
+              {
+                "op": "differentAccount",
+                "path": "model.actions.purchase.transfers.2.when.all.1",
+                "result": true
+              },
+              {
+                "op": "eq",
+                "path": "model.actions.purchase.transfers.2.when.all.2",
+                "result": true
+              },
+              {
+                "op": "gte",
+                "path": "model.actions.purchase.transfers.2.when.all.3",
+                "result": false
+              }
+            ],
+            "ruleId": "affiliateBonus"
+          }
+        ],
+        "journal": [
+          {
+            "amountMicros": "499999",
+            "asset": "USDC",
+            "evidence": [
+              "platformFeeSource"
+            ],
+            "from": "buyer-1",
+            "ruleId": "platformFee",
+            "to": "platform"
+          },
+          {
+            "amountMicros": "4500000",
+            "asset": "USDC",
+            "evidence": [
+              "creatorPayoutSource"
+            ],
+            "from": "buyer-1",
+            "ruleId": "creatorPayout",
+            "to": "creator-1"
+          }
+        ],
+        "ok": true,
+        "state": {
+          "balances": {
+            "affiliate-1": "0",
+            "buyer-1": "35000001",
+            "campaignTreasury": "10000000",
+            "creator-1": "4500000",
+            "platform": "499999"
+          },
+          "completedPurchases": {
+            "buyer-1": 1
+          },
+          "tick": 1
+        }
+      },
+      "initialState": {
+        "balances": {
+          "affiliate-1": "0",
+          "buyer-1": "40000000",
+          "campaignTreasury": "10000000",
+          "creator-1": "0",
+          "platform": "0"
+        },
+        "completedPurchases": {},
+        "tick": 0
+      },
+      "name": "purchase-4999999"
+    },
+    {
+      "action": {
+        "affiliate": "affiliate-1",
+        "amountMicros": "5000000",
+        "buyer": "buyer-1",
+        "creator": "creator-1",
+        "type": "purchase"
+      },
+      "expected": {
+        "evaluations": [
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "platformFee"
+          },
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "creatorPayout"
+          },
+          {
+            "eligible": true,
+            "predicates": [
+              {
+                "op": "and",
+                "path": "model.actions.purchase.transfers.2.when",
+                "result": true
+              },
+              {
+                "op": "present",
+                "path": "model.actions.purchase.transfers.2.when.all.0",
+                "result": true
+              },
+              {
+                "op": "differentAccount",
+                "path": "model.actions.purchase.transfers.2.when.all.1",
+                "result": true
+              },
+              {
+                "op": "eq",
+                "path": "model.actions.purchase.transfers.2.when.all.2",
+                "result": true
+              },
+              {
+                "op": "gte",
+                "path": "model.actions.purchase.transfers.2.when.all.3",
+                "result": true
+              }
+            ],
+            "ruleId": "affiliateBonus"
+          }
+        ],
+        "journal": [
+          {
+            "amountMicros": "500000",
+            "asset": "USDC",
+            "evidence": [
+              "platformFeeSource"
+            ],
+            "from": "buyer-1",
+            "ruleId": "platformFee",
+            "to": "platform"
+          },
+          {
+            "amountMicros": "4500000",
+            "asset": "USDC",
+            "evidence": [
+              "creatorPayoutSource"
+            ],
+            "from": "buyer-1",
+            "ruleId": "creatorPayout",
+            "to": "creator-1"
+          },
+          {
+            "amountMicros": "200000",
+            "asset": "USDC",
+            "evidence": [
+              "affiliateFeeShareSource",
+              "minimumEligiblePurchaseSource",
+              "firstPurchaseSource",
+              "distinctAffiliateSource"
+            ],
+            "from": "campaignTreasury",
+            "ruleId": "affiliateBonus",
+            "to": "affiliate-1"
+          }
+        ],
+        "ok": true,
+        "state": {
+          "balances": {
+            "affiliate-1": "200000",
+            "buyer-1": "35000000",
+            "campaignTreasury": "9800000",
+            "creator-1": "4500000",
+            "platform": "500000"
+          },
+          "completedPurchases": {
+            "buyer-1": 1
+          },
+          "tick": 1
+        }
+      },
+      "initialState": {
+        "balances": {
+          "affiliate-1": "0",
+          "buyer-1": "40000000",
+          "campaignTreasury": "10000000",
+          "creator-1": "0",
+          "platform": "0"
+        },
+        "completedPurchases": {},
+        "tick": 0
+      },
+      "name": "purchase-5000000"
+    },
+    {
+      "action": {
+        "affiliate": "affiliate-1",
+        "amountMicros": "5000001",
+        "buyer": "buyer-1",
+        "creator": "creator-1",
+        "type": "purchase"
+      },
+      "expected": {
+        "evaluations": [
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "platformFee"
+          },
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "creatorPayout"
+          },
+          {
+            "eligible": true,
+            "predicates": [
+              {
+                "op": "and",
+                "path": "model.actions.purchase.transfers.2.when",
+                "result": true
+              },
+              {
+                "op": "present",
+                "path": "model.actions.purchase.transfers.2.when.all.0",
+                "result": true
+              },
+              {
+                "op": "differentAccount",
+                "path": "model.actions.purchase.transfers.2.when.all.1",
+                "result": true
+              },
+              {
+                "op": "eq",
+                "path": "model.actions.purchase.transfers.2.when.all.2",
+                "result": true
+              },
+              {
+                "op": "gte",
+                "path": "model.actions.purchase.transfers.2.when.all.3",
+                "result": true
+              }
+            ],
+            "ruleId": "affiliateBonus"
+          }
+        ],
+        "journal": [
+          {
+            "amountMicros": "500000",
+            "asset": "USDC",
+            "evidence": [
+              "platformFeeSource"
+            ],
+            "from": "buyer-1",
+            "ruleId": "platformFee",
+            "to": "platform"
+          },
+          {
+            "amountMicros": "4500001",
+            "asset": "USDC",
+            "evidence": [
+              "creatorPayoutSource"
+            ],
+            "from": "buyer-1",
+            "ruleId": "creatorPayout",
+            "to": "creator-1"
+          },
+          {
+            "amountMicros": "200000",
+            "asset": "USDC",
+            "evidence": [
+              "affiliateFeeShareSource",
+              "minimumEligiblePurchaseSource",
+              "firstPurchaseSource",
+              "distinctAffiliateSource"
+            ],
+            "from": "campaignTreasury",
+            "ruleId": "affiliateBonus",
+            "to": "affiliate-1"
+          }
+        ],
+        "ok": true,
+        "state": {
+          "balances": {
+            "affiliate-1": "200000",
+            "buyer-1": "34999999",
+            "campaignTreasury": "9800000",
+            "creator-1": "4500001",
+            "platform": "500000"
+          },
+          "completedPurchases": {
+            "buyer-1": 1
+          },
+          "tick": 1
+        }
+      },
+      "initialState": {
+        "balances": {
+          "affiliate-1": "0",
+          "buyer-1": "40000000",
+          "campaignTreasury": "10000000",
+          "creator-1": "0",
+          "platform": "0"
+        },
+        "completedPurchases": {},
+        "tick": 0
+      },
+      "name": "purchase-5000001"
+    },
+    {
+      "action": {
+        "affiliate": "affiliate-1",
+        "amountMicros": "5000029",
+        "buyer": "buyer-1",
+        "creator": "creator-1",
+        "type": "purchase"
+      },
+      "expected": {
+        "evaluations": [
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "platformFee"
+          },
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "creatorPayout"
+          },
+          {
+            "eligible": true,
+            "predicates": [
+              {
+                "op": "and",
+                "path": "model.actions.purchase.transfers.2.when",
+                "result": true
+              },
+              {
+                "op": "present",
+                "path": "model.actions.purchase.transfers.2.when.all.0",
+                "result": true
+              },
+              {
+                "op": "differentAccount",
+                "path": "model.actions.purchase.transfers.2.when.all.1",
+                "result": true
+              },
+              {
+                "op": "eq",
+                "path": "model.actions.purchase.transfers.2.when.all.2",
+                "result": true
+              },
+              {
+                "op": "gte",
+                "path": "model.actions.purchase.transfers.2.when.all.3",
+                "result": true
+              }
+            ],
+            "ruleId": "affiliateBonus"
+          }
+        ],
+        "journal": [
+          {
+            "amountMicros": "500002",
+            "asset": "USDC",
+            "evidence": [
+              "platformFeeSource"
+            ],
+            "from": "buyer-1",
+            "ruleId": "platformFee",
+            "to": "platform"
+          },
+          {
+            "amountMicros": "4500027",
+            "asset": "USDC",
+            "evidence": [
+              "creatorPayoutSource"
+            ],
+            "from": "buyer-1",
+            "ruleId": "creatorPayout",
+            "to": "creator-1"
+          },
+          {
+            "amountMicros": "200000",
+            "asset": "USDC",
+            "evidence": [
+              "affiliateFeeShareSource",
+              "minimumEligiblePurchaseSource",
+              "firstPurchaseSource",
+              "distinctAffiliateSource"
+            ],
+            "from": "campaignTreasury",
+            "ruleId": "affiliateBonus",
+            "to": "affiliate-1"
+          }
+        ],
+        "ok": true,
+        "state": {
+          "balances": {
+            "affiliate-1": "200000",
+            "buyer-1": "34999971",
+            "campaignTreasury": "9800000",
+            "creator-1": "4500027",
+            "platform": "500002"
+          },
+          "completedPurchases": {
+            "buyer-1": 1
+          },
+          "tick": 1
+        }
+      },
+      "initialState": {
+        "balances": {
+          "affiliate-1": "0",
+          "buyer-1": "40000000",
+          "campaignTreasury": "10000000",
+          "creator-1": "0",
+          "platform": "0"
+        },
+        "completedPurchases": {},
+        "tick": 0
+      },
+      "name": "purchase-5000029"
+    },
+    {
+      "action": {
+        "affiliate": "affiliate-1",
+        "amountMicros": "20000000",
+        "buyer": "buyer-1",
+        "creator": "creator-1",
+        "type": "purchase"
+      },
+      "expected": {
+        "evaluations": [
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "platformFee"
+          },
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "creatorPayout"
+          },
+          {
+            "eligible": true,
+            "predicates": [
+              {
+                "op": "and",
+                "path": "model.actions.purchase.transfers.2.when",
+                "result": true
+              },
+              {
+                "op": "present",
+                "path": "model.actions.purchase.transfers.2.when.all.0",
+                "result": true
+              },
+              {
+                "op": "differentAccount",
+                "path": "model.actions.purchase.transfers.2.when.all.1",
+                "result": true
+              },
+              {
+                "op": "eq",
+                "path": "model.actions.purchase.transfers.2.when.all.2",
+                "result": true
+              },
+              {
+                "op": "gte",
+                "path": "model.actions.purchase.transfers.2.when.all.3",
+                "result": true
+              }
+            ],
+            "ruleId": "affiliateBonus"
+          }
+        ],
+        "journal": [
+          {
+            "amountMicros": "2000000",
+            "asset": "USDC",
+            "evidence": [
+              "platformFeeSource"
+            ],
+            "from": "buyer-1",
+            "ruleId": "platformFee",
+            "to": "platform"
+          },
+          {
+            "amountMicros": "18000000",
+            "asset": "USDC",
+            "evidence": [
+              "creatorPayoutSource"
+            ],
+            "from": "buyer-1",
+            "ruleId": "creatorPayout",
+            "to": "creator-1"
+          },
+          {
+            "amountMicros": "800000",
+            "asset": "USDC",
+            "evidence": [
+              "affiliateFeeShareSource",
+              "minimumEligiblePurchaseSource",
+              "firstPurchaseSource",
+              "distinctAffiliateSource"
+            ],
+            "from": "campaignTreasury",
+            "ruleId": "affiliateBonus",
+            "to": "affiliate-1"
+          }
+        ],
+        "ok": true,
+        "state": {
+          "balances": {
+            "affiliate-1": "800000",
+            "buyer-1": "20000000",
+            "campaignTreasury": "9200000",
+            "creator-1": "18000000",
+            "platform": "2000000"
+          },
+          "completedPurchases": {
+            "buyer-1": 1
+          },
+          "tick": 1
+        }
+      },
+      "initialState": {
+        "balances": {
+          "affiliate-1": "0",
+          "buyer-1": "40000000",
+          "campaignTreasury": "10000000",
+          "creator-1": "0",
+          "platform": "0"
+        },
+        "completedPurchases": {},
+        "tick": 0
+      },
+      "name": "purchase-20000000"
+    },
+    {
+      "action": {
+        "affiliate": "affiliate-1",
+        "amountMicros": "5000000",
+        "buyer": "buyer-1",
+        "creator": "creator-1",
+        "type": "purchase"
+      },
+      "expected": {
+        "evaluations": [
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "platformFee"
+          },
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "creatorPayout"
+          },
+          {
+            "eligible": false,
+            "predicates": [
+              {
+                "op": "and",
+                "path": "model.actions.purchase.transfers.2.when",
+                "result": false
+              },
+              {
+                "op": "present",
+                "path": "model.actions.purchase.transfers.2.when.all.0",
+                "result": true
+              },
+              {
+                "op": "differentAccount",
+                "path": "model.actions.purchase.transfers.2.when.all.1",
+                "result": true
+              },
+              {
+                "op": "eq",
+                "path": "model.actions.purchase.transfers.2.when.all.2",
+                "result": false
+              },
+              {
+                "op": "gte",
+                "path": "model.actions.purchase.transfers.2.when.all.3",
+                "result": true
+              }
+            ],
+            "ruleId": "affiliateBonus"
+          }
+        ],
+        "journal": [
+          {
+            "amountMicros": "500000",
+            "asset": "USDC",
+            "evidence": [
+              "platformFeeSource"
+            ],
+            "from": "buyer-1",
+            "ruleId": "platformFee",
+            "to": "platform"
+          },
+          {
+            "amountMicros": "4500000",
+            "asset": "USDC",
+            "evidence": [
+              "creatorPayoutSource"
+            ],
+            "from": "buyer-1",
+            "ruleId": "creatorPayout",
+            "to": "creator-1"
+          }
+        ],
+        "ok": true,
+        "state": {
+          "balances": {
+            "affiliate-1": "0",
+            "buyer-1": "35000000",
+            "campaignTreasury": "10000000",
+            "creator-1": "4500000",
+            "platform": "500000"
+          },
+          "completedPurchases": {
+            "buyer-1": 2
+          },
+          "tick": 1
+        }
+      },
+      "initialState": {
+        "balances": {
+          "affiliate-1": "0",
+          "buyer-1": "40000000",
+          "campaignTreasury": "10000000",
+          "creator-1": "0",
+          "platform": "0"
+        },
+        "completedPurchases": {
+          "buyer-1": 1
+        },
+        "tick": 0
+      },
+      "name": "repeat-purchase"
+    },
+    {
+      "action": {
+        "amountMicros": "5000000",
+        "buyer": "buyer-1",
+        "creator": "creator-1",
+        "type": "purchase"
+      },
+      "expected": {
+        "evaluations": [
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "platformFee"
+          },
+          {
+            "eligible": true,
+            "predicates": [],
+            "ruleId": "creatorPayout"
+          },
+          {
+            "eligible": false,
+            "predicates": [
+              {
+                "op": "and",
+                "path": "model.actions.purchase.transfers.2.when",
+                "result": false
+              },
+              {
+                "op": "present",
+                "path": "model.actions.purchase.transfers.2.when.all.0",
+                "result": false
+              },
+              {
+                "op": "differentAccount",
+                "path": "model.actions.purchase.transfers.2.when.all.1",
+                "result": false
+              },
+              {
+                "op": "eq",
+                "path": "model.actions.purchase.transfers.2.when.all.2",
+                "result": true
+              },
+              {
+                "op": "gte",
+                "path": "model.actions.purchase.transfers.2.when.all.3",
+                "result": true
+              }
+            ],
+            "ruleId": "affiliateBonus"
+          }
+        ],
+        "journal": [
+          {
+            "amountMicros": "500000",
+            "asset": "USDC",
+            "evidence": [
+              "platformFeeSource"
+            ],
+            "from": "buyer-1",
+            "ruleId": "platformFee",
+            "to": "platform"
+          },
+          {
+            "amountMicros": "4500000",
+            "asset": "USDC",
+            "evidence": [
+              "creatorPayoutSource"
+            ],
+            "from": "buyer-1",
+            "ruleId": "creatorPayout",
+            "to": "creator-1"
+          }
+        ],
+        "ok": true,
+        "state": {
+          "balances": {
+            "affiliate-1": "0",
+            "buyer-1": "35000000",
+            "campaignTreasury": "10000000",
+            "creator-1": "4500000",
+            "platform": "500000"
+          },
+          "completedPurchases": {
+            "buyer-1": 1
+          },
+          "tick": 1
+        }
+      },
+      "initialState": {
+        "balances": {
+          "affiliate-1": "0",
+          "buyer-1": "40000000",
+          "campaignTreasury": "10000000",
+          "creator-1": "0",
+          "platform": "0"
+        },
+        "completedPurchases": {},
+        "tick": 0
+      },
+      "name": "absent-affiliate"
+    }
+  ],
+  "configuration": {
+    "affiliateAward": {
+      "kind": "fee-share",
+      "rate": {
+        "denominator": "100",
+        "numerator": "40"
+      }
+    },
+    "bindings": {
+      "accounts": {
+        "affiliate": {
+          "actor": "affiliate-1",
+          "owner": "DgGsFwBEDrAyiKFm3jsamVXWPgEQ9o9aFQnJ2q7MboDA",
+          "tokenAccount": "G9odA5dCVBWAgmN9WBKZ5vo5V3ncwKKhk2Nx4EgV1kLK"
+        },
+        "buyer": {
+          "actor": "buyer-1",
+          "owner": "3UvRBap4UMUmEayJw6hNLe2Xk43oXrpTcMNnUJEMPwL9",
+          "tokenAccount": "FrifqWEd4qxJtMbRScC16uDFQowfrHcwGmCnkwmikmzC"
+        },
+        "campaignTreasury": {
+          "actor": "campaignTreasury",
+          "owner": "7ZtbeEXG4q84Lm45ganQN5oXPKW3pYM1nPfpCxcfpksB",
+          "tokenAccount": "EQmaQLXncFjtSzQojdAy9EshLDThptVzbbtri5nzkT5V"
+        },
+        "creator": {
+          "actor": "creator-1",
+          "owner": "839jJmijWZ3wPawjBtwrjYKYz4h7SHJttz6TiLwAC1As",
+          "tokenAccount": "GpqvuDiqQoq8y2xgFWLyY5YPYrfsY8AUp9tdBxY9SA3K"
+        },
+        "platform": {
+          "actor": "platform",
+          "owner": "2rjrth4HKKVyNpG1fmHmgaPwobbMRjwyxgaAw88L89RG",
+          "tokenAccount": "AGYYrommK4bWA3K9SkMRodFrU4GDWSPx8TYVR5oUi8uz"
+        }
+      },
+      "decimals": 6,
+      "eligibilityAuthority": "aJH4wogwxveCqzDK2M3Q84xko8iTAo5hXen9ARfzqsN",
+      "feePayer": "7HZpNiGJq1kdhGCHxUMQPUR4N11EhFt9knnMqdZw4xYu",
+      "mint": "6U7iwmerp2Jaw8h4ihN2fATFL8jk6iSpytAUzDyd8WNR",
+      "review": {
+        "note": "Example public bindings for artifact review only. No deployed accounts or retained signing keys. Generated tests explicitly rebind to fresh local token accounts.",
+        "reviewer": "BOID local fixture"
+      },
+      "tokenProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+    },
+    "evidence": {
+      "award": [
+        "affiliateFeeShareSource",
+        "minimumEligiblePurchaseSource",
+        "firstPurchaseSource",
+        "distinctAffiliateSource"
+      ],
+      "creator": [
+        "creatorPayoutSource"
+      ],
+      "fee": [
+        "platformFeeSource"
+      ]
+    },
+    "minimumEligiblePurchase": "5000000",
+    "modelHash": "eda97824b34bf7b43f540657a66d6c86642f4ba08c6bb20e4b0298306d429b47",
+    "platformFee": {
+      "denominator": "100",
+      "numerator": "10"
+    },
+    "rules": {
+      "award": "affiliateBonus",
+      "creator": "creatorPayout",
+      "fee": "platformFee"
+    },
+    "schemaVersion": 1,
+    "templateVersion": "spl-purchase.v1"
+  },
+  "model": {
+    "actions": {
+      "purchase": {
+        "transfers": [
+          {
+            "amount": {
+              "basis": "purchase.amount",
+              "op": "share",
+              "rate": {
+                "parameter": "platformFeeRate"
+              }
+            },
+            "evidence": [
+              "platformFeeSource"
+            ],
+            "from": "buyer",
+            "id": "platformFee",
+            "to": "platform"
+          },
+          {
+            "amount": {
+              "basis": "purchase.amount",
+              "minusRule": "platformFee",
+              "op": "remainder"
+            },
+            "evidence": [
+              "creatorPayoutSource"
+            ],
+            "from": "buyer",
+            "id": "creatorPayout",
+            "to": "creator"
+          },
+          {
+            "amount": {
+              "basis": {
+                "rule": "platformFee"
+              },
+              "op": "share",
+              "rate": {
+                "parameter": "affiliateFeeShareRate"
+              }
+            },
+            "evidence": [
+              "affiliateFeeShareSource",
+              "minimumEligiblePurchaseSource",
+              "firstPurchaseSource",
+              "distinctAffiliateSource"
+            ],
+            "from": "campaignTreasury",
+            "id": "affiliateBonus",
+            "to": "affiliate",
+            "when": {
+              "all": [
+                {
+                  "op": "present",
+                  "role": "affiliate"
+                },
+                {
+                  "left": "buyer",
+                  "op": "differentAccount",
+                  "right": "affiliate"
+                },
+                {
+                  "left": "buyer.completedPurchases",
+                  "op": "eq",
+                  "right": 0
+                },
+                {
+                  "left": "purchase.amount",
+                  "op": "gte",
+                  "right": {
+                    "parameter": "minimumEligiblePurchase"
+                  }
+                }
+              ],
+              "op": "and"
+            }
+          }
+        ]
+      }
+    },
+    "actors": [
+      {
+        "id": "buyer-1",
+        "roles": [
+          "buyer"
+        ]
+      },
+      {
+        "id": "creator-1",
+        "roles": [
+          "creator"
+        ]
+      },
+      {
+        "id": "affiliate-1",
+        "roles": [
+          "affiliate"
+        ]
+      },
+      {
+        "id": "platform",
+        "roles": [
+          "platform"
+        ]
+      },
+      {
+        "id": "campaignTreasury",
+        "roles": [
+          "campaignTreasury"
+        ]
+      }
+    ],
+    "assets": [
+      {
+        "decimals": 6,
+        "id": "USDC"
+      }
+    ],
+    "constraints": {
+      "buyerCreatorDifferent": {
+        "evidence": "buyerCreatorSource",
+        "value": true
+      },
+      "noNegativeBalances": true
+    },
+    "evidence": {
+      "affiliateBonusSource": {
+        "kind": "known",
+        "source": {
+          "commit": "5ee0fd0f87d1e1467af924990ed024c581915b04",
+          "endLine": 4,
+          "path": "fixtures/creator-marketplace/src/config.mjs",
+          "startLine": 4,
+          "type": "repo"
+        }
+      },
+      "affiliateFeeShareSource": {
+        "kind": "user_supplied",
+        "notes": "Proposed repair: affiliate award equals 40% of the platform fee actually collected on the qualifying purchase.",
+        "source": {
+          "type": "user"
+        }
+      },
+      "buyerCreatorSource": {
+        "kind": "known",
+        "source": {
+          "commit": "5ee0fd0f87d1e1467af924990ed024c581915b04",
+          "endLine": 28,
+          "path": "fixtures/creator-marketplace/src/checkout.mjs",
+          "startLine": 28,
+          "type": "repo"
+        }
+      },
+      "creatorPayoutSource": {
+        "kind": "known",
+        "source": {
+          "commit": "5ee0fd0f87d1e1467af924990ed024c581915b04",
+          "endLine": 47,
+          "path": "fixtures/creator-marketplace/src/checkout.mjs",
+          "startLine": 44,
+          "type": "repo"
+        }
+      },
+      "distinctAffiliateSource": {
+        "kind": "known",
+        "source": {
+          "commit": "5ee0fd0f87d1e1467af924990ed024c581915b04",
+          "endLine": 7,
+          "path": "fixtures/creator-marketplace/src/referrals.mjs",
+          "startLine": 7,
+          "type": "repo"
+        }
+      },
+      "firstPurchaseSource": {
+        "kind": "known",
+        "source": {
+          "commit": "5ee0fd0f87d1e1467af924990ed024c581915b04",
+          "endLine": 8,
+          "path": "fixtures/creator-marketplace/src/referrals.mjs",
+          "startLine": 8,
+          "type": "repo"
+        }
+      },
+      "minimumEligiblePurchaseSource": {
+        "kind": "known",
+        "source": {
+          "commit": "5ee0fd0f87d1e1467af924990ed024c581915b04",
+          "endLine": 5,
+          "path": "fixtures/creator-marketplace/src/config.mjs",
+          "startLine": 5,
+          "type": "repo"
+        }
+      },
+      "objectiveSource": {
+        "kind": "user_supplied",
+        "notes": "Demo objective: preserve campaign treasury funds while rewarding legitimate referrals.",
+        "source": {
+          "type": "user"
+        }
+      },
+      "platformFeeSource": {
+        "kind": "known",
+        "source": {
+          "commit": "5ee0fd0f87d1e1467af924990ed024c581915b04",
+          "endLine": 3,
+          "path": "fixtures/creator-marketplace/src/config.mjs",
+          "startLine": 3,
+          "type": "repo"
+        }
+      }
+    },
+    "objectives": [
+      {
+        "direction": "max",
+        "evidence": "objectiveSource",
+        "id": "preserveCampaignTreasury",
+        "metric": "campaignTreasuryBalance"
+      }
+    ],
+    "parameters": {
+      "affiliateBonus": {
+        "evidence": "affiliateBonusSource",
+        "kind": "money",
+        "value": "1000000"
+      },
+      "affiliateFeeShareRate": {
+        "evidence": "affiliateFeeShareSource",
+        "kind": "rate",
+        "value": "0.40"
+      },
+      "minimumEligiblePurchase": {
+        "evidence": "minimumEligiblePurchaseSource",
+        "kind": "money",
+        "value": "5000000"
+      },
+      "platformFeeRate": {
+        "evidence": "platformFeeSource",
+        "kind": "rate",
+        "value": "0.10"
+      }
+    },
+    "schemaVersion": 1,
+    "source": {
+      "commit": "5ee0fd0f87d1e1467af924990ed024c581915b04",
+      "files": [
+        {
+          "path": "fixtures/creator-marketplace/src/config.mjs",
+          "sha256": "654663b4e16b6e5fb9b30ab77d540d93dc0bf44954bfa1f88be70944c94f9099"
+        },
+        {
+          "path": "fixtures/creator-marketplace/src/referrals.mjs",
+          "sha256": "1a35f642088b3e0377e79318b0f81ab630d7c4038118652fe0333bd5b16b4107"
+        },
+        {
+          "path": "fixtures/creator-marketplace/src/checkout.mjs",
+          "sha256": "ef560bd4295a494e7c0a0f7e60d0657c0786b884425f590af456d5f850c4a066"
+        }
+      ],
+      "repository": "fixtures/creator-marketplace"
+    },
+    "state": {
+      "balances": {
+        "asset": "USDC"
+      },
+      "completedPurchases": {
+        "actorRole": "buyer"
+      }
+    }
+  }
+}

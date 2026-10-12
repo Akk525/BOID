@@ -1,0 +1,250 @@
+[
+  {
+    "artifactHash": "982b5f466a906c0d679af7e542cd133c680357d7deb113cf9138c746ca2b41db",
+    "economicHash": "780a5a0caf5700fa1b45f51cecc186c24f11c5bedb6e732201c445810ac10b4a",
+    "evidenceHash": "6065d771cd3d037f677010e35b6935e0d719a49a4f059063ee7229921fabdf50",
+    "name": "baseline",
+    "rows": [
+      {
+        "balances": {
+          "affiliate-1": "0",
+          "buyer-1": "39999999",
+          "campaignTreasury": "10000000",
+          "creator-1": "1",
+          "platform": "0"
+        },
+        "case": "purchase-1",
+        "feeLamports": "10000",
+        "ok": true
+      },
+      {
+        "balances": {
+          "affiliate-1": "0",
+          "buyer-1": "39999989",
+          "campaignTreasury": "10000000",
+          "creator-1": "10",
+          "platform": "1"
+        },
+        "case": "purchase-11",
+        "feeLamports": "10000",
+        "ok": true
+      },
+      {
+        "balances": {
+          "affiliate-1": "0",
+          "buyer-1": "35000001",
+          "campaignTreasury": "10000000",
+          "creator-1": "4500000",
+          "platform": "499999"
+        },
+        "case": "purchase-4999999",
+        "feeLamports": "10000",
+        "ok": true
+      },
+      {
+        "balances": {
+          "affiliate-1": "1000000",
+          "buyer-1": "35000000",
+          "campaignTreasury": "9000000",
+          "creator-1": "4500000",
+          "platform": "500000"
+        },
+        "case": "purchase-5000000",
+        "feeLamports": "15000",
+        "ok": true
+      },
+      {
+        "balances": {
+          "affiliate-1": "1000000",
+          "buyer-1": "34999999",
+          "campaignTreasury": "9000000",
+          "creator-1": "4500001",
+          "platform": "500000"
+        },
+        "case": "purchase-5000001",
+        "feeLamports": "15000",
+        "ok": true
+      },
+      {
+        "balances": {
+          "affiliate-1": "1000000",
+          "buyer-1": "34999971",
+          "campaignTreasury": "9000000",
+          "creator-1": "4500027",
+          "platform": "500002"
+        },
+        "case": "purchase-5000029",
+        "feeLamports": "15000",
+        "ok": true
+      },
+      {
+        "balances": {
+          "affiliate-1": "1000000",
+          "buyer-1": "20000000",
+          "campaignTreasury": "9000000",
+          "creator-1": "18000000",
+          "platform": "2000000"
+        },
+        "case": "purchase-20000000",
+        "feeLamports": "15000",
+        "ok": true
+      },
+      {
+        "balances": {
+          "affiliate-1": "0",
+          "buyer-1": "35000000",
+          "campaignTreasury": "10000000",
+          "creator-1": "4500000",
+          "platform": "500000"
+        },
+        "case": "repeat-purchase",
+        "feeLamports": "10000",
+        "ok": true
+      },
+      {
+        "balances": {
+          "affiliate-1": "0",
+          "buyer-1": "35000000",
+          "campaignTreasury": "10000000",
+          "creator-1": "4500000",
+          "platform": "500000"
+        },
+        "case": "absent-affiliate",
+        "feeLamports": "10000",
+        "ok": true
+      }
+    ],
+    "runtime": "LiteSVM 1.6.0",
+    "runtimeVersion": "litesvm@1.6.0",
+    "sourceHashes": {
+      "package-lock.json": "4753dcc91d62c33ffdce7f9465a70a59cfa85e598d0ac310ab406eb737be4898",
+      "src/solana/generated-payout.ts": "aad43950e2962bd1c9d54086d47b39e4ac1cb9b53a39d1692cc72b1d7a212c52",
+      "src/solana/local-runtime.ts": "7f7749c5f118321cf10c2986bacab530a3006c452e00f69f32c3ef7e296d091e",
+      "src/solana/payout-generator.ts": "b85e84708e451ddf2c41b5eb93cde37504835be85e374ad96e58c2dcd9898684"
+    }
+  },
+  {
+    "artifactHash": "73981b4c62d4aba54daa080971654aa31cec85b28dd80714ca997d9b449fbe0a",
+    "economicHash": "512f8a471bc955ef927797ce7690958897d4abdface303639b730c90acd89bb9",
+    "evidenceHash": "fda9cf689b9155676e7f0136abbd8a12ff66b9910cc485346f81f43171fd0034",
+    "name": "repair",
+    "rows": [
+      {
+        "balances": {
+          "affiliate-1": "0",
+          "buyer-1": "39999999",
+          "campaignTreasury": "10000000",
+          "creator-1": "1",
+          "platform": "0"
+        },
+        "case": "purchase-1",
+        "feeLamports": "10000",
+        "ok": true
+      },
+      {
+        "balances": {
+          "affiliate-1": "0",
+          "buyer-1": "39999989",
+          "campaignTreasury": "10000000",
+          "creator-1": "10",
+          "platform": "1"
+        },
+        "case": "purchase-11",
+        "feeLamports": "10000",
+        "ok": true
+      },
+      {
+        "balances": {
+          "affiliate-1": "0",
+          "buyer-1": "35000001",
+          "campaignTreasury": "10000000",
+          "creator-1": "4500000",
+          "platform": "499999"
+        },
+        "case": "purchase-4999999",
+        "feeLamports": "10000",
+        "ok": true
+      },
+      {
+        "balances": {
+          "affiliate-1": "200000",
+          "buyer-1": "35000000",
+          "campaignTreasury": "9800000",
+          "creator-1": "4500000",
+          "platform": "500000"
+        },
+        "case": "purchase-5000000",
+        "feeLamports": "15000",
+        "ok": true
+      },
+      {
+        "balances": {
+          "affiliate-1": "200000",
+          "buyer-1": "34999999",
+          "campaignTreasury": "9800000",
+          "creator-1": "4500001",
+          "platform": "500000"
+        },
+        "case": "purchase-5000001",
+        "feeLamports": "15000",
+        "ok": true
+      },
+      {
+        "balances": {
+          "affiliate-1": "200000",
+          "buyer-1": "34999971",
+          "campaignTreasury": "9800000",
+          "creator-1": "4500027",
+          "platform": "500002"
+        },
+        "case": "purchase-5000029",
+        "feeLamports": "15000",
+        "ok": true
+      },
+      {
+        "balances": {
+          "affiliate-1": "800000",
+          "buyer-1": "20000000",
+          "campaignTreasury": "9200000",
+          "creator-1": "18000000",
+          "platform": "2000000"
+        },
+        "case": "purchase-20000000",
+        "feeLamports": "15000",
+        "ok": true
+      },
+      {
+        "balances": {
+          "affiliate-1": "0",
+          "buyer-1": "35000000",
+          "campaignTreasury": "10000000",
+          "creator-1": "4500000",
+          "platform": "500000"
+        },
+        "case": "repeat-purchase",
+        "feeLamports": "10000",
+        "ok": true
+      },
+      {
+        "balances": {
+          "affiliate-1": "0",
+          "buyer-1": "35000000",
+          "campaignTreasury": "10000000",
+          "creator-1": "4500000",
+          "platform": "500000"
+        },
+        "case": "absent-affiliate",
+        "feeLamports": "10000",
+        "ok": true
+      }
+    ],
+    "runtime": "LiteSVM 1.6.0",
+    "runtimeVersion": "litesvm@1.6.0",
+    "sourceHashes": {
+      "package-lock.json": "4753dcc91d62c33ffdce7f9465a70a59cfa85e598d0ac310ab406eb737be4898",
+      "src/solana/generated-payout.ts": "aad43950e2962bd1c9d54086d47b39e4ac1cb9b53a39d1692cc72b1d7a212c52",
+      "src/solana/local-runtime.ts": "7f7749c5f118321cf10c2986bacab530a3006c452e00f69f32c3ef7e296d091e",
+      "src/solana/payout-generator.ts": "b85e84708e451ddf2c41b5eb93cde37504835be85e374ad96e58c2dcd9898684"
+    }
+  }
+]
